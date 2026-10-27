@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Login to AgroLink Uganda as a farmer or buyer."
+  >
+
+  <title>Login | AgroLink Uganda</title>
+
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+
+  <style>
+    body {
+      min-height: 100vh;
+      background: #f6f9f6;
+      color: var(--text-primary);
+    }
+
+    .login-page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(380px, .85fr) minmax(520px, 1.15fr);
+    }
+
+    /* ==========================================
+       BRAND SIDE
+       ========================================== */
+
+    .login-brand-panel {
+      position: relative;
+      overflow: hidden;
+
+      min-height: 100vh;
+      padding: 50px;
+
+      display: flex;
+      flex-direction: column;
+
+      background:
+        linear-gradient(
+          145deg,
+          #075e3b,
+          #0b8548
+        );
+
+      color: #ffffff;
+    }
+
+    .login-brand-panel::before {
+      content: "";
+      position: absolute;
+
+      width: 430px;
+      height: 430px;
+
+      right: -240px;
+      top: -180px;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,.055);
+    }
+
+    .login-brand-panel::after {
+      content: "";
+      position: absolute;
+
+      width: 350px;
+      height: 350px;
+
+      left: -210px;
+      bottom: -170px;
+
+      border-radius: 50%;
+
+      background: rgba(168,213,66,.09);
+    }
+
+    .brand-top {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .brand-leaf {
+      width: 47px;
+      height: 47px;
+
+      flex: 0 0 auto;
+
+      color: #ffffff;
+    }
+
+    .brand-leaf svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .brand-wordmark {
+      display: flex;
+      flex-direction: column;
+
+      line-height: 1;
+    }
+
+    .brand-wordmark strong {
+      font-size: 25px;
+      font-weight: 800;
+
+      letter-spacing: -.7px;
+    }
+
+    .brand-wordmark span {
+      margin-top: 5px;
+
+      color: rgba(255,255,255,.9);
+
+      font-size: 14px;
+    }
+
+    .brand-back {
+      width: 42px;
+      height: 42px;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: rgba(255,255,255,.09);
+      color: #ffffff;
+
+      text-decoration: none;
+    }
+
+    .brand-back:hover {
+      background: rgba(255,255,255,.15);
+      color: #ffffff;
+    }
+
+    .brand-content {
+      position: relative;
+      z-index: 2;
+
+      max-width: 500px;
+
+      margin: auto 0;
+      padding: 70px 0;
+    }
+
+    .brand-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      margin-bottom: 17px;
+
+      color: var(--lime-light);
+
+      font-size: 11px;
+      font-weight: 800;
+
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .brand-content h1 {
+      margin: 0;
+
+      font-size: clamp(40px, 5vw, 60px);
+      line-height: 1.04;
+
+      letter-spacing: -2px;
+    }
+
+    .brand-content > p {
+      max-width: 450px;
+
+      margin: 20px 0 0;
+
+      color: rgba(255,255,255,.77);
+
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .brand-features {
+      margin-top: 35px;
+
+      display: grid;
+      gap: 16px;
+    }
+
+    .brand-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .brand-feature-icon {
+      width: 37px;
+      height: 37px;
+
+      flex: 0 0 auto;
+
+      border-radius: 10px;
+
+      display: grid;
+      place-items: center;
+
+      background: rgba(255,255,255,.1);
+      color: #ffffff;
+    }
+
+    .brand-feature strong {
+      display: block;
+
+      font-size: 13px;
+    }
+
+    .brand-feature span {
+      display: block;
+
+      margin-top: 3px;
+
+      color: rgba(255,255,255,.65);
+
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .brand-footer {
+      position: relative;
+      z-index: 2;
+
+      color: rgba(255,255,255,.5);
+
+      font-size: 10px;
+    }
+
+
+    /* ==========================================
+       LOGIN SIDE
+       ========================================== */
+
+    .login-content {
+      min-height: 100vh;
+
+      padding: 55px 60px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #f8faf8;
+    }
+
+    .login-container {
+      width: min(100%, 480px);
+    }
+
+    .mobile-brand {
+      display: none;
+    }
+
+    .login-heading {
+      margin-bottom: 28px;
+    }
+
+    .login-heading h2 {
+      margin: 0;
+
+      font-size: 34px;
+      line-height: 1.1;
+
+      letter-spacing: -1px;
+    }
+
+    .login-heading p {
+      margin: 9px 0 0;
+
+      color: var(--text-secondary);
+
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+
+    /* ==========================================
+       ROLE SELECTOR
+       ========================================== */
+
+    .role-label {
+      margin-bottom: 9px;
+
+      color: var(--text-secondary);
+
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .role-selector {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      gap: 10px;
+
+      margin-bottom: 25px;
+    }
+
+    .role-option {
+      position: relative;
+
+      min-height: 76px;
+
+      padding: 13px;
+
+      border: 1px solid var(--border);
+      border-radius: 14px;
+
+      display: flex;
+      align-items: center;
+      gap: 11px;
+
+      background: #ffffff;
+
+      cursor: pointer;
+
+      transition:
+        border-color .18s ease,
+        background .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .role-option:hover {
+      border-color: #bddac6;
+    }
+
+    .role-option.selected {
+      border-color: var(--green-600);
+
+      background: var(--green-50);
+
+      box-shadow:
+        0 0 0 2px
+        rgba(10,159,90,.07);
+    }
+
+    .role-option-icon {
+      width: 42px;
+      height: 42px;
+
+      flex: 0 0 auto;
+
+      border-radius: 12px;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--green-100);
+      color: var(--green-700);
+    }
+
+    .role-option[data-role="buyer"]
+    .role-option-icon {
+      background: var(--info-bg);
+      color: var(--info);
+    }
+
+    .role-option strong {
+      display: block;
+
+      font-size: 13px;
+    }
+
+    .role-option span {
+      display: block;
+
+      margin-top: 3px;
+
+      color: var(--text-secondary);
+
+      font-size: 9px;
+    }
+
+    .role-check {
+      position: absolute;
+
+      top: 8px;
+      right: 8px;
+
+      width: 18px;
+      height: 18px;
+
+      border: 1px solid var(--border);
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: #ffffff;
+      color: transparent;
+    }
+
+    .role-option.selected
+    .role-check {
+      border-color: var(--green-600);
+
+      background: var(--green-600);
+      color: #ffffff;
+    }
+
+
+    /* ==========================================
+       FORM
+       ========================================== */
+
+    .login-form {
+      display: grid;
+      gap: 17px;
+    }
+
+    .form-group label {
+      display: block;
+
+      margin-bottom: 7px;
+
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+
+      left: 15px;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      display: inline-flex;
+
+      color: var(--text-light);
+
+      pointer-events: none;
+    }
+
+    .form-input {
+      width: 100%;
+      min-height: 54px;
+
+      padding:
+        0
+        46px
+        0
+        45px;
+
+      border: 1px solid var(--border);
+      border-radius: 12px;
+
+      outline: none;
+
+      background: #ffffff;
+      color: var(--text-primary);
+
+      font: inherit;
+      font-size: 13px;
+
+      transition:
+        border-color .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .form-input:focus {
+      border-color: var(--green-600);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(10,159,90,.09);
+    }
+
+    .form-input.is-error {
+      border-color: var(--danger);
+    }
+
+    .password-toggle {
+      position: absolute;
+
+      right: 8px;
+      top: 50%;
+
+      width: 37px;
+      height: 37px;
+
+      transform: translateY(-50%);
+
+      border: 0;
+      border-radius: 9px;
+
+      display: grid;
+      place-items: center;
+
+      background: transparent;
+      color: var(--text-secondary);
+
+      cursor: pointer;
+    }
+
+    .password-toggle:hover {
+      background: var(--surface-secondary);
+    }
+
+    .form-error-message {
+      margin-top: 6px;
+
+      color: var(--danger);
+
+      font-size: 10px;
+    }
+
+
+    /* ==========================================
+       OPTIONS
+       ========================================== */
+
+    .form-options {
+      margin-top: -3px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .remember-me {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      color: var(--text-secondary);
+
+      font-size: 10px;
+
+      cursor: pointer;
+    }
+
+    .remember-me input {
+      width: 15px;
+      height: 15px;
+
+      accent-color: var(--green-700);
+    }
+
+    .forgot-password {
+      border: 0;
+
+      padding: 0;
+
+      background: transparent;
+      color: var(--green-700);
+
+      font-size: 10px;
+      font-weight: 700;
+
+      cursor: pointer;
+    }
+
+
+    /* ==========================================
+       LOGIN BUTTON
+       ========================================== */
+
+    .login-button {
+      width: 100%;
+      min-height: 55px;
+
+      margin-top: 3px;
+
+      border: 0;
+      border-radius: 12px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      background: var(--green-700);
+      color: #ffffff;
+
+      font: inherit;
+      font-size: 13px;
+      font-weight: 800;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 7px 18px
+        rgba(7,140,80,.17);
+
+      transition:
+        background .18s ease,
+        transform .18s ease;
+    }
+
+    .login-button:hover {
+      background: var(--green-800);
+
+      transform: translateY(-1px);
+    }
+
+    .login-button:disabled {
+      opacity: .7;
+      cursor: wait;
+      transform: none;
+    }
+
+
+    /* ==========================================
+       DEMO CREDENTIALS
+       ========================================== */
+
+    .demo-box {
+      margin-top: 19px;
+      padding: 14px;
+
+      border: 1px solid #d8eee0;
+      border-radius: 12px;
+
+      background: var(--green-50);
+    }
+
+    .demo-box-header {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+
+      color: var(--green-900);
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .demo-box p {
+      margin: 6px 0 0;
+
+      color: var(--text-secondary);
+
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+    .demo-login-button {
+      margin-top: 10px;
+
+      border: 0;
+
+      padding: 0;
+
+      background: transparent;
+      color: var(--green-700);
+
+      font-size: 10px;
+      font-weight: 800;
+
+      cursor: pointer;
+    }
+
+
+    /* ==========================================
+       REGISTER
+       ========================================== */
+
+    .register-link {
+      margin-top: 24px;
+
+      text-align: center;
+
+      color: var(--text-secondary);
+
+      font-size: 11px;
+    }
+
+    .register-link a {
+      color: var(--green-700);
+
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+
+    /* ==========================================
+       TOAST
+       ========================================== */
+
+    .login-toast {
+      position: fixed;
+
+      z-index: 100;
+
+      right: 20px;
+      bottom: 20px;
+
+      max-width: 340px;
+
+      padding: 13px 15px;
+
+      border: 1px solid var(--border);
+      border-radius: 13px;
+
+      background: #ffffff;
+
+      box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.14);
+
+      opacity: 0;
+
+      transform: translateY(15px);
+
+      pointer-events: none;
+
+      transition:
+        opacity .2s ease,
+        transform .2s ease;
+    }
+
+    .login-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .login-toast strong {
+      display: block;
+
+      font-size: 11px;
+    }
+
+    .login-toast p {
+      margin: 3px 0 0;
+
+      color: var(--text-secondary);
+
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+
+    /* ==========================================
+       TABLET / MOBILE
+       ========================================== */
+
+    @media (max-width: 900px) {
+
+      .login-page {
+        display: block;
+      }
+
+      .login-brand-panel {
+        display: none;
+      }
+
+      .login-content {
+        min-height: 100vh;
+
+        padding: 30px 20px;
+
+        align-items: flex-start;
+
+        background: #ffffff;
+      }
+
+      .login-container {
+        width: min(100%, 520px);
+
+        margin: 0 auto;
+      }
+
+      .mobile-brand {
+        margin-bottom: 38px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .mobile-brand .brand {
+        color: var(--green-900);
+      }
+
+      .mobile-brand
+      .brand-leaf {
+        width: 38px;
+        height: 38px;
+
+        color: var(--green-700);
+      }
+
+      .mobile-brand
+      .brand-wordmark strong {
+        color: var(--green-900);
+
+        font-size: 20px;
+      }
+
+      .mobile-brand
+      .brand-wordmark span {
+        color: var(--text-secondary);
+
+        font-size: 10px;
+      }
+
+      .mobile-back {
+        width: 38px;
+        height: 38px;
+
+        border: 1px solid var(--border);
+        border-radius: 10px;
+
+        display: grid;
+        place-items: center;
+
+        color: var(--text-secondary);
+
+        text-decoration: none;
+      }
+    }
+
+
+    @media (max-width: 520px) {
+
+      .login-content {
+        padding: 21px 16px 35px;
+      }
+
+      .mobile-brand {
+        margin-bottom: 31px;
+      }
+
+      .login-heading {
+        margin-bottom: 23px;
+      }
+
+      .login-heading h2 {
+        font-size: 29px;
+      }
+
+      .login-heading p {
+        font-size: 11px;
+      }
+
+      .role-selector {
+        gap: 8px;
+      }
+
+      .role-option {
+        min-height: 69px;
+
+        padding: 10px;
+      }
+
+      .role-option-icon {
+        width: 37px;
+        height: 37px;
+      }
+
+      .role-option strong {
+        font-size: 11px;
+      }
+
+      .role-option span {
+        font-size: 8px;
+      }
+
+      .form-input {
+        min-height: 52px;
+      }
+
+      .login-toast {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+
+        max-width: none;
+      }
+    }
+
+
+    @media (max-width: 350px) {
+
+      .role-option {
+        align-items: flex-start;
+        flex-direction: column;
+
+        min-height: 100px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <main class="login-page">
+
+
+    <!-- ========================================
+         DESKTOP BRAND PANEL
+         ======================================== -->
+
+    <section class="login-brand-panel">
+
+      <div class="brand-top">
+
+        <a
+          href="../index.html"
+          class="brand"
+          aria-label="AgroLink Uganda"
+        >
+
+          <span
+            class="brand-leaf"
+            aria-hidden="true"
+          >
+            <svg
+              viewBox="0 0 64 64"
+              fill="none"
+            >
+              <path
+                d="M55 8C38 9 23 16 15 29C10 37 9 46 10 53C18 52 27 48 34 42C45 33 51 22 55 8Z"
+                fill="currentColor"
+              ></path>
+
+              <path
+                d="M13 48C22 38 32 30 46 23C35 32 27 41 21 52"
+                fill="none"
+                stroke="#0b8548"
+                stroke-width="4.5"
+                stroke-linecap="round"
+              ></path>
+            </svg>
+          </span>
+
+
+          <span class="brand-wordmark">
+            <strong>AgroLink</strong>
+            <span>Uganda</span>
+          </span>
+
+        </a>
+
+
+        <a
+          href="welcome.html"
+          class="brand-back"
+          aria-label="Back"
+        >
+          <svg
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M19 12H5"></path>
+            <path d="m12 19-7-7 7-7"></path>
+          </svg>
+        </a>
+
+      </div>
+
+
+      <div class="brand-content">
+
+        <div class="brand-eyebrow">
+          Agricultural intelligence
+        </div>
+
+
+        <h1>
+          Better market decisions start here.
+        </h1>
+
+
+        <p>
+          Access market information, agricultural
+          demand and coordinated trade opportunities
+          through AgroLink Uganda.
+        </p>
+
+
+        <div class="brand-features">
+
+          <div class="brand-feature">
+
+            <span class="brand-feature-icon">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M3 18 9 12l4 4 8-10"></path>
+                <path d="M15 6h6v6"></path>
+              </svg>
+            </span>
+
+            <div>
+              <strong>
+                Market intelligence
+              </strong>
+
+              <span>
+                Compare prices across selected
+                markets.
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="brand-feature">
+
+            <span class="brand-feature-icon">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M20 7 9 18l-5-5"></path>
+              </svg>
+            </span>
+
+            <div>
+              <strong>
+                Managed matching
+              </strong>
+
+              <span>
+                Farmers and buyers transact through
+                AgroLink coordination.
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="brand-footer">
+        AgroLink Uganda MVP • Prototype environment
+      </div>
+
+    </section>
+
+
+    <!-- ========================================
+         LOGIN CONTENT
+         ======================================== -->
+
+    <section class="login-content">
+
+      <div class="login-container">
+
+
+        <!-- MOBILE BRAND -->
+
+        <div class="mobile-brand">
+
+          <a
+            href="../index.html"
+            class="brand"
+          >
+
+            <span class="brand-leaf">
+              <svg
+                viewBox="0 0 64 64"
+                fill="none"
+              >
+                <path
+                  d="M55 8C38 9 23 16 15 29C10 37 9 46 10 53C18 52 27 48 34 42C45 33 51 22 55 8Z"
+                  fill="currentColor"
+                ></path>
+
+                <path
+                  d="M13 48C22 38 32 30 46 23C35 32 27 41 21 52"
+                  fill="none"
+                  stroke="#ffffff"
+                  stroke-width="4.5"
+                  stroke-linecap="round"
+                ></path>
+              </svg>
+            </span>
+
+
+            <span class="brand-wordmark">
+              <strong>AgroLink</strong>
+              <span>Uganda</span>
+            </span>
+
+          </a>
+
+
+          <a
+            href="welcome.html"
+            class="mobile-back"
+            aria-label="Back"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M19 12H5"></path>
+              <path d="m12 19-7-7 7-7"></path>
+            </svg>
+          </a>
+
+        </div>
+
+
+        <!-- HEADING -->
+
+        <div class="login-heading">
+
+          <h2>
+            Welcome back
+          </h2>
+
+          <p>
+            Login to continue to your AgroLink
+            account.
+          </p>
+
+        </div>
+
+
+        <!-- ROLE -->
+
+        <div class="role-label">
+          I am logging in as
+        </div>
+
+
+        <div
+          class="role-selector"
+          id="roleSelector"
+        >
+
+          <button
+            type="button"
+            class="role-option"
+            data-role="farmer"
+          >
+
+            <span class="role-option-icon">
+              <svg
+                width="23"
+                height="23"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M12 21V10"></path>
+                <path d="M12 13c-5 0-7-3-7-7 5 0 7 3 7 7Z"></path>
+                <path d="M12 16c5 0 7-3 7-7-5 0-7 3-7 7Z"></path>
+              </svg>
+            </span>
+
+
+            <span>
+              <strong>Farmer</strong>
+              <span>Sell produce</span>
+            </span>
+
+
+            <span class="role-check">
+              ✓
+            </span>
+
+          </button>
+
+
+          <button
+            type="button"
+            class="role-option selected"
+            data-role="buyer"
+          >
+
+            <span class="role-option-icon">
+              <svg
+                width="23"
+                height="23"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="9" cy="20" r="1"></circle>
+                <circle cx="18" cy="20" r="1"></circle>
+
+                <path
+                  d="M3 4h2l2.4 10.4a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 8H6"
+                ></path>
+              </svg>
+            </span>
+
+
+            <span>
+              <strong>Buyer</strong>
+              <span>Source produce</span>
+            </span>
+
+
+            <span class="role-check">
+              ✓
+            </span>
+
+          </button>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <form
+          class="login-form"
+          id="loginForm"
+          novalidate
+        >
+
+          <div class="form-group">
+
+            <label for="loginIdentifier">
+              Phone number or email
+            </label>
+
+
+            <div class="input-wrapper">
+
+              <span class="input-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M4 4h16v16H4z"></path>
+                  <path d="m4 6 8 6 8-6"></path>
+                </svg>
+              </span>
+
+
+              <input
+                type="text"
+                id="loginIdentifier"
+                class="form-input"
+                placeholder="e.g. +256 700 000 000"
+                autocomplete="username"
+              >
+
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="loginPassword">
+              Password
+            </label>
+
+
+            <div class="input-wrapper">
+
+              <span class="input-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect
+                    x="5"
+                    y="10"
+                    width="14"
+                    height="10"
+                    rx="2"
+                  ></rect>
+
+                  <path
+                    d="M8 10V7a4 4 0 0 1 8 0v3"
+                  ></path>
+                </svg>
+              </span>
+
+
+              <input
+                type="password"
+                id="loginPassword"
+                class="form-input"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+              >
+
+
+              <button
+                type="button"
+                class="password-toggle"
+                id="passwordToggle"
+                aria-label="Show password"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"
+                  ></path>
+
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="2.5"
+                  ></circle>
+                </svg>
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-options">
+
+            <label class="remember-me">
+
+              <input
+                type="checkbox"
+                id="rememberMe"
+                checked
+              >
+
+              Remember me
+            </label>
+
+
+            <button
+              type="button"
+              class="forgot-password"
+              id="forgotPassword"
+            >
+              Forgot password?
+            </button>
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="login-button"
+            id="loginButton"
+          >
+            Login
+
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14"></path>
+              <path d="m13 6 6 6-6 6"></path>
+            </svg>
+          </button>
+
+        </form>
+
+
+        <!-- DEMO -->
+
+        <div class="demo-box">
+
+          <div class="demo-box-header">
+
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="9"
+              ></circle>
+
+              <path d="M12 11v5"></path>
+              <path d="M12 8h.01"></path>
+            </svg>
+
+            MVP Demo Login
+          </div>
+
+
+          <p>
+            Authentication is simulated in this
+            prototype. Choose Farmer or Buyer and
+            use the demo login to enter the selected
+            dashboard.
+          </p>
+
+
+          <button
+            type="button"
+            class="demo-login-button"
+            id="demoLoginButton"
+          >
+            Fill demo credentials
+          </button>
+
+        </div>
+
+
+        <div class="register-link">
+          Don't have an account?
+          <a href="register.html">
+            Create account
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- TOAST -->
+
+  <div
+    class="login-toast"
+    id="loginToast"
+    role="status"
+    aria-live="polite"
+  >
+    <strong id="toastTitle">
+      AgroLink
+    </strong>
+
+    <p id="toastMessage"></p>
+  </div>
+
+
+  <!-- SHARED JS -->
+
+  <script src="../js/config.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/utils.js"></script>
+
+
+  <script>
+    let selectedRole = "buyer";
+    let toastTimer;
+
+
+    const roleOptions =
+      Array.from(
+        document.querySelectorAll(
+          ".role-option"
+        )
+      );
+
+
+    const loginForm =
+      document.getElementById(
+        "loginForm"
+      );
+
+
+    const identifierInput =
+      document.getElementById(
+        "loginIdentifier"
+      );
+
+
+    const passwordInput =
+      document.getElementById(
+        "loginPassword"
+      );
+
+
+    const loginButton =
+      document.getElementById(
+        "loginButton"
+      );
+
+
+    /* ==========================================
+       ROLE SELECTION
+       ========================================== */
+
+    roleOptions.forEach(
+      (option) => {
+
+        option.addEventListener(
+          "click",
+          () => {
+
+            selectedRole =
+              option.dataset.role;
+
+
+            roleOptions.forEach(
+              (item) =>
+                item.classList.remove(
+                  "selected"
+                )
+            );
+
+
+            option.classList.add(
+              "selected"
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    /* ==========================================
+       PASSWORD
+       ========================================== */
+
+    document
+      .getElementById(
+        "passwordToggle"
+      )
+      .addEventListener(
+        "click",
+        () => {
+
+          const showing =
+            passwordInput.type ===
+            "text";
+
+
+          passwordInput.type =
+            showing
+              ? "password"
+              : "text";
+
+        }
+      );
+
+
+    /* ==========================================
+       DEMO CREDENTIALS
+       ========================================== */
+
+    document
+      .getElementById(
+        "demoLoginButton"
+      )
+      .addEventListener(
+        "click",
+        () => {
+
+          if (
+            selectedRole ===
+            "buyer"
+          ) {
+
+            identifierInput.value =
+              "buyer@agrolink.demo";
+
+          } else {
+
+            identifierInput.value =
+              "farmer@agrolink.demo";
+
+          }
+
+
+          passwordInput.value =
+            "demo1234";
+
+
+          showToast(
+            "Demo credentials ready",
+            `Login will continue as ${capitalizeRole(
+              selectedRole
+            )}.`
+          );
+
+        }
+      );
+
+
+    /* ==========================================
+       LOGIN
+       ========================================== */
+
+    loginForm.addEventListener(
+      "submit",
+      (event) => {
+
+        event.preventDefault();
+
+
+        clearErrors();
+
+
+        const identifier =
+          identifierInput.value.trim();
+
+
+        const password =
+          passwordInput.value.trim();
+
+
+        let valid = true;
+
+
+        if (!identifier) {
+
+          setError(
+            identifierInput,
+            "Enter your phone number or email."
+          );
+
+          valid = false;
+
+        }
+
+
+        if (!password) {
+
+          setError(
+            passwordInput,
+            "Enter your password."
+          );
+
+          valid = false;
+
+        }
+
+
+        if (!valid) {
+          return;
+        }
+
+
+        loginButton.disabled =
+          true;
+
+
+        loginButton.textContent =
+          "Logging in...";
+
+
+        /*
+          MVP AUTHENTICATION
+
+          No live authentication backend is connected.
+
+          We set the appropriate demo role/user in
+          localStorage using the shared storage service.
+        */
+
+        try {
+
+          if (
+            window.AgroLinkStorage &&
+            typeof window
+              .AgroLinkStorage
+              .setDemoRole ===
+              "function"
+          ) {
+
+            window
+              .AgroLinkStorage
+              .setDemoRole(
+                selectedRole
+              );
+
+          }
+
+
+          showToast(
+            "Login successful",
+            `Opening the ${capitalizeRole(
+              selectedRole
+            )} dashboard.`
+          );
+
+
+          setTimeout(
+            () => {
+
+              if (
+                selectedRole ===
+                "farmer"
+              ) {
+
+                window.location.href =
+                  "../farmer/dashboard.html";
+
+              } else {
+
+                window.location.href =
+                  "../buyer/dashboard.html";
+
+              }
+
+            },
+            500
+          );
+
+        } catch (error) {
+
+          console.error(
+            "Demo login failed:",
+            error
+          );
+
+
+          loginButton.disabled =
+            false;
+
+
+          loginButton.innerHTML =
+            `
+              Login
+              <span aria-hidden="true">→</span>
+            `;
+
+
+          showToast(
+            "Unable to login",
+            "The prototype could not create the demo session."
+          );
+
+        }
+
+      }
+    );
+
+
+    /* ==========================================
+       FORGOT PASSWORD
+       ========================================== */
+
+    document
+      .getElementById(
+        "forgotPassword"
+      )
+      .addEventListener(
+        "click",
+        () => {
+
+          showToast(
+            "Prototype feature",
+            "Password recovery is simulated and is not connected to SMS or email in this MVP."
+          );
+
+        }
+      );
+
+
+    /* ==========================================
+       ERRORS
+       ========================================== */
+
+    function clearErrors() {
+
+      document
+        .querySelectorAll(
+          ".form-error-message"
+        )
+        .forEach(
+          (element) =>
+            element.remove()
+        );
+
+
+      document
+        .querySelectorAll(
+          ".form-input.is-error"
+        )
+        .forEach(
+          (element) =>
+            element.classList.remove(
+              "is-error"
+            )
+        );
+
+    }
+
+
+    function setError(
+      input,
+      message
+    ) {
+
+      input.classList.add(
+        "is-error"
+      );
+
+
+      const error =
+        document.createElement(
+          "div"
+        );
+
+
+      error.className =
+        "form-error-message";
+
+
+      error.textContent =
+        message;
+
+
+      input
+        .closest(
+          ".form-group"
+        )
+        .appendChild(
+          error
+        );
+
+    }
+
+
+    /* ==========================================
+       TOAST
+       ========================================== */
+
+    function showToast(
+      title,
+      message
+    ) {
+
+      const toast =
+        document.getElementById(
+          "loginToast"
+        );
+
+
+      document
+        .getElementById(
+          "toastTitle"
+        )
+        .textContent =
+          title;
+
+
+      document
+        .getElementById(
+          "toastMessage"
+        )
+        .textContent =
+          message;
+
+
+      clearTimeout(
+        toastTimer
+      );
+
+
+      toast.classList.add(
+        "show"
+      );
+
+
+      toastTimer =
+        setTimeout(
+          () =>
+            toast.classList.remove(
+              "show"
+            ),
+          3200
+        );
+
+    }
+
+
+    function capitalizeRole(
+      role
+    ) {
+
+      return (
+        role.charAt(0).toUpperCase() +
+        role.slice(1)
+      );
+
+    }
+  </script>
+
+</body>
+</html>

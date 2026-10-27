@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Manage your AgroLink Uganda buyer profile, organization details and account preferences."
+  >
+
+  <title>Buyer Profile | AgroLink Uganda</title>
+
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+  <style>
+    .profile-page {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .profile-hero {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+      border-radius: 20px;
+      background: var(--green-900);
+      color: white;
+    }
+
+    .profile-cover {
+      height: 115px;
+      background:
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(168,213,66,.30),
+          transparent 32%
+        ),
+        linear-gradient(
+          135deg,
+          var(--green-900),
+          var(--green-700)
+        );
+    }
+
+    .profile-hero-content {
+      position: relative;
+      padding: 0 28px 26px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .profile-person {
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
+    }
+
+    .profile-avatar-large {
+      width: 92px;
+      height: 92px;
+      margin-top: -42px;
+      flex: 0 0 auto;
+
+      border: 5px solid white;
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--lime);
+      color: var(--green-950);
+
+      font-size: 27px;
+      font-weight: 900;
+    }
+
+    .profile-name h1 {
+      margin: 0;
+      font-size: 25px;
+      color: white;
+    }
+
+    .profile-name p {
+      margin: 5px 0 0;
+      color: rgba(255,255,255,.75);
+      font-size: 13px;
+    }
+
+    .profile-status {
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: minmax(0,1.35fr) minmax(280px,.65fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .profile-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .profile-card {
+      padding: 22px;
+      border: 1px solid var(--border-light);
+      border-radius: 17px;
+      background: white;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .profile-card-header {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .profile-card-header h2 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .profile-card-header p {
+      margin: 5px 0 0;
+      color: var(--text-secondary);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .profile-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 16px;
+    }
+
+    .profile-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .profile-field label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .profile-field input,
+    .profile-field select,
+    .profile-field textarea {
+      width: 100%;
+      min-height: 46px;
+      padding: 11px 13px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: white;
+      color: var(--text-primary);
+      font: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .profile-field textarea {
+      min-height: 88px;
+      resize: vertical;
+    }
+
+    .profile-field input:focus,
+    .profile-field select:focus,
+    .profile-field textarea:focus {
+      border-color: var(--green-600);
+      box-shadow: 0 0 0 3px rgba(10,159,90,.08);
+    }
+
+    .save-row {
+      margin-top: 18px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .summary-list {
+      display: grid;
+      gap: 4px;
+    }
+
+    .summary-item {
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .summary-item:last-child {
+      border-bottom: 0;
+    }
+
+    .summary-item span {
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+
+    .summary-item strong {
+      text-align: right;
+      font-size: 12px;
+    }
+
+    .verification-box {
+      padding: 16px;
+      border-radius: 13px;
+      background: var(--green-50);
+    }
+
+    .verification-box-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .verification-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--green-100);
+      color: var(--green-700);
+    }
+
+    .verification-box strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .verification-box p {
+      margin: 4px 0 0;
+      color: var(--text-secondary);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .managed-notice {
+      margin-top: 14px;
+      padding: 12px;
+      border: 1px solid #d7e7f7;
+      border-radius: 11px;
+      background: var(--info-bg);
+      color: #486c8e;
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    .account-action {
+      width: 100%;
+      min-height: 46px;
+      margin-top: 9px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 13px;
+      background: white;
+      color: var(--text-primary);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .account-action:hover {
+      background: var(--surface-secondary);
+    }
+
+    .account-action.danger {
+      color: var(--danger);
+    }
+
+    .toast-local {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 500;
+      display: none;
+      padding: 14px 17px;
+      border-radius: 11px;
+      background: var(--green-950);
+      color: white;
+      box-shadow: var(--shadow-lg);
+      font-size: 12px;
+    }
+
+    .toast-local.show {
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .profile-page {
+        padding-bottom: 20px;
+      }
+
+      .profile-hero {
+        margin: -4px -2px 20px;
+        border-radius: 17px;
+      }
+
+      .profile-cover {
+        height: 82px;
+      }
+
+      .profile-hero-content {
+        padding: 0 17px 20px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .profile-person {
+        align-items: center;
+      }
+
+      .profile-avatar-large {
+        width: 72px;
+        height: 72px;
+        margin-top: -36px;
+        border-width: 4px;
+        font-size: 21px;
+      }
+
+      .profile-name h1 {
+        font-size: 19px;
+      }
+
+      .profile-status {
+        margin-left: 88px;
+        margin-top: -13px;
+      }
+
+      .profile-card {
+        padding: 17px 14px;
+      }
+
+      .profile-form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-field.full {
+        grid-column: auto;
+      }
+
+      .save-row .btn {
+        width: 100%;
+      }
+
+      .toast-local {
+        left: 14px;
+        right: 14px;
+        bottom: 86px;
+      }
+    }
+  </style>
+</head>
+
+<body data-role="buyer" data-page="profile">
+
+  <div id="demo-banner"></div>
+  <div id="app-mobile-header"></div>
+
+  <div class="app-shell">
+
+    <div id="app-sidebar"></div>
+
+    <main class="app-main">
+
+      <div id="app-header"></div>
+
+      <div class="page-content">
+
+        <div class="profile-page">
+
+          <section class="profile-hero">
+
+            <div class="profile-cover"></div>
+
+            <div class="profile-hero-content">
+
+              <div class="profile-person">
+
+                <div
+                  class="profile-avatar-large"
+                  id="profileAvatar"
+                >
+                  BU
+                </div>
+
+                <div class="profile-name">
+                  <h1 id="profileName">
+                    AgroLink Buyer
+                  </h1>
+
+                  <p id="profileOrganization">
+                    Buyer Account
+                  </p>
+                </div>
+
+              </div>
+
+              <span
+                class="profile-status"
+                id="heroVerificationStatus"
+              >
+                Verification Pending
+              </span>
+
+            </div>
+
+          </section>
+
+
+          <div class="profile-grid">
+
+            <!-- LEFT -->
+
+            <div class="profile-stack">
+
+              <section class="profile-card">
+
+                <div class="profile-card-header">
+
+                  <div>
+                    <h2>Buyer Information</h2>
+
+                    <p>
+                      Keep your procurement and contact
+                      information up to date.
+                    </p>
+                  </div>
+
+                </div>
+
+
+                <form id="profileForm">
+
+                  <div class="profile-form-grid">
+
+                    <div class="profile-field">
+                      <label for="fullName">
+                        Full Name
+                      </label>
+
+                      <input
+                        type="text"
+                        id="fullName"
+                        required
+                      >
+                    </div>
+
+
+                    <div class="profile-field">
+                      <label for="phone">
+                        Phone Number
+                      </label>
+
+                      <input
+                        type="tel"
+                        id="phone"
+                        required
+                      >
+                    </div>
+
+
+                    <div class="profile-field">
+                      <label for="email">
+                        Email Address
+                      </label>
+
+                      <input
+                        type="email"
+                        id="email"
+                      >
+                    </div>
+
+
+                    <div class="profile-field">
+                      <label for="buyerType">
+                        Buyer Type
+                      </label>
+
+                      <select id="buyerType">
+
+                        <option value="Wholesaler">
+                          Wholesaler
+                        </option>
+
+                        <option value="Retailer">
+                          Retailer
+                        </option>
+
+                        <option value="Institution">
+                          Institution
+                        </option>
+
+                        <option value="Processor">
+                          Processor
+                        </option>
+
+                        <option value="Exporter">
+                          Exporter
+                        </option>
+
+                        <option value="Other">
+                          Other
+                        </option>
+
+                      </select>
+                    </div>
+
+
+                    <div class="profile-field full">
+                      <label for="organization">
+                        Organization / Business
+                      </label>
+
+                      <input
+                        type="text"
+                        id="organization"
+                        required
+                      >
+                    </div>
+
+
+                    <div class="profile-field">
+                      <label for="location">
+                        District / City
+                      </label>
+
+                      <input
+                        type="text"
+                        id="location"
+                        placeholder="e.g. Kampala"
+                        required
+                      >
+                    </div>
+
+
+                    <div class="profile-field">
+                      <label for="area">
+                        Area / Town
+                      </label>
+
+                      <input
+                        type="text"
+                        id="area"
+                        placeholder="e.g. Nakawa"
+                      >
+                    </div>
+
+
+                    <div class="profile-field">
+                      <label for="commodity">
+                        Primary Commodity
+                      </label>
+
+                      <select id="commodity">
+                        <option value="Dry Maize">
+                          Dry Maize
+                        </option>
+
+                        <option value="Beans">
+                          Beans
+                        </option>
+
+                        <option value="Dry Maize, Beans">
+                          Dry Maize & Beans
+                        </option>
+                      </select>
+                    </div>
+
+
+                    <div class="profile-field">
+                      <label for="procurementSize">
+                        Typical Procurement
+                      </label>
+
+                      <select id="procurementSize">
+
+                        <option value="Below 1,000 kg">
+                          Below 1,000 kg
+                        </option>
+
+                        <option value="1,000 - 5,000 kg">
+                          1,000 - 5,000 kg
+                        </option>
+
+                        <option value="5,000 - 20,000 kg">
+                          5,000 - 20,000 kg
+                        </option>
+
+                        <option value="Above 20,000 kg">
+                          Above 20,000 kg
+                        </option>
+
+                      </select>
+                    </div>
+
+
+                    <div class="profile-field full">
+                      <label for="address">
+                        Additional Location Details
+                      </label>
+
+                      <textarea
+                        id="address"
+                        placeholder="Optional delivery or business location details..."
+                      ></textarea>
+                    </div>
+
+                  </div>
+
+
+                  <div class="save-row">
+
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                    >
+                      Save Changes
+                    </button>
+
+                  </div>
+
+                </form>
+
+              </section>
+
+
+              <section class="profile-card">
+
+                <div class="profile-card-header">
+
+                  <div>
+                    <h2>Procurement Preferences</h2>
+
+                    <p>
+                      These preferences help AgroLink
+                      coordinate relevant supply.
+                    </p>
+                  </div>
+
+                </div>
+
+
+                <div class="summary-list">
+
+                  <div class="summary-item">
+                    <span>Primary market</span>
+                    <strong>Grain</strong>
+                  </div>
+
+                  <div class="summary-item">
+                    <span>Current commodities</span>
+                    <strong>Dry Maize & Beans</strong>
+                  </div>
+
+                  <div class="summary-item">
+                    <span>Matching model</span>
+                    <strong>AgroLink Managed</strong>
+                  </div>
+
+                  <div class="summary-item">
+                    <span>Payment environment</span>
+                    <strong>MVP Simulation</strong>
+                  </div>
+
+                </div>
+
+              </section>
+
+            </div>
+
+
+            <!-- RIGHT -->
+
+            <aside class="profile-stack">
+
+              <section class="profile-card">
+
+                <div class="profile-card-header">
+
+                  <div>
+                    <h2>Account Verification</h2>
+
+                    <p>
+                      Buyer verification improves trust
+                      during managed transactions.
+                    </p>
+                  </div>
+
+                </div>
+
+
+                <div class="verification-box">
+
+                  <div class="verification-box-top">
+
+                    <div class="verification-icon">
+
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z"
+                        ></path>
+
+                        <path
+                          d="m8.5 12 2.2 2.2 4.8-5"
+                        ></path>
+                      </svg>
+
+                    </div>
+
+                    <div>
+                      <strong id="verificationTitle">
+                        Verification Pending
+                      </strong>
+
+                      <p id="verificationDescription">
+                        This MVP simulates the AgroLink
+                        verification process.
+                      </p>
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                <div class="managed-notice">
+                  AgroLink operates as a managed
+                  intermediary. Farmer and buyer contact
+                  details are not directly exchanged
+                  through the marketplace.
+                </div>
+
+              </section>
+
+
+              <section class="profile-card">
+
+                <div class="profile-card-header">
+
+                  <div>
+                    <h2>Account</h2>
+
+                    <p>
+                      Demo account actions.
+                    </p>
+                  </div>
+
+                </div>
+
+
+                <button
+                  class="account-action"
+                  type="button"
+                  id="notificationButton"
+                >
+                  <span>Notifications</span>
+                  <span>›</span>
+                </button>
+
+
+                <button
+                  class="account-action"
+                  type="button"
+                  id="helpButton"
+                >
+                  <span>Help & Support</span>
+                  <span>›</span>
+                </button>
+
+
+                <button
+                  class="account-action"
+                  type="button"
+                  id="resetButton"
+                >
+                  <span>Reset Demo Data</span>
+                  <span>↻</span>
+                </button>
+
+
+                <button
+                  class="account-action danger"
+                  type="button"
+                  id="logoutButton"
+                >
+                  <span>Log Out</span>
+                  <span>→</span>
+                </button>
+
+              </section>
+
+
+              <section class="commission-box">
+
+                <div class="commission-box-title">
+                  Pilot Transaction Model
+                </div>
+
+                <p>
+                  AgroLink is testing a
+                  <strong>10% transaction commission</strong>
+                  during the pilot.
+                </p>
+
+                <small>
+                  This remains a business-model
+                  hypothesis to validate.
+                </small>
+
+              </section>
+
+            </aside>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <div id="app-mobile-nav"></div>
+
+
+  <div
+    class="toast-local"
+    id="profileToast"
+  >
+    Profile updated successfully.
+  </div>
+
+
+  <script src="../js/config.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/app.js"></script>
+
+
+  <script>
+    let currentUser = null;
+
+
+    document.addEventListener(
+      "agrolink:ready",
+      initializeProfile
+    );
+
+
+    /*
+      Fallback in case the shared app has already
+      initialized before this listener is registered.
+    */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+        setTimeout(() => {
+          if (!currentUser) {
+            initializeProfile();
+          }
+        }, 150);
+      }
+    );
+
+
+    function initializeProfile() {
+
+      if (currentUser) {
+        return;
+      }
+
+
+      try {
+        currentUser =
+          AgroLinkStorage.getCurrentUser();
+      } catch (error) {
+        console.warn(error);
+      }
+
+
+      if (!currentUser) {
+
+        currentUser = {
+          id: "BUYER-DEMO",
+          role: "buyer",
+          name: "AgroLink Buyer",
+          organization: "Demo Grain Buyer",
+          phone: "0772 000 000",
+          email: "buyer@agrolink.demo",
+          buyerType: "Wholesaler",
+          location: "Kampala",
+          area: "Central Kampala",
+          address: "",
+          commodities: ["Dry Maize", "Beans"],
+          verificationStatus: "Pending",
+          demo: true
+        };
+
+      }
+
+
+      populateProfile();
+      bindProfileEvents();
+
+    }
+
+
+    function populateProfile() {
+
+      const name =
+        currentUser.name ||
+        "AgroLink Buyer";
+
+
+      const organization =
+        currentUser.organization ||
+        currentUser.businessName ||
+        "Buyer Account";
+
+
+      document.getElementById(
+        "profileName"
+      ).textContent = name;
+
+
+      document.getElementById(
+        "profileOrganization"
+      ).textContent = organization;
+
+
+      document.getElementById(
+        "profileAvatar"
+      ).textContent =
+        getInitials(name);
+
+
+      setValue(
+        "fullName",
+        name
+      );
+
+
+      setValue(
+        "phone",
+        currentUser.phone || ""
+      );
+
+
+      setValue(
+        "email",
+        currentUser.email || ""
+      );
+
+
+      setValue(
+        "organization",
+        organization
+      );
+
+
+      setValue(
+        "buyerType",
+        currentUser.buyerType ||
+        "Wholesaler"
+      );
+
+
+      setValue(
+        "location",
+        currentUser.location ||
+        "Kampala"
+      );
+
+
+      setValue(
+        "area",
+        currentUser.area || ""
+      );
+
+
+      setValue(
+        "address",
+        currentUser.address || ""
+      );
+
+
+      const commodities =
+        Array.isArray(
+          currentUser.commodities
+        )
+          ? currentUser.commodities
+          : [];
+
+
+      let commodity =
+        commodities.join(", ");
+
+
+      if (
+        commodity !== "Dry Maize" &&
+        commodity !== "Beans" &&
+        commodity !== "Dry Maize, Beans"
+      ) {
+        commodity = "Dry Maize, Beans";
+      }
+
+
+      setValue(
+        "commodity",
+        commodity
+      );
+
+
+      renderVerification();
+
+    }
+
+
+    function renderVerification() {
+
+      const status =
+        currentUser.verificationStatus ||
+        "Pending";
+
+
+      const verified =
+        String(status)
+          .toLowerCase() ===
+        "verified";
+
+
+      document.getElementById(
+        "heroVerificationStatus"
+      ).textContent =
+        verified
+          ? "Verified Buyer"
+          : "Verification Pending";
+
+
+      document.getElementById(
+        "verificationTitle"
+      ).textContent =
+        verified
+          ? "Buyer Verified"
+          : "Verification Pending";
+
+
+      document.getElementById(
+        "verificationDescription"
+      ).textContent =
+        verified
+          ? "This buyer account is marked as verified in the MVP."
+          : "AgroLink verification is represented as a simulated MVP workflow.";
+
+    }
+
+
+    function bindProfileEvents() {
+
+      document.getElementById(
+        "profileForm"
+      ).addEventListener(
+        "submit",
+        saveProfile
+      );
+
+
+      document.getElementById(
+        "notificationButton"
+      ).addEventListener(
+        "click",
+        () => {
+          showToast(
+            "Notifications are simulated in this MVP."
+          );
+        }
+      );
+
+
+      document.getElementById(
+        "helpButton"
+      ).addEventListener(
+        "click",
+        () => {
+          showToast(
+            "Help & Support will be connected in the production platform."
+          );
+        }
+      );
+
+
+      document.getElementById(
+        "resetButton"
+      ).addEventListener(
+        "click",
+        resetDemo
+      );
+
+
+      document.getElementById(
+        "logoutButton"
+      ).addEventListener(
+        "click",
+        logout
+      );
+
+    }
+
+
+    function saveProfile(event) {
+
+      event.preventDefault();
+
+
+      const commodityValue =
+        document.getElementById(
+          "commodity"
+        ).value;
+
+
+      const commodities =
+        commodityValue ===
+        "Dry Maize, Beans"
+          ? ["Dry Maize", "Beans"]
+          : [commodityValue];
+
+
+      currentUser = {
+        ...currentUser,
+
+        role: "buyer",
+
+        name:
+          document.getElementById(
+            "fullName"
+          ).value.trim(),
+
+        phone:
+          document.getElementById(
+            "phone"
+          ).value.trim(),
+
+        email:
+          document.getElementById(
+            "email"
+          ).value.trim(),
+
+        organization:
+          document.getElementById(
+            "organization"
+          ).value.trim(),
+
+        buyerType:
+          document.getElementById(
+            "buyerType"
+          ).value,
+
+        location:
+          document.getElementById(
+            "location"
+          ).value.trim(),
+
+        area:
+          document.getElementById(
+            "area"
+          ).value.trim(),
+
+        address:
+          document.getElementById(
+            "address"
+          ).value.trim(),
+
+        commodities,
+
+        procurementSize:
+          document.getElementById(
+            "procurementSize"
+          ).value,
+
+        updatedAt:
+          new Date().toISOString()
+      };
+
+
+      try {
+
+        if (
+          typeof AgroLinkStorage
+            .setCurrentUser ===
+          "function"
+        ) {
+
+          AgroLinkStorage
+            .setCurrentUser(
+              currentUser
+            );
+
+        } else {
+
+          localStorage.setItem(
+            "agrolink_user",
+            JSON.stringify(
+              currentUser
+            )
+          );
+
+        }
+
+      } catch (error) {
+
+        localStorage.setItem(
+          "agrolink_user",
+          JSON.stringify(
+            currentUser
+          )
+        );
+
+      }
+
+
+      populateProfile();
+
+
+      showToast(
+        "Profile updated successfully."
+      );
+
+    }
+
+
+    function resetDemo() {
+
+      const confirmed =
+        window.confirm(
+          "Reset AgroLink demo data? This will restore the original MVP demonstration data."
+        );
+
+
+      if (!confirmed) {
+        return;
+      }
+
+
+      try {
+
+        if (
+          typeof AgroLinkStorage
+            .resetDemoData ===
+          "function"
+        ) {
+
+          AgroLinkStorage
+            .resetDemoData();
+
+        } else {
+
+          [
+            "agrolink_demands",
+            "agrolink_produce",
+            "agrolink_matches",
+            "agrolink_trades",
+            "agrolink_last_demand",
+            "agrolink_last_matches",
+            "agrolink_last_order"
+          ].forEach(
+            key =>
+              localStorage
+                .removeItem(key)
+          );
+
+        }
+
+      } catch (error) {
+        console.warn(error);
+      }
+
+
+      showToast(
+        "Demo data reset."
+      );
+
+
+      setTimeout(
+        () => {
+          window.location.reload();
+        },
+        700
+      );
+
+    }
+
+
+    function logout() {
+
+      try {
+
+        localStorage.removeItem(
+          "agrolink_user"
+        );
+
+      } catch (error) {
+        console.warn(error);
+      }
+
+
+      window.location.href =
+        "../auth/welcome.html";
+
+    }
+
+
+    function setValue(
+      id,
+      value
+    ) {
+
+      const element =
+        document.getElementById(id);
+
+
+      if (element) {
+        element.value =
+          value ?? "";
+      }
+
+    }
+
+
+    function getInitials(name) {
+
+      return String(name || "Buyer")
+        .trim()
+        .split(/\s+/)
+        .slice(0,2)
+        .map(
+          word =>
+            word.charAt(0)
+        )
+        .join("")
+        .toUpperCase();
+
+    }
+
+
+    function showToast(message) {
+
+      const toast =
+        document.getElementById(
+          "profileToast"
+        );
+
+
+      toast.textContent =
+        message;
+
+
+      toast.classList.add(
+        "show"
+      );
+
+
+      clearTimeout(
+        window.profileToastTimer
+      );
+
+
+      window.profileToastTimer =
+        setTimeout(
+          () => {
+            toast.classList.remove(
+              "show"
+            );
+          },
+          2800
+        );
+
+    }
+  </script>
+
+</body>
+</html>

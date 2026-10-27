@@ -1,0 +1,3113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Track buyer orders and agricultural transactions on AgroLink Uganda."
+  >
+
+  <title>My Orders | AgroLink Uganda</title>
+
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+  <style>
+    body {
+      background: var(--background);
+      color: var(--text-primary);
+    }
+
+    .orders-page {
+      min-height: 100vh;
+    }
+
+    .mobile-header {
+      display: none;
+    }
+
+    .page-container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 32px 0 60px;
+    }
+
+    /* =========================================
+       PAGE HEADER
+       ========================================= */
+
+    .page-header {
+      margin-bottom: 24px;
+
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+    }
+
+    .back-button {
+      width: 42px;
+      height: 42px;
+
+      flex: 0 0 auto;
+
+      border: 1px solid var(--border);
+      border-radius: 11px;
+
+      display: grid;
+      place-items: center;
+
+      background: #fff;
+      color: var(--text-secondary);
+
+      text-decoration: none;
+    }
+
+    .back-button:hover {
+      border-color: #b8d9c4;
+      color: var(--green-700);
+    }
+
+    .page-title h1 {
+      margin: 0;
+
+      font-size: 28px;
+      line-height: 1.15;
+      letter-spacing: -.7px;
+    }
+
+    .page-title p {
+      margin: 6px 0 0;
+
+      color: var(--text-secondary);
+
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .new-demand-button {
+      min-height: 42px;
+      padding: 0 15px;
+
+      border-radius: 10px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+
+      background: var(--green-700);
+      color: #fff;
+
+      font-size: 9px;
+      font-weight: 800;
+
+      text-decoration: none;
+    }
+
+    .new-demand-button:hover {
+      background: var(--green-800);
+    }
+
+    /* =========================================
+       STATS
+       ========================================= */
+
+    .stats-grid {
+      margin-bottom: 22px;
+
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .stat-box {
+      padding: 17px;
+
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+
+      background: #fff;
+
+      box-shadow: var(--shadow-xs);
+    }
+
+    .stat-icon {
+      width: 34px;
+      height: 34px;
+
+      margin-bottom: 11px;
+
+      border-radius: 9px;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--green-50);
+      color: var(--green-700);
+    }
+
+    .stat-icon.warning {
+      background: var(--warning-bg);
+      color: #a67418;
+    }
+
+    .stat-icon.info {
+      background: var(--info-bg);
+      color: var(--info);
+    }
+
+    .stat-icon.success {
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .stat-box span {
+      display: block;
+
+      color: var(--text-secondary);
+
+      font-size: 8px;
+    }
+
+    .stat-box strong {
+      display: block;
+
+      margin-top: 4px;
+
+      font-size: 22px;
+      letter-spacing: -.5px;
+    }
+
+    /* =========================================
+       PROCESS INFO
+       ========================================= */
+
+    .process-card {
+      margin-bottom: 22px;
+      padding: 17px 19px;
+
+      border: 1px solid #d7ebdf;
+      border-radius: 14px;
+
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+
+      background: var(--green-50);
+    }
+
+    .process-icon {
+      width: 36px;
+      height: 36px;
+
+      flex: 0 0 auto;
+
+      border-radius: 10px;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--green-100);
+      color: var(--green-700);
+    }
+
+    .process-card strong {
+      display: block;
+
+      color: var(--green-900);
+
+      font-size: 10px;
+    }
+
+    .process-card p {
+      margin: 4px 0 0;
+
+      color: var(--text-secondary);
+
+      font-size: 9px;
+      line-height: 1.6;
+    }
+
+    /* =========================================
+       FILTERS
+       ========================================= */
+
+    .orders-toolbar {
+      margin-bottom: 14px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .orders-toolbar h2 {
+      margin: 0;
+
+      font-size: 18px;
+    }
+
+    .filters {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      overflow-x: auto;
+    }
+
+    .filter-button {
+      min-height: 34px;
+      padding: 0 11px;
+
+      border: 1px solid var(--border);
+      border-radius: 999px;
+
+      background: #fff;
+      color: var(--text-secondary);
+
+      font-size: 8px;
+      font-weight: 800;
+
+      white-space: nowrap;
+    }
+
+    .filter-button.active {
+      border-color: var(--green-700);
+
+      background: var(--green-700);
+      color: #fff;
+    }
+
+    /* =========================================
+       ORDER CARD
+       ========================================= */
+
+    .orders-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .order-card {
+      overflow: hidden;
+
+      border: 1px solid var(--border-light);
+      border-radius: 17px;
+
+      background: #fff;
+
+      box-shadow: var(--shadow-xs);
+
+      transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .order-card:hover {
+      transform: translateY(-2px);
+
+      border-color: #cbe3d3;
+
+      box-shadow: var(--shadow-sm);
+    }
+
+    .order-main {
+      padding: 20px;
+    }
+
+    .order-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .order-product {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .commodity-image {
+      width: 65px;
+      height: 65px;
+
+      flex: 0 0 auto;
+
+      overflow: hidden;
+
+      border-radius: 12px;
+
+      background: var(--surface-secondary);
+    }
+
+    .commodity-image img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    .order-product h3 {
+      margin: 0;
+
+      font-size: 15px;
+    }
+
+    .order-reference {
+      margin-top: 4px;
+
+      color: var(--text-light);
+
+      font-size: 8px;
+    }
+
+    .order-created {
+      margin-top: 6px;
+
+      color: var(--text-secondary);
+
+      font-size: 8px;
+    }
+
+    /* =========================================
+       STATUS
+       ========================================= */
+
+    .status-badge {
+      padding: 6px 9px;
+
+      border-radius: 999px;
+
+      font-size: 8px;
+      font-weight: 800;
+
+      white-space: nowrap;
+    }
+
+    .status-badge.verification {
+      background: var(--warning-bg);
+      color: #936615;
+    }
+
+    .status-badge.payment {
+      background: var(--info-bg);
+      color: var(--info);
+    }
+
+    .status-badge.progress {
+      background: #e8f2ff;
+      color: #356fae;
+    }
+
+    .status-badge.completed {
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .status-badge.cancelled {
+      background: var(--danger-bg);
+      color: var(--danger);
+    }
+
+    /* =========================================
+       DETAILS
+       ========================================= */
+
+    .order-details-grid {
+      margin-top: 17px;
+
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0,1fr));
+      gap: 9px;
+    }
+
+    .order-detail {
+      padding: 11px;
+
+      border-radius: 10px;
+
+      background: var(--surface-secondary);
+    }
+
+    .order-detail span {
+      display: block;
+
+      color: var(--text-light);
+
+      font-size: 8px;
+    }
+
+    .order-detail strong {
+      display: block;
+
+      margin-top: 4px;
+
+      font-size: 9px;
+      line-height: 1.4;
+    }
+
+    /* =========================================
+       STATUS TRACK
+       ========================================= */
+
+    .order-progress {
+      margin-top: 18px;
+    }
+
+    .progress-labels {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      margin-bottom: 7px;
+    }
+
+    .progress-label {
+      color: var(--text-light);
+
+      font-size: 7px;
+    }
+
+    .progress-label:nth-child(2),
+    .progress-label:nth-child(3) {
+      text-align: center;
+    }
+
+    .progress-label:last-child {
+      text-align: right;
+    }
+
+    .progress-track {
+      height: 6px;
+
+      overflow: hidden;
+
+      border-radius: 999px;
+
+      background: var(--surface-secondary);
+    }
+
+    .progress-fill {
+      height: 100%;
+
+      border-radius: inherit;
+
+      background: var(--green-600);
+
+      transition: width .3s ease;
+    }
+
+    /* =========================================
+       ORDER FOOTER
+       ========================================= */
+
+    .order-footer {
+      padding: 13px 20px;
+
+      border-top: 1px solid var(--border-light);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+
+      background: #fbfcfb;
+    }
+
+    .order-next-step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      color: var(--text-secondary);
+
+      font-size: 8px;
+      line-height: 1.45;
+    }
+
+    .order-next-step svg {
+      flex: 0 0 auto;
+
+      color: var(--green-700);
+    }
+
+    .order-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .order-button {
+      min-height: 39px;
+      padding: 0 13px;
+
+      border-radius: 9px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+
+      font-size: 8px;
+      font-weight: 800;
+
+      text-decoration: none;
+    }
+
+    .order-button.secondary {
+      border: 1px solid var(--border);
+
+      background: #fff;
+      color: var(--text-secondary);
+    }
+
+    .order-button.primary {
+      border: 1px solid var(--green-700);
+
+      background: var(--green-700);
+      color: #fff;
+    }
+
+    .order-button.payment {
+      border: 1px solid var(--green-700);
+
+      background: var(--green-700);
+      color: #fff;
+    }
+
+    .order-button.simulate {
+      border: 1px solid #edce8f;
+
+      background: var(--warning-bg);
+      color: #815d18;
+    }
+
+    /* =========================================
+       EMPTY STATE
+       ========================================= */
+
+    .empty-state {
+      padding: 65px 20px;
+
+      border: 1px solid var(--border-light);
+      border-radius: 17px;
+
+      background: #fff;
+
+      text-align: center;
+    }
+
+    .empty-icon {
+      width: 66px;
+      height: 66px;
+
+      margin: 0 auto 15px;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--green-50);
+      color: var(--green-700);
+    }
+
+    .empty-state h3 {
+      margin: 0;
+
+      font-size: 17px;
+    }
+
+    .empty-state p {
+      max-width: 420px;
+
+      margin: 7px auto 18px;
+
+      color: var(--text-secondary);
+
+      font-size: 9px;
+      line-height: 1.6;
+    }
+
+    .empty-state a {
+      min-height: 43px;
+      padding: 0 16px;
+
+      border-radius: 10px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      background: var(--green-700);
+      color: #fff;
+
+      font-size: 9px;
+      font-weight: 800;
+
+      text-decoration: none;
+    }
+
+    /* =========================================
+       DEMO VERIFICATION MODAL
+       ========================================= */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+
+      z-index: 300;
+
+      padding: 20px;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      background: rgba(4,29,19,.58);
+
+      backdrop-filter: blur(3px);
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .verification-modal {
+      width: min(100%, 450px);
+
+      padding: 28px;
+
+      border-radius: 20px;
+
+      background: #fff;
+
+      text-align: center;
+
+      box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.22);
+    }
+
+    .modal-icon {
+      width: 66px;
+      height: 66px;
+
+      margin: 0 auto 16px;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .verification-modal h2 {
+      margin: 0;
+
+      font-size: 21px;
+    }
+
+    .verification-modal > p {
+      margin: 8px auto 0;
+
+      color: var(--text-secondary);
+
+      font-size: 9px;
+      line-height: 1.6;
+    }
+
+    .verification-checks {
+      margin-top: 18px;
+      padding: 13px;
+
+      border-radius: 12px;
+
+      background: var(--surface-secondary);
+
+      text-align: left;
+    }
+
+    .verification-check {
+      padding: 7px 0;
+
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      border-bottom: 1px solid var(--border);
+
+      font-size: 9px;
+    }
+
+    .verification-check:last-child {
+      border-bottom: 0;
+    }
+
+    .check-icon {
+      width: 20px;
+      height: 20px;
+
+      flex: 0 0 auto;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--success-bg);
+      color: var(--success);
+
+      font-size: 9px;
+      font-weight: 900;
+    }
+
+    .modal-note {
+      margin-top: 14px;
+      padding: 11px;
+
+      border: 1px solid #d8e8f7;
+      border-radius: 10px;
+
+      background: var(--info-bg);
+      color: #526c85;
+
+      font-size: 8px;
+      line-height: 1.5;
+
+      text-align: left;
+    }
+
+    .modal-actions {
+      margin-top: 19px;
+
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 8px;
+    }
+
+    .modal-button {
+      min-height: 46px;
+
+      border-radius: 10px;
+
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .modal-button.cancel {
+      border: 1px solid var(--border);
+
+      background: #fff;
+      color: var(--text-secondary);
+    }
+
+    .modal-button.confirm {
+      border: 1px solid var(--green-700);
+
+      background: var(--green-700);
+      color: #fff;
+    }
+
+    /* =========================================
+       TOAST
+       ========================================= */
+
+    .toast {
+      position: fixed;
+
+      right: 20px;
+      bottom: 20px;
+
+      z-index: 500;
+
+      max-width: 330px;
+
+      padding: 13px 15px;
+
+      border-radius: 11px;
+
+      display: none;
+      align-items: flex-start;
+      gap: 9px;
+
+      background: #173c2c;
+      color: #fff;
+
+      box-shadow: var(--shadow-lg);
+    }
+
+    .toast.show {
+      display: flex;
+
+      animation: toastIn .25s ease;
+    }
+
+    .toast strong {
+      display: block;
+
+      font-size: 9px;
+    }
+
+    .toast span {
+      display: block;
+
+      margin-top: 2px;
+
+      color: rgba(255,255,255,.75);
+
+      font-size: 8px;
+      line-height: 1.45;
+    }
+
+    @keyframes toastIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================================
+       MOBILE NAV
+       ========================================= */
+
+    .mobile-nav {
+      display: none;
+    }
+
+    /* =========================================
+       RESPONSIVE
+       ========================================= */
+
+    @media (max-width: 900px) {
+      .stats-grid {
+        grid-template-columns:
+          repeat(2, minmax(0,1fr));
+      }
+
+      .order-details-grid {
+        grid-template-columns:
+          repeat(3, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 767px) {
+      body {
+        padding-bottom: 78px;
+
+        background: #fff;
+      }
+
+      .mobile-header {
+        position: sticky;
+        top: 0;
+
+        z-index: 100;
+
+        min-height: 66px;
+
+        padding: 0 15px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        background: #0b8548;
+        color: #fff;
+      }
+
+      .mobile-header a {
+        width: 36px;
+        height: 36px;
+
+        display: grid;
+        place-items: center;
+
+        color: #fff;
+
+        text-decoration: none;
+      }
+
+      .mobile-header div {
+        text-align: center;
+      }
+
+      .mobile-header strong {
+        display: block;
+
+        font-size: 14px;
+      }
+
+      .mobile-header span {
+        display: block;
+
+        margin-top: 2px;
+
+        color: rgba(255,255,255,.72);
+
+        font-size: 8px;
+      }
+
+      .mobile-header-spacer {
+        width: 36px;
+      }
+
+      .page-container {
+        width: 100%;
+
+        padding: 22px 14px 30px;
+      }
+
+      .page-header {
+        margin-bottom: 19px;
+      }
+
+      .back-button,
+      .new-demand-button {
+        display: none;
+      }
+
+      .page-title h1 {
+        font-size: 23px;
+      }
+
+      .page-title p {
+        font-size: 9px;
+      }
+
+      .stats-grid {
+        gap: 9px;
+      }
+
+      .stat-box {
+        padding: 14px;
+      }
+
+      .stat-box strong {
+        font-size: 19px;
+      }
+
+      .process-card {
+        padding: 14px;
+      }
+
+      .orders-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .filters {
+        width: 100%;
+      }
+
+      .order-main {
+        padding: 16px 14px;
+      }
+
+      .order-top {
+        gap: 10px;
+      }
+
+      .commodity-image {
+        width: 56px;
+        height: 56px;
+      }
+
+      .order-product {
+        gap: 10px;
+      }
+
+      .order-product h3 {
+        font-size: 13px;
+      }
+
+      .order-details-grid {
+        grid-template-columns:
+          repeat(2, minmax(0,1fr));
+      }
+
+      .order-footer {
+        padding: 13px 14px;
+
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .order-actions {
+        width: 100%;
+      }
+
+      .order-button {
+        flex: 1;
+      }
+
+      .mobile-nav {
+        position: fixed;
+
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        z-index: 200;
+
+        min-height: 68px;
+
+        padding:
+          7px
+          max(7px, env(safe-area-inset-right))
+          calc(7px + env(safe-area-inset-bottom))
+          max(7px, env(safe-area-inset-left));
+
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+
+        border-top: 1px solid var(--border);
+
+        background: rgba(255,255,255,.97);
+
+        box-shadow:
+          0 -7px 25px
+          rgba(0,0,0,.06);
+      }
+
+      .mobile-nav a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+
+        color: var(--text-light);
+
+        text-decoration: none;
+
+        font-size: 8px;
+        font-weight: 700;
+      }
+
+      .mobile-nav a.active {
+        color: var(--green-700);
+      }
+
+      .mobile-nav .nav-primary {
+        position: relative;
+        top: -15px;
+      }
+
+      .mobile-nav .nav-primary span:first-child {
+        width: 46px;
+        height: 46px;
+
+        border-radius: 50%;
+
+        display: grid;
+        place-items: center;
+
+        background: var(--green-700);
+        color: #fff;
+
+        box-shadow:
+          0 6px 16px
+          rgba(7,140,80,.24);
+      }
+
+      .mobile-nav .nav-primary strong {
+        color: var(--green-700);
+
+        font-size: 8px;
+      }
+
+      .toast {
+        right: 14px;
+        left: 14px;
+        bottom: 88px;
+
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .order-details-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .order-top {
+        align-items: flex-start;
+      }
+
+      .commodity-image {
+        width: 50px;
+        height: 50px;
+      }
+
+      .status-badge {
+        padding: 5px 7px;
+
+        font-size: 7px;
+      }
+
+      .progress-label {
+        font-size: 6px;
+      }
+
+      .modal-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="orders-page">
+
+  <!-- MOBILE HEADER -->
+
+  <header class="mobile-header">
+
+    <a
+      href="dashboard.html"
+      aria-label="Back"
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M19 12H5"></path>
+        <path d="m12 19-7-7 7-7"></path>
+      </svg>
+    </a>
+
+    <div>
+      <strong>My Orders</strong>
+      <span>AgroLink Uganda</span>
+    </div>
+
+    <span class="mobile-header-spacer"></span>
+
+  </header>
+
+
+  <main class="page-container">
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+      <div class="header-left">
+
+        <a
+          href="dashboard.html"
+          class="back-button"
+          aria-label="Back to dashboard"
+        >
+          <svg
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M19 12H5"></path>
+            <path d="m12 19-7-7 7-7"></path>
+          </svg>
+        </a>
+
+
+        <div class="page-title">
+
+          <h1>My orders</h1>
+
+          <p>
+            Track verification, payment and fulfilment
+            of your AgroLink transactions.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <a
+        href="post-demand.html"
+        class="new-demand-button"
+      >
+        <svg
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M12 5v14"></path>
+          <path d="M5 12h14"></path>
+        </svg>
+
+        Post New Demand
+      </a>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <section class="stats-grid">
+
+      <article class="stat-box">
+
+        <div class="stat-icon">
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path d="M5 4h14v16H5z"></path>
+            <path d="M8 8h8"></path>
+            <path d="M8 12h8"></path>
+          </svg>
+        </div>
+
+        <span>Total Orders</span>
+
+        <strong id="totalOrders">
+          0
+        </strong>
+
+      </article>
+
+
+      <article class="stat-box">
+
+        <div class="stat-icon warning">
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="9"
+            ></circle>
+
+            <path d="M12 7v5l3 2"></path>
+          </svg>
+        </div>
+
+        <span>Awaiting Verification</span>
+
+        <strong id="verificationCount">
+          0
+        </strong>
+
+      </article>
+
+
+      <article class="stat-box">
+
+        <div class="stat-icon info">
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <rect
+              x="3"
+              y="6"
+              width="18"
+              height="13"
+              rx="2"
+            ></rect>
+
+            <path d="M3 10h18"></path>
+          </svg>
+        </div>
+
+        <span>Ready for Payment</span>
+
+        <strong id="paymentCount">
+          0
+        </strong>
+
+      </article>
+
+
+      <article class="stat-box">
+
+        <div class="stat-icon success">
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="9"
+            ></circle>
+
+            <path
+              d="m8 12 2.5 2.5L16 9"
+            ></path>
+          </svg>
+        </div>
+
+        <span>Completed</span>
+
+        <strong id="completedCount">
+          0
+        </strong>
+
+      </article>
+
+    </section>
+
+
+    <!-- PROCESS INFO -->
+
+    <section class="process-card">
+
+      <div class="process-icon">
+        <svg
+          width="19"
+          height="19"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <path
+            d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z"
+          ></path>
+
+          <path
+            d="m8.5 12 2.2 2.2 4.8-5"
+          ></path>
+        </svg>
+      </div>
+
+
+      <div>
+        <strong>
+          AgroLink verifies before payment
+        </strong>
+
+        <p>
+          Requesting supply does not immediately charge
+          the buyer. AgroLink first confirms the proposed
+          supplier, quantity and quality. Once verification
+          is complete, the order becomes ready for payment.
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- TOOLBAR -->
+
+    <div class="orders-toolbar">
+
+      <h2>Your transactions</h2>
+
+
+      <div class="filters">
+
+        <button
+          type="button"
+          class="filter-button active"
+          data-filter="all"
+        >
+          All
+        </button>
+
+        <button
+          type="button"
+          class="filter-button"
+          data-filter="verification"
+        >
+          Verification
+        </button>
+
+        <button
+          type="button"
+          class="filter-button"
+          data-filter="payment"
+        >
+          Payment
+        </button>
+
+        <button
+          type="button"
+          class="filter-button"
+          data-filter="progress"
+        >
+          In Progress
+        </button>
+
+        <button
+          type="button"
+          class="filter-button"
+          data-filter="completed"
+        >
+          Completed
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- ORDERS -->
+
+    <section
+      class="orders-list"
+      id="ordersList"
+    ></section>
+
+  </main>
+
+
+  <!-- MOBILE NAV -->
+
+  <nav
+    class="mobile-nav"
+    aria-label="Buyer navigation"
+  >
+
+    <a href="dashboard.html">
+
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+      >
+        <path d="M3 11 12 4l9 7"></path>
+        <path d="M5 10v10h14V10"></path>
+      </svg>
+
+      <span>Home</span>
+
+    </a>
+
+
+    <a href="market.html">
+
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+      >
+        <path d="M3 18 9 12l4 4 8-10"></path>
+        <path d="M15 6h6v6"></path>
+      </svg>
+
+      <span>Market</span>
+
+    </a>
+
+
+    <a
+      href="post-demand.html"
+      class="nav-primary"
+    >
+
+      <span>
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M12 5v14"></path>
+          <path d="M5 12h14"></path>
+        </svg>
+      </span>
+
+      <strong>Demand</strong>
+
+    </a>
+
+
+    <a
+      href="orders.html"
+      class="active"
+    >
+
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+      >
+        <path d="M5 4h14v16H5z"></path>
+        <path d="M8 8h8"></path>
+        <path d="M8 12h8"></path>
+      </svg>
+
+      <span>Orders</span>
+
+    </a>
+
+
+    <a href="profile.html">
+
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+      >
+        <circle
+          cx="12"
+          cy="8"
+          r="4"
+        ></circle>
+
+        <path
+          d="M4 21a8 8 0 0 1 16 0"
+        ></path>
+      </svg>
+
+      <span>Profile</span>
+
+    </a>
+
+  </nav>
+
+</div>
+
+
+<!-- VERIFICATION MODAL -->
+
+<div
+  class="modal-overlay"
+  id="verificationOverlay"
+>
+
+  <div class="verification-modal">
+
+    <div class="modal-icon">
+      <svg
+        width="31"
+        height="31"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z"
+        ></path>
+
+        <path
+          d="m8.5 12 2.2 2.2 4.8-5"
+        ></path>
+      </svg>
+    </div>
+
+
+    <h2>
+      Simulate AgroLink verification?
+    </h2>
+
+
+    <p>
+      This MVP has no operations dashboard yet.
+      This action simulates the verification that would
+      normally be completed by AgroLink before payment.
+    </p>
+
+
+    <div class="verification-checks">
+
+      <div class="verification-check">
+        <span class="check-icon">✓</span>
+        Supplier availability confirmed
+      </div>
+
+      <div class="verification-check">
+        <span class="check-icon">✓</span>
+        Requested quantity confirmed
+      </div>
+
+      <div class="verification-check">
+        <span class="check-icon">✓</span>
+        Quality requirement confirmed
+      </div>
+
+      <div class="verification-check">
+        <span class="check-icon">✓</span>
+        Transaction terms confirmed
+      </div>
+
+    </div>
+
+
+    <div class="modal-note">
+      This is prototype behaviour only. It does not
+      represent a real completed AgroLink verification.
+    </div>
+
+
+    <div class="modal-actions">
+
+      <button
+        type="button"
+        class="modal-button cancel"
+        id="cancelVerification"
+      >
+        Cancel
+      </button>
+
+
+      <button
+        type="button"
+        class="modal-button confirm"
+        id="confirmVerification"
+      >
+        Complete Demo Verification
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+  class="toast"
+  id="toast"
+>
+
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+  >
+    <circle
+      cx="12"
+      cy="12"
+      r="9"
+    ></circle>
+
+    <path
+      d="m8 12 2.5 2.5L16 9"
+    ></path>
+  </svg>
+
+
+  <div>
+    <strong id="toastTitle">
+      Updated
+    </strong>
+
+    <span id="toastMessage">
+      Order updated successfully.
+    </span>
+  </div>
+
+</div>
+
+
+<script src="../js/config.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/utils.js"></script>
+
+
+<script>
+  let orders = [];
+  let activeFilter = "all";
+  let verificationOrderId = null;
+
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    initialize
+  );
+
+
+  /* =========================================
+     INITIALIZATION
+     ========================================= */
+
+  function initialize() {
+
+    loadOrders();
+
+    renderStats();
+
+    renderOrders();
+
+    setupFilters();
+
+    setupVerificationModal();
+
+  }
+
+
+  /* =========================================
+     LOAD ORDERS
+     ========================================= */
+
+  function loadOrders() {
+
+    const key =
+      window.AGROLINK_CONFIG
+        ?.storageKeys
+        ?.trades ||
+      "agrolink_trades";
+
+
+    orders =
+      readArray(
+        key
+      );
+
+
+    /*
+      The seeded data may use "trades" rather than
+      buyer orders. Normalize it so old demo data
+      can still appear on this page.
+    */
+
+    orders =
+      orders.map(
+        normalizeOrder
+      );
+
+
+    /*
+      If the user opened Orders directly before
+      creating any transaction, provide one demo
+      example so the page is still useful.
+    */
+
+    if (!orders.length) {
+
+      orders = [
+        normalizeOrder({
+          id: "ORD-DEMO-001",
+          reference: "AGL-2026-001",
+          commodity: "Dry Maize",
+          quantity: 3000,
+          unitPrice: 1150,
+          grossValue: 3450000,
+          commissionRate: 0.10,
+          commission: 345000,
+          supplierNet: 3105000,
+          buyerLocation: "Kampala",
+          supplierLocation: "Mukono",
+          status: "Awaiting Verification",
+          paymentStatus: "Not Requested",
+          verificationStatus: "Pending",
+          createdAt: new Date().toISOString(),
+          demo: true
+        })
+      ];
+
+    }
+
+  }
+
+
+  function normalizeOrder(
+    order
+  ) {
+
+    const quantity =
+      Number(
+        order.quantity ||
+        0
+      );
+
+
+    const unitPrice =
+      Number(
+        order.unitPrice ||
+        order.price ||
+        order.pricePerKg ||
+        0
+      );
+
+
+    const grossValue =
+      Number(
+        order.grossValue ||
+        order.total ||
+        (
+          quantity *
+          unitPrice
+        ) ||
+        0
+      );
+
+
+    const commissionRate =
+      Number(
+        order.commissionRate ??
+        window.AGROLINK_CONFIG
+          ?.commissionRate ??
+        0.10
+      );
+
+
+    const commission =
+      Number(
+        order.commission ??
+        (
+          grossValue *
+          commissionRate
+        )
+      );
+
+
+    const supplierNet =
+      Number(
+        order.supplierNet ??
+        (
+          grossValue -
+          commission
+        )
+      );
+
+
+    return {
+      ...order,
+
+      id:
+        order.id ||
+        (
+          "ORD-" +
+          Date.now()
+        ),
+
+      reference:
+        order.reference ||
+        order.tradeReference ||
+        order.id ||
+        "AGL-DEMO",
+
+      commodity:
+        order.commodity ||
+        "Dry Maize",
+
+      quantity:
+        quantity,
+
+      unitPrice:
+        unitPrice,
+
+      grossValue:
+        grossValue,
+
+      commissionRate:
+        commissionRate,
+
+      commission:
+        commission,
+
+      supplierNet:
+        supplierNet,
+
+      buyerLocation:
+        order.buyerLocation ||
+        order.deliveryLocation ||
+        "Kampala",
+
+      supplierLocation:
+        order.supplierLocation ||
+        order.location ||
+        "Mukono",
+
+      status:
+        order.status ||
+        "Awaiting Verification",
+
+      verificationStatus:
+        order.verificationStatus ||
+        (
+          normalizeText(
+            order.status
+          ).includes(
+            "verification"
+          )
+            ? "Pending"
+            : "Verified"
+        ),
+
+      paymentStatus:
+        order.paymentStatus ||
+        (
+          normalizeText(
+            order.status
+          ).includes(
+            "payment"
+          )
+            ? "Pending"
+            : "Not Requested"
+        ),
+
+      createdAt:
+        order.createdAt ||
+        new Date()
+          .toISOString()
+    };
+
+  }
+
+
+  /* =========================================
+     STATS
+     ========================================= */
+
+  function renderStats() {
+
+    const verification =
+      orders.filter(
+        order =>
+          getOrderStage(
+            order
+          ) ===
+          "verification"
+      ).length;
+
+
+    const payment =
+      orders.filter(
+        order =>
+          getOrderStage(
+            order
+          ) ===
+          "payment"
+      ).length;
+
+
+    const completed =
+      orders.filter(
+        order =>
+          getOrderStage(
+            order
+          ) ===
+          "completed"
+      ).length;
+
+
+    document
+      .getElementById(
+        "totalOrders"
+      )
+      .textContent =
+        orders.length;
+
+
+    document
+      .getElementById(
+        "verificationCount"
+      )
+      .textContent =
+        verification;
+
+
+    document
+      .getElementById(
+        "paymentCount"
+      )
+      .textContent =
+        payment;
+
+
+    document
+      .getElementById(
+        "completedCount"
+      )
+      .textContent =
+        completed;
+
+  }
+
+
+  /* =========================================
+     FILTERS
+     ========================================= */
+
+  function setupFilters() {
+
+    document
+      .querySelectorAll(
+        "[data-filter]"
+      )
+      .forEach(
+        button => {
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              activeFilter =
+                button.dataset.filter;
+
+
+              document
+                .querySelectorAll(
+                  "[data-filter]"
+                )
+                .forEach(
+                  item =>
+                    item.classList
+                      .remove(
+                        "active"
+                      )
+                );
+
+
+              button
+                .classList
+                .add(
+                  "active"
+                );
+
+
+              renderOrders();
+
+            }
+          );
+
+        }
+      );
+
+  }
+
+
+  /* =========================================
+     RENDER ORDERS
+     ========================================= */
+
+  function renderOrders() {
+
+    const container =
+      document.getElementById(
+        "ordersList"
+      );
+
+
+    const filtered =
+      activeFilter === "all"
+        ? orders
+        : orders.filter(
+            order =>
+              getOrderStage(
+                order
+              ) ===
+              activeFilter
+          );
+
+
+    if (!filtered.length) {
+
+      container.innerHTML = `
+        <div class="empty-state">
+
+          <div class="empty-icon">
+
+            <svg
+              width="29"
+              height="29"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path
+                d="M5 4h14v16H5z"
+              ></path>
+
+              <path
+                d="M8 8h8"
+              ></path>
+
+              <path
+                d="M8 12h5"
+              ></path>
+            </svg>
+
+          </div>
+
+          <h3>
+            No orders here
+          </h3>
+
+          <p>
+            There are no transactions in this category.
+            Post a demand and request a matching supply
+            to start an AgroLink order.
+          </p>
+
+          <a href="post-demand.html">
+            Post Demand
+          </a>
+
+        </div>
+      `;
+
+      return;
+    }
+
+
+    container.innerHTML =
+      filtered
+        .map(
+          createOrderCard
+        )
+        .join("");
+
+
+    attachOrderActions();
+
+  }
+
+
+  function createOrderCard(
+    order
+  ) {
+
+    const stage =
+      getOrderStage(
+        order
+      );
+
+
+    const image =
+      normalizeText(
+        order.commodity
+      ).includes(
+        "bean"
+      )
+        ? "../assets/images/crops/beans.jpg"
+        : "../assets/images/crops/dry-maize.jpg";
+
+
+    const statusInfo =
+      getStatusInfo(
+        order
+      );
+
+
+    const progress =
+      getProgress(
+        stage
+      );
+
+
+    const nextStep =
+      getNextStep(
+        stage
+      );
+
+
+    return `
+      <article
+        class="order-card"
+        data-order-card="${escapeHTML(
+          order.id
+        )}"
+      >
+
+        <div class="order-main">
+
+          <div class="order-top">
+
+            <div class="order-product">
+
+              <div class="commodity-image">
+                <img
+                  src="${image}"
+                  alt="${escapeHTML(
+                    order.commodity
+                  )}"
+                >
+              </div>
+
+
+              <div>
+
+                <h3>
+                  ${escapeHTML(
+                    order.commodity
+                  )} Order
+                </h3>
+
+                <div class="order-reference">
+                  ${escapeHTML(
+                    order.reference
+                  )}
+                </div>
+
+                <div class="order-created">
+                  Created
+                  ${formatDateTime(
+                    order.createdAt
+                  )}
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <span
+              class="status-badge ${statusInfo.className}"
+            >
+              ${escapeHTML(
+                statusInfo.label
+              )}
+            </span>
+
+          </div>
+
+
+          <div class="order-details-grid">
+
+            <div class="order-detail">
+              <span>Quantity</span>
+
+              <strong>
+                ${formatNumber(
+                  order.quantity
+                )} kg
+              </strong>
+            </div>
+
+
+            <div class="order-detail">
+              <span>Unit Price</span>
+
+              <strong>
+                UGX
+                ${formatNumber(
+                  order.unitPrice
+                )}/kg
+              </strong>
+            </div>
+
+
+            <div class="order-detail">
+              <span>Order Value</span>
+
+              <strong>
+                UGX
+                ${formatNumber(
+                  order.grossValue
+                )}
+              </strong>
+            </div>
+
+
+            <div class="order-detail">
+              <span>Supply From</span>
+
+              <strong>
+                ${escapeHTML(
+                  order.supplierLocation
+                )}
+              </strong>
+            </div>
+
+
+            <div class="order-detail">
+              <span>Delivery To</span>
+
+              <strong>
+                ${escapeHTML(
+                  order.buyerLocation
+                )}
+              </strong>
+            </div>
+
+          </div>
+
+
+          <div class="order-progress">
+
+            <div class="progress-labels">
+
+              <span class="progress-label">
+                Verification
+              </span>
+
+              <span class="progress-label">
+                Payment
+              </span>
+
+              <span class="progress-label">
+                Delivery
+              </span>
+
+              <span class="progress-label">
+                Complete
+              </span>
+
+            </div>
+
+
+            <div class="progress-track">
+
+              <div
+                class="progress-fill"
+                style="width:${progress}%"
+              ></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="order-footer">
+
+          <div class="order-next-step">
+
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="9"
+              ></circle>
+
+              <path d="M12 8v4"></path>
+              <path d="M12 16h.01"></path>
+            </svg>
+
+
+            <span>
+              ${escapeHTML(
+                nextStep
+              )}
+            </span>
+
+          </div>
+
+
+          <div class="order-actions">
+
+            ${
+              stage ===
+              "verification"
+                ? `
+                  <button
+                    type="button"
+                    class="order-button simulate"
+                    data-verify-order="${escapeHTML(
+                      order.id
+                    )}"
+                  >
+                    Simulate Verification
+                  </button>
+                `
+                : ""
+            }
+
+
+            ${
+              stage ===
+              "payment"
+                ? `
+                  <a
+                    href="order-details.html?id=${encodeURIComponent(
+                      order.id
+                    )}"
+                    class="order-button payment"
+                  >
+                    Proceed to Payment →
+                  </a>
+                `
+                : `
+                  <a
+                    href="order-details.html?id=${encodeURIComponent(
+                      order.id
+                    )}"
+                    class="order-button secondary"
+                  >
+                    View Details
+                  </a>
+                `
+            }
+
+          </div>
+
+        </div>
+
+      </article>
+    `;
+
+  }
+
+
+  /* =========================================
+     ORDER STAGES
+     ========================================= */
+
+  function getOrderStage(
+    order
+  ) {
+
+    const status =
+      normalizeText(
+        order.status
+      );
+
+
+    const payment =
+      normalizeText(
+        order.paymentStatus
+      );
+
+
+    if (
+      status.includes(
+        "cancel"
+      )
+    ) {
+      return "cancelled";
+    }
+
+
+    if (
+      status.includes(
+        "complete"
+      ) ||
+      status.includes(
+        "delivered"
+      )
+    ) {
+      return "completed";
+    }
+
+
+    if (
+      status.includes(
+        "in progress"
+      ) ||
+      status.includes(
+        "transit"
+      ) ||
+      status.includes(
+        "preparing"
+      ) ||
+      payment.includes(
+        "paid"
+      ) ||
+      payment.includes(
+        "secured"
+      )
+    ) {
+      return "progress";
+    }
+
+
+    if (
+      status.includes(
+        "ready for payment"
+      ) ||
+      status.includes(
+        "payment"
+      ) ||
+      payment.includes(
+        "pending"
+      )
+    ) {
+      return "payment";
+    }
+
+
+    return "verification";
+
+  }
+
+
+  function getStatusInfo(
+    order
+  ) {
+
+    const stage =
+      getOrderStage(
+        order
+      );
+
+
+    switch (stage) {
+
+      case "payment":
+        return {
+          label:
+            "Ready for Payment",
+
+          className:
+            "payment"
+        };
+
+
+      case "progress":
+        return {
+          label:
+            order.status ||
+            "In Progress",
+
+          className:
+            "progress"
+        };
+
+
+      case "completed":
+        return {
+          label:
+            "Completed",
+
+          className:
+            "completed"
+        };
+
+
+      case "cancelled":
+        return {
+          label:
+            "Cancelled",
+
+          className:
+            "cancelled"
+        };
+
+
+      default:
+        return {
+          label:
+            "Awaiting Verification",
+
+          className:
+            "verification"
+        };
+
+    }
+
+  }
+
+
+  function getProgress(
+    stage
+  ) {
+
+    switch (stage) {
+
+      case "verification":
+        return 12;
+
+      case "payment":
+        return 38;
+
+      case "progress":
+        return 70;
+
+      case "completed":
+        return 100;
+
+      default:
+        return 5;
+
+    }
+
+  }
+
+
+  function getNextStep(
+    stage
+  ) {
+
+    switch (stage) {
+
+      case "verification":
+        return "AgroLink must verify supply before payment becomes available.";
+
+      case "payment":
+        return "Verification complete. Buyer can now review and make payment.";
+
+      case "progress":
+        return "Payment secured. AgroLink is coordinating fulfilment.";
+
+      case "completed":
+        return "Transaction completed.";
+
+      case "cancelled":
+        return "This transaction is no longer active.";
+
+      default:
+        return "Review transaction status.";
+
+    }
+
+  }
+
+
+  /* =========================================
+     ACTIONS
+     ========================================= */
+
+  function attachOrderActions() {
+
+    document
+      .querySelectorAll(
+        "[data-verify-order]"
+      )
+      .forEach(
+        button => {
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              verificationOrderId =
+                button.dataset
+                  .verifyOrder;
+
+
+              document
+                .getElementById(
+                  "verificationOverlay"
+                )
+                .classList
+                .add(
+                  "show"
+                );
+
+            }
+          );
+
+        }
+      );
+
+  }
+
+
+  /* =========================================
+     VERIFICATION
+     ========================================= */
+
+  function setupVerificationModal() {
+
+    document
+      .getElementById(
+        "cancelVerification"
+      )
+      .addEventListener(
+        "click",
+        closeVerificationModal
+      );
+
+
+    document
+      .getElementById(
+        "confirmVerification"
+      )
+      .addEventListener(
+        "click",
+        completeVerification
+      );
+
+
+    document
+      .getElementById(
+        "verificationOverlay"
+      )
+      .addEventListener(
+        "click",
+        event => {
+
+          if (
+            event.target.id ===
+            "verificationOverlay"
+          ) {
+
+            closeVerificationModal();
+
+          }
+
+        }
+      );
+
+  }
+
+
+  function closeVerificationModal() {
+
+    document
+      .getElementById(
+        "verificationOverlay"
+      )
+      .classList
+      .remove(
+        "show"
+      );
+
+
+    verificationOrderId =
+      null;
+
+  }
+
+
+  function completeVerification() {
+
+    if (
+      !verificationOrderId
+    ) {
+      return;
+    }
+
+
+    orders =
+      orders.map(
+        order => {
+
+          if (
+            String(
+              order.id
+            ) !==
+            String(
+              verificationOrderId
+            )
+          ) {
+            return order;
+          }
+
+
+          return {
+            ...order,
+
+            status:
+              "Ready for Payment",
+
+            verificationStatus:
+              "Verified",
+
+            paymentStatus:
+              "Pending",
+
+            verifiedAt:
+              new Date()
+                .toISOString(),
+
+            verificationDemo:
+              true
+          };
+
+        }
+      );
+
+
+    saveOrders();
+
+
+    closeVerificationModal();
+
+
+    renderStats();
+
+    renderOrders();
+
+
+    showToast(
+      "Verification complete",
+      "The demo order is now ready for payment."
+    );
+
+  }
+
+
+  /* =========================================
+     SAVE
+     ========================================= */
+
+  function saveOrders() {
+
+    const key =
+      window.AGROLINK_CONFIG
+        ?.storageKeys
+        ?.trades ||
+      "agrolink_trades";
+
+
+    localStorage.setItem(
+      key,
+      JSON.stringify(
+        orders
+      )
+    );
+
+
+    /*
+      Keep the last-order shortcut synchronized.
+    */
+
+    if (orders.length) {
+
+      localStorage.setItem(
+        "agrolink_last_order",
+        JSON.stringify(
+          orders[0]
+        )
+      );
+
+    }
+
+  }
+
+
+  /* =========================================
+     TOAST
+     ========================================= */
+
+  function showToast(
+    title,
+    message
+  ) {
+
+    const toast =
+      document.getElementById(
+        "toast"
+      );
+
+
+    document
+      .getElementById(
+        "toastTitle"
+      )
+      .textContent =
+        title;
+
+
+    document
+      .getElementById(
+        "toastMessage"
+      )
+      .textContent =
+        message;
+
+
+    toast.classList.add(
+      "show"
+    );
+
+
+    window.setTimeout(
+      () => {
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      3200
+    );
+
+  }
+
+
+  /* =========================================
+     HELPERS
+     ========================================= */
+
+  function readArray(
+    key
+  ) {
+
+    try {
+
+      const data =
+        JSON.parse(
+          localStorage.getItem(
+            key
+          ) ||
+          "[]"
+        );
+
+
+      return Array.isArray(
+        data
+      )
+        ? data
+        : [];
+
+    } catch (error) {
+
+      return [];
+
+    }
+
+  }
+
+
+  function normalizeText(
+    value
+  ) {
+
+    return String(
+      value ||
+      ""
+    )
+      .trim()
+      .toLowerCase();
+
+  }
+
+
+  function formatNumber(
+    value
+  ) {
+
+    return new Intl.NumberFormat(
+      "en-UG"
+    ).format(
+      Number(value) ||
+      0
+    );
+
+  }
+
+
+  function formatDateTime(
+    value
+  ) {
+
+    if (!value) {
+      return "—";
+    }
+
+
+    const date =
+      new Date(
+        value
+      );
+
+
+    if (
+      Number.isNaN(
+        date.getTime()
+      )
+    ) {
+      return "—";
+    }
+
+
+    return new Intl.DateTimeFormat(
+      "en-UG",
+      {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+      }
+    ).format(
+      date
+    );
+
+  }
+
+
+  function escapeHTML(
+    value
+  ) {
+
+    return String(
+      value ||
+      ""
+    )
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Compare agricultural market prices across selected Ugandan markets with AgroLink Uganda.">
+<title>Market Prices | AgroLink Uganda</title>
+
+<link rel="stylesheet" href="../css/variables.css">
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/responsive.css">
+
+<style>
+body{
+  background:#f7f9f5;
+  color:#17231c;
+  font-family:Inter,"Segoe UI",Arial,sans-serif;
+}
+
+.top{
+  background:#075e3b;
+  color:#fff;
+}
+
+.topin,.wrap{
+  width:min(1180px,calc(100% - 40px));
+  margin:auto;
+}
+
+.topin{
+  min-height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+}
+
+.mark{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  background:#fff;
+  color:#078c50;
+  display:grid;
+  place-items:center;
+}
+
+.nav{
+  display:flex;
+  gap:5px;
+}
+
+.nav a{
+  color:#dcebe3;
+  text-decoration:none;
+  padding:9px 11px;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:700;
+}
+
+.nav a.active,
+.nav a:hover{
+  background:#ffffff1f;
+  color:#fff;
+}
+
+.wrap{
+  padding:30px 0 70px;
+}
+
+.head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:18px;
+  margin-bottom:22px;
+}
+
+.eyebrow{
+  color:#078c50;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-size:11px;
+  font-weight:800;
+}
+
+.head h1{
+  font-size:30px;
+  margin:5px 0;
+}
+
+.head p{
+  font-size:12px;
+  color:#657269;
+  margin:0;
+}
+
+.btn{
+  min-height:44px;
+  padding:0 15px;
+  border-radius:10px;
+  background:#078c50;
+  color:#fff;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  font-size:11px;
+  font-weight:800;
+}
+
+/* FEATURED PRICES */
+
+.featured{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.crop{
+  height:225px;
+  position:relative;
+  border-radius:17px;
+  overflow:hidden;
+  color:#fff;
+  background:#043d29;
+}
+
+.crop img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.crop:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    180deg,
+    transparent 15%,
+    rgba(4,61,41,.92)
+  );
+}
+
+.cropbody{
+  position:absolute;
+  z-index:2;
+  left:18px;
+  right:18px;
+  bottom:17px;
+}
+
+.cropbody small{
+  font-size:9px;
+}
+
+.cropbody h2{
+  font-size:20px;
+  margin:3px 0 8px;
+}
+
+.price{
+  font-size:25px;
+  font-weight:900;
+}
+
+.trend{
+  font-size:9px;
+  color:#dff0a5;
+  margin-left:7px;
+  font-weight:800;
+}
+
+/* PRICE COMPARISON */
+
+.card{
+  background:#fff;
+  border:1px solid #edf2ee;
+  border-radius:16px;
+  padding:19px;
+  box-shadow:0 2px 8px rgba(0,0,0,.03);
+  margin-bottom:18px;
+}
+
+.cardhead{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:14px;
+}
+
+.cardhead h2{
+  font-size:16px;
+  margin:0;
+}
+
+.cardhead p{
+  font-size:10px;
+  color:#657269;
+  margin:4px 0 0;
+}
+
+.filters{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.filter{
+  border:1px solid #dde7e0;
+  background:#fff;
+  color:#657269;
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:9px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.filter.active{
+  background:#eaf7ef;
+  border-color:#a8d9bc;
+  color:#067347;
+}
+
+/* DESKTOP TABLE */
+
+.tablewrap{
+  width:100%;
+  overflow:hidden;
+}
+
+.table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.table th{
+  text-align:left;
+  padding:11px 10px;
+  background:#f3fbf6;
+  color:#657269;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+
+.table td{
+  padding:14px 10px;
+  border-bottom:1px solid #edf2ee;
+  font-size:11px;
+  vertical-align:middle;
+}
+
+.commodity{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-weight:800;
+}
+
+.commodity img{
+  width:38px;
+  height:38px;
+  border-radius:9px;
+  object-fit:cover;
+}
+
+.up{
+  color:#14965b;
+  font-weight:800;
+}
+
+.down{
+  color:#d94a4a;
+  font-weight:800;
+}
+
+.same{
+  color:#657269;
+  font-weight:800;
+}
+
+.post-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:34px;
+  padding:0 11px;
+  border-radius:8px;
+  background:#eaf7ef;
+  color:#067347;
+  text-decoration:none;
+  font-size:9px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.post-link:hover{
+  background:#078c50;
+  color:#fff;
+}
+
+/* TIP */
+
+.tip{
+  display:flex;
+  gap:11px;
+  padding:14px;
+  border-radius:12px;
+  background:#f3fbf6;
+  border:1px solid #dcefe3;
+  font-size:10px;
+  color:#526158;
+  line-height:1.6;
+}
+
+.tip strong{
+  color:#075e3b;
+}
+
+.mobile{
+  display:none;
+}
+
+/* MOBILE */
+
+@media(max-width:767px){
+
+  body{
+    padding-bottom:92px;
+    background:#fff;
+  }
+
+  .topin{
+    width:100%;
+    padding:0 15px;
+    min-height:64px;
+  }
+
+  .nav{
+    display:none;
+  }
+
+  .wrap{
+    width:100%;
+    padding:22px 14px 30px;
+  }
+
+  .head{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:13px;
+  }
+
+  .head h1{
+    font-size:24px;
+  }
+
+  .featured{
+    grid-template-columns:1fr;
+  }
+
+  .crop{
+    height:205px;
+  }
+
+  .card{
+    padding:16px 13px;
+    border-radius:16px;
+  }
+
+  .cardhead{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:13px;
+  }
+
+  .filters{
+    width:100%;
+  }
+
+  .filter{
+    padding:9px 15px;
+  }
+
+  /*
+    Mobile price table:
+    two columns only:
+    Commodity/Market | Price/Movement/Action
+  */
+
+  .tablewrap{
+    overflow:visible;
+  }
+
+  .table,
+  .table tbody{
+    display:block;
+    width:100%;
+  }
+
+  .table thead{
+    display:block;
+  }
+
+  .table thead tr{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(125px,.8fr);
+    background:#f3fbf6;
+    border-radius:9px;
+  }
+
+  .table thead th{
+    display:none;
+  }
+
+  .table thead th:first-child,
+  .table thead th:nth-child(3){
+    display:block;
+    padding:12px 10px;
+    background:transparent;
+  }
+
+  .table thead th:first-child::after{
+    content:"";
+  }
+
+  .table thead th:nth-child(3){
+    text-align:right;
+  }
+
+  .table tbody tr{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(125px,.8fr);
+    grid-template-areas:
+      "commodity price"
+      "market action";
+    align-items:center;
+    column-gap:10px;
+    row-gap:3px;
+    padding:14px 8px;
+    border-bottom:1px solid #edf2ee;
+  }
+
+  .table td{
+    padding:0;
+    border:0;
+    min-width:0;
+  }
+
+  .table td:nth-child(1){
+    grid-area:commodity;
+  }
+
+  .table td:nth-child(2){
+    grid-area:market;
+    padding-left:47px;
+    color:#657269;
+    font-size:9px;
+    font-weight:700;
+  }
+
+  .table td:nth-child(3){
+    grid-area:price;
+    text-align:right;
+    font-size:12px;
+  }
+
+  .table td:nth-child(4){
+    grid-area:price;
+    justify-self:end;
+    align-self:end;
+    margin-top:27px;
+    margin-right:0;
+    font-size:8px;
+    white-space:nowrap;
+  }
+
+  .table td:nth-child(5){
+    grid-area:action;
+    text-align:right;
+    margin-top:5px;
+  }
+
+  .commodity{
+    gap:9px;
+    font-size:11px;
+  }
+
+  .commodity img{
+    width:38px;
+    height:38px;
+    flex:0 0 38px;
+  }
+
+  .table td:nth-child(3) strong{
+    display:block;
+    padding-bottom:14px;
+    color:#17231c;
+    font-size:12px;
+    font-weight:900;
+    white-space:nowrap;
+  }
+
+  .post-link{
+    min-height:30px;
+    padding:0 9px;
+    font-size:8px;
+    border-radius:7px;
+  }
+
+  /* MOBILE BOTTOM NAV */
+
+  .mobile{
+    position:fixed;
+    left:10px;
+    right:10px;
+    bottom:9px;
+    z-index:200;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    align-items:end;
+    padding:7px 7px calc(7px + env(safe-area-inset-bottom));
+    background:#f3fbf6;
+    border:1px solid #d7eadf;
+    border-radius:18px;
+    box-shadow:0 -5px 24px rgba(4,61,41,.12);
+  }
+
+  .mobile a{
+    min-height:48px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
+    color:#78867d;
+    text-decoration:none;
+    font-size:8px;
+    font-weight:800;
+    border-radius:12px;
+  }
+
+  .mobile a.active{
+    background:#e1f4e8;
+    color:#075e3b;
+  }
+
+  .mobile .post{
+    transform:translateY(-10px);
+    background:#078c50;
+    color:#fff;
+    width:52px;
+    height:52px;
+    min-height:52px;
+    border-radius:16px;
+    justify-self:center;
+    box-shadow:0 7px 18px rgba(7,140,80,.28);
+  }
+
+  .mobile svg{
+    width:19px;
+    height:19px;
+  }
+
+  .mobile .post svg{
+    width:22px;
+    height:22px;
+  }
+
+  .mobile .post span{
+    display:none;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="top">
+<div class="topin">
+
+<a class="brand" href="dashboard.html">
+<span class="mark">
+<svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M20 4c-7 0-12 3-14 9 5 1 10-1 14-9Z"/>
+<path d="M4 20c2-6 6-10 12-13"/>
+</svg>
+</span>
+AgroLink Uganda
+</a>
+
+<nav class="nav">
+<a href="dashboard.html">Dashboard</a>
+<a class="active" href="prices.html">Market Prices</a>
+<a href="demand.html">Buyer Demand</a>
+<a href="post-produce.html">Post Produce</a>
+<a href="trades.html">Trades</a>
+<a href="profile.html">Profile</a>
+</nav>
+
+</div>
+</header>
+
+<main class="wrap">
+
+<section class="head">
+<div>
+<span class="eyebrow">Market intelligence</span>
+<h1>Market Prices</h1>
+<p>Compare reference grain prices across selected markets before setting your produce price.</p>
+</div>
+
+<a class="btn" href="post-produce.html">+ Post Produce</a>
+</section>
+
+<section class="featured">
+
+<article class="crop">
+<img src="../assets/images/crops/dry-maize.jpg" alt="Dry maize">
+<div class="cropbody">
+<small>Kampala reference price</small>
+<h2>Dry Maize</h2>
+<span class="price">UGX 1,200/kg</span>
+<span class="trend">↑ 5%</span>
+</div>
+</article>
+
+<article class="crop">
+<img src="../assets/images/crops/beans.jpg" alt="Beans">
+<div class="cropbody">
+<small>Kampala reference price</small>
+<h2>Beans</h2>
+<span class="price">UGX 3,800/kg</span>
+<span class="trend">↑ 2%</span>
+</div>
+</article>
+
+</section>
+
+<section class="card">
+
+<div class="cardhead">
+
+<div>
+<h2>Price Comparison</h2>
+<p>Compare prices by commodity and market.</p>
+</div>
+
+<div class="filters">
+<button class="filter active" data-crop="all">All</button>
+<button class="filter" data-crop="maize">Dry Maize</button>
+<button class="filter" data-crop="beans">Beans</button>
+</div>
+
+</div>
+
+<div class="tablewrap">
+
+<table class="table">
+
+<thead>
+<tr>
+<th>Commodity</th>
+<th>Market</th>
+<th>Price / kg</th>
+<th>Movement</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="rows">
+
+<tr data-crop="maize">
+<td>
+<span class="commodity">
+<img src="../assets/images/crops/dry-maize.jpg" alt="">
+Dry Maize
+</span>
+</td>
+<td>Kampala</td>
+<td><strong>UGX 1,200</strong></td>
+<td class="up">↑ 5%</td>
+<td>
+<a class="post-link" href="post-produce.html?commodity=Dry%20Maize">
+Post Produce
+</a>
+</td>
+</tr>
+
+<tr data-crop="maize">
+<td>
+<span class="commodity">
+<img src="../assets/images/crops/dry-maize.jpg" alt="">
+Dry Maize
+</span>
+</td>
+<td>Mukono</td>
+<td><strong>UGX 1,150</strong></td>
+<td class="up">↑ 3%</td>
+<td>
+<a class="post-link" href="post-produce.html?commodity=Dry%20Maize">
+Post Produce
+</a>
+</td>
+</tr>
+
+<tr data-crop="maize">
+<td>
+<span class="commodity">
+<img src="../assets/images/crops/dry-maize.jpg" alt="">
+Dry Maize
+</span>
+</td>
+<td>Jinja</td>
+<td><strong>UGX 1,180</strong></td>
+<td class="same">No change</td>
+<td>
+<a class="post-link" href="post-produce.html?commodity=Dry%20Maize">
+Post Produce
+</a>
+</td>
+</tr>
+
+<tr data-crop="beans">
+<td>
+<span class="commodity">
+<img src="../assets/images/crops/beans.jpg" alt="">
+Beans
+</span>
+</td>
+<td>Kampala</td>
+<td><strong>UGX 3,800</strong></td>
+<td class="up">↑ 2%</td>
+<td>
+<a class="post-link" href="post-produce.html?commodity=Beans">
+Post Produce
+</a>
+</td>
+</tr>
+
+<tr data-crop="beans">
+<td>
+<span class="commodity">
+<img src="../assets/images/crops/beans.jpg" alt="">
+Beans
+</span>
+</td>
+<td>Mukono</td>
+<td><strong>UGX 3,650</strong></td>
+<td class="down">↓ 1%</td>
+<td>
+<a class="post-link" href="post-produce.html?commodity=Beans">
+Post Produce
+</a>
+</td>
+</tr>
+
+<tr data-crop="beans">
+<td>
+<span class="commodity">
+<img src="../assets/images/crops/beans.jpg" alt="">
+Beans
+</span>
+</td>
+<td>Jinja</td>
+<td><strong>UGX 3,700</strong></td>
+<td class="up">↑ 1%</td>
+<td>
+<a class="post-link" href="post-produce.html?commodity=Beans">
+Post Produce
+</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+</section>
+
+<section class="tip">
+<div>ⓘ</div>
+<div>
+<strong>Use prices as decision support.</strong><br>
+Market reference prices help you compare locations and set an informed asking price.
+Your final transaction price is confirmed through the AgroLink matching and verification process.
+</div>
+</section>
+
+</main>
+
+<nav class="mobile">
+
+<a href="dashboard.html">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+<path d="M3 11 12 4l9 7"/>
+<path d="M5 10v10h14V10"/>
+</svg>
+<span>Home</span>
+</a>
+
+<a class="active" href="prices.html">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+<path d="M3 18 9 12l4 4 8-10"/>
+<path d="M15 6h6v6"/>
+</svg>
+<span>Prices</span>
+</a>
+
+<a class="post" href="post-produce.html">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<circle cx="12" cy="12" r="9"/>
+<path d="M12 7v10M7 12h10"/>
+</svg>
+<span>Post</span>
+</a>
+
+<a href="trades.html">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+<path d="M5 4h14v16H5z"/>
+<path d="M8 8h8M8 12h8"/>
+</svg>
+<span>Trades</span>
+</a>
+
+<a href="profile.html">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+<circle cx="12" cy="8" r="4"/>
+<path d="M4 21a8 8 0 0 1 16 0"/>
+</svg>
+<span>Profile</span>
+</a>
+
+</nav>
+
+<script>
+document.querySelectorAll(".filter").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+
+    document.querySelectorAll(".filter").forEach(x=>{
+      x.classList.remove("active");
+    });
+
+    btn.classList.add("active");
+
+    const crop=btn.dataset.crop;
+
+    document.querySelectorAll("#rows tr").forEach(row=>{
+      row.style.display=
+        crop==="all" || row.dataset.crop===crop
+          ? ""
+          : "none";
+    });
+
+  });
+});
+</script>
+
+</body>
+</html>

@@ -636,7 +636,7 @@ const AgroLinkComponents = (() => {
                 data-action="demo-exit"
               >
                 ${icons.logout}
-                Exit demo
+                Logout
               </button>
             </div>
           </div>

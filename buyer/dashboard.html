@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="AgroLink Uganda Buyer Dashboard — agricultural procurement intelligence and supply matching."
+  >
+
+  <title>
+    Buyer Dashboard | AgroLink Uganda
+  </title>
+
+  <!-- =====================================================
+       AGROLINK SHARED STYLES
+       ===================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="../css/variables.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../css/reset.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../css/layout.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../css/components.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../css/responsive.css"
+  >
+
+  <style>
+    .dashboard-crop-price {
+      position: relative;
+      min-height: 230px;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .dashboard-crop-image {
+      position: relative;
+      height: 118px;
+      overflow: hidden;
+      background: var(--surface-secondary);
+    }
+
+    .dashboard-crop-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform var(--transition-slow);
+    }
+
+    .dashboard-crop-price:hover .dashboard-crop-image img {
+      transform: scale(1.035);
+    }
+
+    .dashboard-crop-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(4,61,41,.24), transparent 58%);
+      pointer-events: none;
+    }
+
+    .dashboard-crop-body {
+      padding: 15px 16px 16px;
+    }
+
+    .dashboard-crop-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .dashboard-crop-name {
+      margin: 0;
+      color: var(--text-primary);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .dashboard-crop-location {
+      margin-top: 3px;
+      color: var(--text-secondary);
+      font-size: 11px;
+    }
+
+    .dashboard-crop-price-value {
+      margin-top: 13px;
+      color: var(--green-800);
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+
+    .dashboard-crop-price-value small {
+      color: var(--text-secondary);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .dashboard-crop-trend {
+      margin-top: 7px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .dashboard-crop-trend.up {
+      color: var(--success);
+    }
+
+    .dashboard-crop-trend.down {
+      color: var(--danger);
+    }
+
+    .dashboard-crop-trend.flat {
+      color: var(--text-secondary);
+    }
+
+    .dashboard-crop-tag {
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: var(--green-50);
+      color: var(--green-800);
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 767px) {
+      .dashboard-crop-price {
+        min-height: 215px;
+      }
+
+      .dashboard-crop-image {
+        height: 105px;
+      }
+
+      .dashboard-crop-price-value {
+        font-size: 19px;
+      }
+    }
+  </style>
+
+</head>
+
+
+<body
+  data-role="buyer"
+  data-page="dashboard"
+>
+  <!-- =====================================================
+       MOBILE HEADER
+       ===================================================== -->
+
+  <div id="app-mobile-header"></div>
+
+
+  <!-- =====================================================
+       APPLICATION
+       ===================================================== -->
+
+  <div class="app-shell">
+
+    <!-- Shared desktop sidebar -->
+    <div id="app-sidebar"></div>
+
+
+    <!-- ===================================================
+         MAIN
+         =================================================== -->
+
+    <main class="app-main">
+
+      <!-- Shared desktop header -->
+      <div id="app-header"></div>
+
+
+      <!-- =================================================
+           DASHBOARD CONTENT
+           ================================================= -->
+
+      <div class="dashboard-content">
+
+        <!-- ===============================================
+             WELCOME
+             =============================================== -->
+
+        <section class="dashboard-header">
+
+          <div>
+            <span
+              class="demo-label"
+              style="margin-bottom:10px;"
+            >
+              Buyer workspace
+            </span>
+
+            <h1 id="welcomeHeading">
+              Good morning
+            </h1>
+
+            <p>
+              Find reliable supply, understand the market,
+              and coordinate procurement through AgroLink.
+            </p>
+          </div>
+
+
+          <div>
+            <a
+              href="post-demand.html"
+              class="btn btn-primary"
+            >
+              <span aria-hidden="true">＋</span>
+              Post New Demand
+            </a>
+          </div>
+
+        </section>
+
+
+        <!-- ===============================================
+             KPI / STATS
+             =============================================== -->
+
+        <section
+          class="grid grid-4"
+          id="buyerStats"
+          aria-label="Buyer procurement summary"
+        >
+          <!-- Rendered by dashboard JavaScript -->
+        </section>
+
+
+        <!-- ===============================================
+             MAIN DASHBOARD GRID
+             =============================================== -->
+
+        <div
+          class="dashboard-grid"
+          style="margin-top:24px;"
+        >
+
+          <!-- =============================================
+               LEFT / PRIMARY COLUMN
+               ============================================= -->
+
+          <div class="dashboard-main-column">
+
+
+            <!-- ===========================================
+                 MARKET INTELLIGENCE
+                 =========================================== -->
+
+            <section class="section">
+
+              <div class="section-header">
+
+                <div class="section-heading">
+                  <h2 class="section-title">
+                    Market Intelligence
+                  </h2>
+
+                  <p class="section-description">
+                    Current grain price intelligence across selected markets.
+                  </p>
+                </div>
+
+
+                <div class="section-actions">
+                  <a
+                    href="market.html"
+                    class="btn btn-ghost btn-sm"
+                  >
+                    View Market
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+
+              </div>
+
+
+              <div
+                class="grid grid-3"
+                id="marketPrices"
+              >
+                <!-- Rendered by JavaScript -->
+              </div>
+
+            </section>
+
+
+            <!-- ===========================================
+                 ACTIVE DEMAND
+                 =========================================== -->
+
+            <section class="section">
+
+              <div class="section-header">
+
+                <div class="section-heading">
+                  <h2 class="section-title">
+                    Active Procurement Demand
+                  </h2>
+
+                  <p class="section-description">
+                    Requirements currently open for AgroLink
+                    supply matching.
+                  </p>
+                </div>
+
+
+                <div class="section-actions">
+                  <a
+                    href="post-demand.html"
+                    class="btn btn-secondary btn-sm"
+                  >
+                    + Add Demand
+                  </a>
+                </div>
+
+              </div>
+
+
+              <div
+                id="activeDemandList"
+                class="stack stack-md"
+              >
+                <!-- Rendered by JavaScript -->
+              </div>
+
+            </section>
+
+
+            <!-- ===========================================
+                 POTENTIAL SUPPLY MATCHES
+                 =========================================== -->
+
+            <section class="section">
+
+              <div class="section-header">
+
+                <div class="section-heading">
+                  <h2 class="section-title">
+                    Potential Supply Matches
+                  </h2>
+
+                  <p class="section-description">
+                    Supply opportunities identified against
+                    your procurement requirements.
+                  </p>
+                </div>
+
+
+                <div class="section-actions">
+                  <a
+                    href="matches.html"
+                    class="btn btn-ghost btn-sm"
+                  >
+                    View All
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+
+              </div>
+
+
+              <div
+                id="matchList"
+                class="stack stack-md"
+              >
+                <!-- Rendered by JavaScript -->
+              </div>
+
+            </section>
+
+          </div>
+
+
+          <!-- =============================================
+               RIGHT / SECONDARY COLUMN
+               ============================================= -->
+
+          <aside class="dashboard-side-column">
+
+
+            <!-- ===========================================
+                 QUICK ACTIONS
+                 =========================================== -->
+
+            <section class="card">
+
+              <div class="card-header">
+
+                <div>
+                  <h2 class="card-title">
+                    Quick Actions
+                  </h2>
+
+                  <p class="card-description">
+                    Continue your procurement workflow.
+                  </p>
+                </div>
+
+              </div>
+
+
+              <div class="card-body">
+
+                <div class="quick-actions">
+
+                  <a
+                    href="post-demand.html"
+                    class="quick-action"
+                  >
+                    <span class="quick-action-icon">
+                      ＋
+                    </span>
+
+                    <span class="quick-action-label">
+                      Post Demand
+                    </span>
+                  </a>
+
+
+                  <a
+                    href="market.html"
+                    class="quick-action"
+                  >
+                    <span class="quick-action-icon">
+                      ↗
+                    </span>
+
+                    <span class="quick-action-label">
+                      Explore Market
+                    </span>
+                  </a>
+
+
+                  <a
+                    href="matches.html"
+                    class="quick-action"
+                  >
+                    <span class="quick-action-icon">
+                      ◎
+                    </span>
+
+                    <span class="quick-action-label">
+                      View Matches
+                    </span>
+                  </a>
+
+
+                  <a
+                    href="orders.html"
+                    class="quick-action"
+                  >
+                    <span class="quick-action-icon">
+                      ≡
+                    </span>
+
+                    <span class="quick-action-label">
+                      Track Orders
+                    </span>
+                  </a>
+
+                </div>
+
+              </div>
+
+            </section>
+
+
+            <!-- ===========================================
+                 PROCUREMENT OPPORTUNITY
+                 =========================================== -->
+
+            <section class="opportunity-card">
+
+              <span
+                class="demo-label"
+                style="margin-bottom:14px;"
+              >
+                Procurement opportunity
+              </span>
+
+              <h3>
+                Source smarter with verified supply
+              </h3>
+
+              <p>
+                Post your exact quantity, target price and
+                quality requirement. AgroLink can identify
+                compatible farmer supply while keeping
+                verification and coordination within the
+                platform.
+              </p>
+
+              <a
+                href="post-demand.html"
+                class="btn btn-primary btn-block"
+                style="margin-top:18px;"
+              >
+                Post a Requirement
+              </a>
+
+            </section>
+
+
+            <!-- ===========================================
+                 ACTIVE ORDER
+                 =========================================== -->
+
+            <section class="card">
+
+              <div class="card-header">
+
+                <div>
+                  <h2 class="card-title">
+                    Current Order
+                  </h2>
+
+                  <p class="card-description">
+                    Latest coordinated transaction.
+                  </p>
+                </div>
+
+              </div>
+
+
+              <div
+                class="card-body"
+                id="currentOrder"
+              >
+                <!-- Rendered by JavaScript -->
+              </div>
+
+            </section>
+
+
+            <!-- ===========================================
+                 BUSINESS MODEL / COMMISSION
+                 =========================================== -->
+
+            <section class="commission-box">
+
+              <div class="commission-box-title">
+                Pilot Transaction Model
+              </div>
+
+              <p>
+                AgroLink is testing a
+                <strong>10% transaction commission</strong>
+                during the pilot.
+              </p>
+
+              <small>
+                The 10% transaction commission is a pilot pricing model currently being evaluated.
+              </small>
+
+            </section>
+
+          </aside>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <!-- =====================================================
+       MOBILE BOTTOM NAVIGATION
+       ===================================================== -->
+
+  <div id="app-mobile-nav"></div>
+
+
+  <!-- =====================================================
+       SHARED JAVASCRIPT
+       ORDER IS IMPORTANT
+       ===================================================== -->
+
+  <script src="../js/config.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/app.js"></script>
+
+
+  <!-- =====================================================
+       BUYER DASHBOARD LOGIC
+       ===================================================== -->
+
+  <script>
+    document.addEventListener(
+      "agrolink:ready",
+      () => {
+        renderBuyerDashboard();
+      }
+    );
+
+
+    function renderBuyerDashboard() {
+      const user =
+        AgroLinkStorage.getCurrentUser();
+
+      renderWelcome(user);
+      renderStats(user);
+      renderMarketPrices();
+      renderActiveDemand(user);
+      renderMatches(user);
+      renderCurrentOrder(user);
+    }
+
+
+    /* =====================================================
+       WELCOME
+       ===================================================== */
+
+    function renderWelcome(user) {
+      const heading =
+        document.getElementById(
+          "welcomeHeading"
+        );
+
+      if (!heading) {
+        return;
+      }
+
+      const hour =
+        new Date().getHours();
+
+      let greeting =
+        "Good morning";
+
+      if (hour >= 12 && hour < 17) {
+        greeting =
+          "Good afternoon";
+      }
+
+      if (hour >= 17) {
+        greeting =
+          "Good evening";
+      }
+
+      const displayName =
+        user?.organization ||
+        user?.name ||
+        "Buyer";
+
+      heading.textContent =
+        `${greeting}, ${displayName}`;
+    }
+
+
+    /* =====================================================
+       STATS
+       ===================================================== */
+
+    function renderStats(user) {
+      const container =
+        document.getElementById(
+          "buyerStats"
+        );
+
+      if (!container) {
+        return;
+      }
+
+      const stats =
+        AgroLinkStorage
+          .getBuyerDashboardStats(
+            user?.id
+          );
+
+      const cards = [
+        {
+          label: "Open Demands",
+          value: stats.openDemands,
+          helper:
+            "Procurement requirements",
+          icon: "▤",
+          tone: "green"
+        },
+        {
+          label: "Potential Matches",
+          value: stats.potentialMatches,
+          helper:
+            "Supply opportunities",
+          icon: "◎",
+          tone: "blue"
+        },
+        {
+          label: "Active Orders",
+          value: stats.activeOrders,
+          helper:
+            "Being coordinated",
+          icon: "↗",
+          tone: "amber"
+        },
+        {
+          label: "Completed",
+          value: stats.completedOrders,
+          helper:
+            "Completed transactions",
+          icon: "✓",
+          tone: "green"
+        }
+      ];
+
+      container.innerHTML =
+        cards
+          .map((card) => `
+            <article class="stat-card">
+              <div class="stat-card-top">
+                <div>
+                  <div class="stat-label">
+                    ${AgroLinkUtils.escapeHTML(
+                      card.label
+                    )}
+                  </div>
+
+                  <div class="stat-value">
+                    ${AgroLinkUtils.formatNumber(
+                      card.value
+                    )}
+                  </div>
+                </div>
+
+                <div
+                  class="stat-icon ${card.tone}"
+                >
+                  ${card.icon}
+                </div>
+              </div>
+
+              <div class="stat-helper">
+                ${AgroLinkUtils.escapeHTML(
+                  card.helper
+                )}
+              </div>
+            </article>
+          `)
+          .join("");
+    }
+
+
+    /* =====================================================
+       MARKET INTELLIGENCE
+       ===================================================== */
+
+    function renderMarketPrices() {
+      const container =
+        document.getElementById(
+          "marketPrices"
+        );
+
+      if (!container) {
+        return;
+      }
+
+      const prices =
+        window.AGROLINK_DATA
+          .marketPrices
+          .filter(
+            (item) =>
+              item.location ===
+              "Kampala"
+          )
+          .slice(0, 3);
+
+      if (!prices.length) {
+        container.innerHTML =
+          emptyState(
+            "No market data",
+            "Market prices are currently unavailable."
+          );
+
+        return;
+      }
+
+      container.innerHTML =
+        prices
+          .map(renderDashboardPriceCard)
+          .join("");
+    }
+
+
+    function getCropImage(commodity) {
+      const name =
+        String(commodity || "")
+          .toLowerCase();
+
+      if (name.includes("bean")) {
+        return "../assets/images/crops/beans.jpg";
+      }
+
+      return "../assets/images/crops/dry-maize.jpg";
+    }
+
+
+    function renderDashboardPriceCard(price) {
+      const commodity =
+        price.commodity ||
+        price.crop ||
+        "Commodity";
+
+      const location =
+        price.location ||
+        price.market ||
+        "Kampala";
+
+      const value =
+        Number(
+          price.price ??
+          price.pricePerKg ??
+          price.currentPrice ??
+          0
+        );
+
+      const trend =
+        Number(
+          price.change ??
+          price.trend ??
+          price.changePercent ??
+          0
+        );
+
+      const trendClass =
+        trend > 0
+          ? "up"
+          : trend < 0
+            ? "down"
+            : "flat";
+
+      const trendSymbol =
+        trend > 0
+          ? "↑"
+          : trend < 0
+            ? "↓"
+            : "→";
+
+      const trendText =
+        trend === 0
+          ? "Stable"
+          : `${trendSymbol} ${trend > 0 ? "Up" : "Down"} ${Math.abs(trend)}%`;
+
+      return `
+        <article class="dashboard-crop-price">
+
+          <div class="dashboard-crop-image">
+            <img
+              src="${getCropImage(commodity)}"
+              alt="${AgroLinkUtils.escapeHTML(commodity)}"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="dashboard-crop-body">
+
+            <div class="dashboard-crop-top">
+
+              <div>
+                <h3 class="dashboard-crop-name">
+                  ${AgroLinkUtils.escapeHTML(commodity)}
+                </h3>
+
+                <div class="dashboard-crop-location">
+                  ${AgroLinkUtils.escapeHTML(location)}
+                </div>
+              </div>
+
+              <span class="dashboard-crop-tag">
+                Market Price
+              </span>
+
+            </div>
+
+            <div class="dashboard-crop-price-value">
+              ${AgroLinkUtils.formatCurrency(value)}
+              <small>/kg</small>
+            </div>
+
+            <div class="dashboard-crop-trend ${trendClass}">
+              ${AgroLinkUtils.escapeHTML(trendText)}
+            </div>
+
+          </div>
+
+        </article>
+      `;
+    }
+
+
+    /* =====================================================
+       ACTIVE DEMAND
+       ===================================================== */
+
+    function renderActiveDemand(user) {
+      const container =
+        document.getElementById(
+          "activeDemandList"
+        );
+
+      if (!container) {
+        return;
+      }
+
+      const demands =
+        AgroLinkStorage
+          .getDemands()
+          .filter(
+            (item) =>
+              item.buyerId === user?.id &&
+              item.status === "Open"
+          )
+          .slice(0, 2);
+
+      if (!demands.length) {
+        container.innerHTML =
+          emptyState(
+            "No active demand",
+            "Post your first procurement requirement and AgroLink will look for compatible supply.",
+            "Post Demand",
+            "post-demand.html"
+          );
+
+        return;
+      }
+
+      container.innerHTML =
+        demands
+          .map(renderDemandCard)
+          .join("");
+    }
+
+
+    function renderDemandCard(demand) {
+      const remaining =
+        Math.max(
+          Number(demand.quantity) -
+          Number(
+            demand.fulfilledQuantity ||
+            0
+          ),
+          0
+        );
+
+      return `
+        <article class="market-card">
+
+          <div class="market-card-top">
+
+            <div>
+              <div
+                class="flex items-center gap-2 flex-wrap"
+              >
+                <h3 class="market-card-title">
+                  ${AgroLinkUtils.escapeHTML(
+                    demand.commodity
+                  )}
+                </h3>
+
+                ${AgroLinkComponents.statusBadge(
+                  demand.status
+                )}
+              </div>
+
+              <p class="market-card-subtitle">
+                Procurement requirement •
+                ${AgroLinkUtils.escapeHTML(
+                  demand.location
+                )}
+              </p>
+            </div>
+
+
+            <div>
+              ${AgroLinkComponents.verifiedBadge(
+                "Buyer verified"
+              )}
+            </div>
+
+          </div>
+
+
+          <div class="market-card-grid">
+
+            <div class="market-detail">
+              <span class="market-detail-label">
+                Required
+              </span>
+
+              <strong>
+                ${AgroLinkUtils.formatQuantity(
+                  demand.quantity,
+                  demand.unit
+                )}
+              </strong>
+            </div>
+
+
+            <div class="market-detail">
+              <span class="market-detail-label">
+                Remaining
+              </span>
+
+              <strong>
+                ${AgroLinkUtils.formatQuantity(
+                  remaining,
+                  demand.unit
+                )}
+              </strong>
+            </div>
+
+
+            <div class="market-detail">
+              <span class="market-detail-label">
+                Target Price
+              </span>
+
+              <strong>
+                ${AgroLinkUtils.formatPricePerUnit(
+                  demand.targetPrice,
+                  demand.unit
+                )}
+              </strong>
+            </div>
+
+
+            <div class="market-detail">
+              <span class="market-detail-label">
+                Required By
+              </span>
+
+              <strong>
+                ${AgroLinkUtils.formatDate(
+                  demand.requiredDate
+                )}
+              </strong>
+            </div>
+
+          </div>
+
+
+          <div class="market-card-actions">
+
+            <div>
+              <span class="text-secondary">
+                ${AgroLinkUtils.escapeHTML(
+                  demand.quality
+                )}
+              </span>
+            </div>
+
+
+            <a
+              href="matches.html?demand=${encodeURIComponent(
+                demand.id
+              )}"
+              class="btn btn-secondary btn-sm"
+            >
+              View Matches
+            </a>
+
+          </div>
+
+        </article>
+      `;
+    }
+
+
+    /* =====================================================
+       MATCHES
+       ===================================================== */
+
+    function renderMatches(user) {
+      const container =
+        document.getElementById(
+          "matchList"
+        );
+
+      if (!container) {
+        return;
+      }
+
+      const matches =
+        AgroLinkStorage
+          .getMatches()
+          .filter(
+            (item) =>
+              item.buyerId === user?.id
+          )
+          .sort(
+            (a, b) =>
+              Number(b.matchScore) -
+              Number(a.matchScore)
+          )
+          .slice(0, 2);
+
+      if (!matches.length) {
+        container.innerHTML =
+          emptyState(
+            "No supply matches yet",
+            "Potential supply will appear here when AgroLink identifies compatible farmer listings."
+          );
+
+        return;
+      }
+
+      container.innerHTML =
+        matches
+          .map(renderMatchCard)
+          .join("");
+    }
+
+
+    function renderMatchCard(match) {
+      return `
+        <article class="match-card">
+
+          <div class="match-card-header">
+
+            <div>
+              <div
+                class="flex items-center gap-2 flex-wrap"
+              >
+                <h3>
+                  ${AgroLinkUtils.escapeHTML(
+                    match.commodity
+                  )}
+                </h3>
+
+                ${AgroLinkComponents.statusBadge(
+                  match.status
+                )}
+              </div>
+
+              <p>
+                ${AgroLinkUtils.escapeHTML(
+                  match.supplyLocation
+                )}
+                →
+                ${AgroLinkUtils.escapeHTML(
+                  match.buyerLocation
+                )}
+              </p>
+            </div>
+
+
+            <div class="match-score">
+              <strong>
+                ${AgroLinkUtils.formatNumber(
+                  match.matchScore
+                )}%
+              </strong>
+
+              <span>
+                Match
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="market-card-grid">
+
+            <div class="market-detail">
+              <span class="market-detail-label">
+                Available
+              </span>
+
+              <strong>
+                ${AgroLinkUtils.formatQuantity(
+                  match.matchedQuantity,
+                  match.unit
+                )}
+              </strong>
+            </div>
+
+
+            <div class="market-detail">
+              <span class="market-detail-label">
+                Supplier Price
+              </span>
+
+              <strong>
+                ${AgroLinkUtils.formatPricePerUnit(
+                  match.supplierPrice,
+                  match.unit
+                )}
+              </strong>
+            </div>
+
+
+            <div class="market-detail">
+              <span class="market-detail-label">
+                Your Target
+              </span>
+
+              <strong>
+                ${AgroLinkUtils.formatPricePerUnit(
+                  match.targetPrice,
+                  match.unit
+                )}
+              </strong>
+            </div>
+
+
+            <div class="market-detail">
+              <span class="market-detail-label">
+                Verification
+              </span>
+
+              <strong>
+                ${AgroLinkUtils.escapeHTML(
+                  match.supplierVerification
+                )}
+              </strong>
+            </div>
+
+          </div>
+
+
+          <div
+            class="flex-between flex-wrap gap-2"
+            style="margin-top:16px;"
+          >
+
+            <div>
+              ${AgroLinkComponents.verifiedBadge(
+                "Supplier verified"
+              )}
+
+              <div
+                style="
+                  margin-top:7px;
+                  font-size:12px;
+                  color:var(--text-secondary);
+                "
+              >
+                ${AgroLinkUtils.escapeHTML(
+                  match.qualityStatus
+                )}
+              </div>
+            </div>
+
+
+            <a
+              href="matches.html?id=${encodeURIComponent(
+                match.id
+              )}"
+              class="btn btn-primary btn-sm"
+            >
+              Review Match
+            </a>
+
+          </div>
+
+        </article>
+      `;
+    }
+
+
+    /* =====================================================
+       CURRENT ORDER
+       ===================================================== */
+
+    function renderCurrentOrder(user) {
+      const container =
+        document.getElementById(
+          "currentOrder"
+        );
+
+      if (!container) {
+        return;
+      }
+
+      const trade =
+        AgroLinkStorage
+          .getTrades()
+          .filter(
+            (item) =>
+              item.buyerId === user?.id
+          )
+          .sort(
+            (a, b) =>
+              new Date(b.createdAt) -
+              new Date(a.createdAt)
+          )[0];
+
+      if (!trade) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">
+              ≡
+            </div>
+
+            <h3>No active order</h3>
+
+            <p>
+              Orders coordinated through AgroLink
+              will appear here.
+            </p>
+          </div>
+        `;
+
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="stack stack-md">
+
+          <div class="flex-between gap-2">
+
+            <div>
+              <div
+                style="
+                  font-size:11px;
+                  color:var(--text-light);
+                  font-weight:700;
+                  text-transform:uppercase;
+                  letter-spacing:.05em;
+                "
+              >
+                ${AgroLinkUtils.escapeHTML(
+                  trade.orderReference
+                )}
+              </div>
+
+              <h3
+                style="
+                  margin-top:4px;
+                  font-size:18px;
+                "
+              >
+                ${AgroLinkUtils.escapeHTML(
+                  trade.commodity
+                )}
+              </h3>
+            </div>
+
+            ${AgroLinkComponents.statusBadge(
+              trade.status
+            )}
+
+          </div>
+
+
+          <div class="info-row">
+            <span>Quantity</span>
+
+            <strong>
+              ${AgroLinkUtils.formatQuantity(
+                trade.quantity,
+                trade.unit
+              )}
+            </strong>
+          </div>
+
+
+          <div class="info-row">
+            <span>Order Value</span>
+
+            <strong>
+              ${AgroLinkUtils.formatCurrency(
+                trade.grossValue
+              )}
+            </strong>
+          </div>
+
+
+          <div class="info-row">
+            <span>Verification</span>
+
+            <strong>
+              ${AgroLinkUtils.escapeHTML(
+                trade.qualityStatus
+              )}
+            </strong>
+          </div>
+
+
+          <a
+            href="order-details.html?id=${encodeURIComponent(
+              trade.id
+            )}"
+            class="btn btn-secondary btn-block"
+          >
+            Track Order
+          </a>
+
+        </div>
+      `;
+    }
+
+
+    /* =====================================================
+       EMPTY STATE
+       ===================================================== */
+
+    function emptyState(
+      title,
+      message,
+      actionLabel = "",
+      actionHref = ""
+    ) {
+      return `
+        <div class="empty-state card">
+
+          <div class="empty-state-icon">
+            ◎
+          </div>
+
+          <h3>
+            ${AgroLinkUtils.escapeHTML(
+              title
+            )}
+          </h3>
+
+          <p>
+            ${AgroLinkUtils.escapeHTML(
+              message
+            )}
+          </p>
+
+          ${
+            actionLabel &&
+            actionHref
+              ? `
+                <a
+                  href="${actionHref}"
+                  class="btn btn-primary btn-sm"
+                  style="margin-top:14px;"
+                >
+                  ${AgroLinkUtils.escapeHTML(
+                    actionLabel
+                  )}
+                </a>
+              `
+              : ""
+          }
+
+        </div>
+      `;
+    }
+  </script>
+
+</body>
+</html>

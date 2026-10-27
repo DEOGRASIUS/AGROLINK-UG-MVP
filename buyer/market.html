@@ -1,0 +1,2080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Explore verified agricultural supply and market intelligence through AgroLink Uganda."
+  >
+
+  <title>Market | AgroLink Uganda</title>
+
+  <!-- Shared styles -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+  <style>
+    .market-photo-card{overflow:hidden;padding:0}.market-photo{position:relative;height:168px;overflow:hidden;background:var(--surface-secondary)}.market-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s ease}.market-photo-card:hover .market-photo img{transform:scale(1.025)}.market-photo-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,61,41,.02),rgba(4,61,41,.68))}.market-photo-label{position:absolute;left:16px;right:16px;bottom:14px;color:#fff;display:flex;align-items:end;justify-content:space-between;gap:12px}.market-photo-label h3{margin:0;font-size:20px;color:#fff}.market-photo-label p{margin:4px 0 0;font-size:12px;color:rgba(255,255,255,.82)}.market-photo-body{padding:18px}.market-photo-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.market-photo-stat{padding:12px;border-radius:12px;background:var(--surface-secondary)}.market-photo-stat span{display:block;font-size:11px;color:var(--text-secondary);margin-bottom:5px}.market-photo-stat strong{font-size:14px}.market-photo-meta{margin-top:14px;padding-top:14px;border-top:1px solid var(--border-light);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.crop-price-card{position:relative;min-height:210px;border-radius:16px;overflow:hidden;background:#073f2a;color:#fff;box-shadow:var(--shadow-sm)}.crop-price-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.crop-price-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,30,20,.12),rgba(3,30,20,.88))}.crop-price-content{position:absolute;inset:auto 0 0;padding:18px}.crop-price-content h3{margin:10px 0 4px;color:#fff;font-size:20px}.crop-price-content p{margin:0;color:rgba(255,255,255,.8);font-size:12px}.crop-price-value{margin-top:14px;display:flex;align-items:end;justify-content:space-between;gap:12px}.crop-price-value strong{font-size:22px;color:#fff}.crop-price-value span{font-size:12px;font-weight:800;color:#dff0a5}.market-hero-strip{margin:18px 0 4px;padding:18px;border-radius:16px;background:linear-gradient(135deg,var(--green-950),var(--green-700));color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px}.market-hero-strip strong{font-size:15px}.market-hero-strip p{margin:5px 0 0;color:rgba(255,255,255,.76);font-size:12px}.market-hero-strip .btn{flex:0 0 auto}@media(max-width:767px){.market-photo{height:145px}.market-photo-stats{grid-template-columns:1fr 1fr}.market-photo-stat:last-child{grid-column:1/-1}.crop-price-card{min-height:190px}.market-hero-strip{align-items:flex-start;flex-direction:column}.market-hero-strip .btn{width:100%}}
+  .market-price-tag{display:inline-flex;align-items:center;padding:5px 8px;border:1px solid rgba(255,255,255,.25);border-radius:999px;background:rgba(255,255,255,.16);color:#fff;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}</style>
+</head>
+
+
+<body
+  data-role="buyer"
+  data-page="market"
+>
+
+<!-- Mobile header -->
+  <div id="app-mobile-header"></div>
+
+
+  <div class="app-shell">
+
+    <!-- Desktop sidebar -->
+    <div id="app-sidebar"></div>
+
+
+    <main class="app-main">
+
+      <!-- Desktop header -->
+      <div id="app-header"></div>
+
+
+      <div class="page-content">
+
+        <!-- =================================================
+             PAGE INTRO
+             ================================================= -->
+
+        <section class="dashboard-header">
+
+          <div>
+            <span
+              class="demo-label"
+              style="margin-bottom:10px;"
+            >
+              Buyer marketplace
+            </span>
+
+            <h1>
+              Find the right supply
+            </h1>
+
+            <p>
+              Compare market intelligence and explore produce
+              available for procurement through AgroLink.
+            </p>
+          </div>
+
+
+          <div>
+            <a
+              href="post-demand.html"
+              class="btn btn-primary"
+            >
+              <span aria-hidden="true">＋</span>
+              Post Demand
+            </a>
+          </div>
+
+        </section>
+
+        <section class="market-hero-strip">
+          <div>
+            <strong>Buying grain for your business or institution?</strong>
+            <p>Compare market prices, review available maize and beans, then let AgroLink coordinate verified supply.</p>
+          </div>
+          <a href="post-demand.html" class="btn btn-secondary btn-sm">Post a Requirement</a>
+        </section>
+
+
+        <!-- =================================================
+             MARKET PRICE INTELLIGENCE
+             ================================================= -->
+
+        <section class="section">
+
+          <div class="section-header">
+
+            <div class="section-heading">
+              <h2 class="section-title">
+                Market Price Intelligence
+              </h2>
+
+              <p class="section-description">
+                Reference prices across selected Ugandan
+                grain markets.
+              </p>
+            </div>
+
+
+            <div class="section-actions">
+              <span class="badge badge-success">
+                Market intelligence
+              </span>
+            </div>
+
+          </div>
+
+
+          <div
+            class="grid grid-3"
+            id="priceGrid"
+          >
+            <!-- Rendered by JavaScript -->
+          </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SUPPLY MARKET
+             ================================================= -->
+
+        <section class="section">
+
+          <div class="section-header">
+
+            <div class="section-heading">
+              <h2 class="section-title">
+                Available Supply
+              </h2>
+
+              <p class="section-description">
+                Produce listings available for matching and
+                coordination through AgroLink.
+              </p>
+            </div>
+
+
+            <div class="section-actions">
+              <span
+                class="badge badge-success"
+                id="supplyCount"
+              >
+                0 listings
+              </span>
+            </div>
+
+          </div>
+
+
+          <!-- ===============================================
+               FILTERS
+               =============================================== -->
+
+          <div class="filter-bar">
+
+            <div
+              class="search-box"
+              style="flex:1;min-width:220px;"
+            >
+              <span
+                class="search-icon"
+                aria-hidden="true"
+              >
+                ⌕
+              </span>
+
+              <input
+                type="search"
+                id="marketSearch"
+                placeholder="Search commodity or location..."
+                autocomplete="off"
+                aria-label="Search available supply"
+              >
+            </div>
+
+
+            <div class="filter-group">
+
+              <select
+                id="commodityFilter"
+                class="form-control"
+                aria-label="Filter by commodity"
+              >
+                <option value="">
+                  All commodities
+                </option>
+
+                <option value="Dry Maize">
+                  Dry Maize
+                </option>
+
+                <option value="Beans">
+                  Beans
+                </option>
+              </select>
+
+
+              <select
+                id="locationFilter"
+                class="form-control"
+                aria-label="Filter by location"
+              >
+                <option value="">
+                  All locations
+                </option>
+              </select>
+
+
+              <select
+                id="sortFilter"
+                class="form-control"
+                aria-label="Sort available supply"
+              >
+                <option value="recommended">
+                  Recommended
+                </option>
+
+                <option value="price-low">
+                  Lowest price
+                </option>
+
+                <option value="quantity-high">
+                  Highest quantity
+                </option>
+
+                <option value="newest">
+                  Newest listing
+                </option>
+              </select>
+
+            </div>
+
+          </div>
+
+
+          <!-- Active filter summary -->
+
+          <div
+            id="activeFilters"
+            class="flex items-center gap-2 flex-wrap"
+            style="margin:16px 0;"
+          ></div>
+
+
+          <!-- Supply cards -->
+
+          <div
+            id="supplyGrid"
+            class="grid grid-2"
+          >
+            <!-- Rendered by JavaScript -->
+          </div>
+
+
+          <!-- Empty state -->
+
+          <div
+            id="marketEmptyState"
+            hidden
+          >
+            <div class="empty-state card">
+
+              <div class="empty-state-icon">
+                ◇
+              </div>
+
+              <h3>
+                No supply found
+              </h3>
+
+              <p>
+                Try changing your commodity, location or
+                search filters.
+              </p>
+
+              <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                id="clearFiltersButton"
+                style="margin-top:14px;"
+              >
+                Clear Filters
+              </button>
+
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- =================================================
+             HOW AGROLINK WORKS
+             ================================================= -->
+
+        <section class="section">
+
+          <div class="card">
+
+            <div class="card-body">
+
+              <div
+                class="grid grid-3"
+                style="align-items:start;"
+              >
+
+                <div>
+                  <span class="demo-label">
+                    01
+                  </span>
+
+                  <h3 style="margin-top:10px;">
+                    Explore Supply
+                  </h3>
+
+                  <p
+                    class="text-secondary"
+                    style="margin-top:6px;"
+                  >
+                    Compare quantity, price, location and
+                    verification information.
+                  </p>
+                </div>
+
+
+                <div>
+                  <span class="demo-label">
+                    02
+                  </span>
+
+                  <h3 style="margin-top:10px;">
+                    Request Through AgroLink
+                  </h3>
+
+                  <p
+                    class="text-secondary"
+                    style="margin-top:6px;"
+                  >
+                    Submit your procurement interest without
+                    directly contacting the farmer.
+                  </p>
+                </div>
+
+
+                <div>
+                  <span class="demo-label">
+                    03
+                  </span>
+
+                  <h3 style="margin-top:10px;">
+                    Verify & Coordinate
+                  </h3>
+
+                  <p
+                    class="text-secondary"
+                    style="margin-top:6px;"
+                  >
+                    AgroLink coordinates verification,
+                    matching and transaction progress.
+                  </p>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- =================================================
+             BUSINESS MODEL NOTICE
+             ================================================= -->
+
+        <section class="commission-box">
+
+          <div class="commission-box-title">
+            Pilot Transaction Model
+          </div>
+
+          <p>
+            AgroLink is testing a
+            <strong>10% transaction commission</strong>
+            on transactions coordinated through the platform.
+          </p>
+
+          <small>
+            This is a pilot business-model assumption being
+            tested and should not be interpreted as validated
+            willingness to pay.
+          </small>
+
+        </section>
+
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <!-- Mobile bottom navigation -->
+  <div id="app-mobile-nav"></div>
+
+
+  <!-- =====================================================
+       REQUEST SUPPLY MODAL
+       ===================================================== -->
+
+  <div
+    class="modal-backdrop"
+    id="requestSupplyModal"
+    hidden
+  >
+
+    <div
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="requestSupplyTitle"
+    >
+
+      <div class="modal-header">
+
+        <div>
+          <span class="demo-label">
+            AgroLink coordination
+          </span>
+
+          <h2
+            class="modal-title"
+            id="requestSupplyTitle"
+            style="margin-top:8px;"
+          >
+            Request Supply
+          </h2>
+        </div>
+
+
+        <button
+          type="button"
+          class="icon-btn"
+          id="closeRequestModal"
+          aria-label="Close request supply dialog"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <form id="requestSupplyForm">
+
+        <div class="modal-body">
+
+          <!-- Selected supply summary -->
+
+          <div
+            class="card"
+            style="margin-bottom:20px;"
+          >
+            <div
+              class="card-body"
+              id="selectedSupplySummary"
+            ></div>
+          </div>
+
+
+          <input
+            type="hidden"
+            id="selectedSupplyId"
+            name="supplyId"
+          >
+
+
+          <div class="form-group">
+
+            <label
+              class="form-label"
+              for="requestQuantity"
+            >
+              Quantity required
+            </label>
+
+            <div
+              style="
+                display:flex;
+                align-items:center;
+                gap:8px;
+              "
+            >
+              <input
+                type="number"
+                id="requestQuantity"
+                name="quantity"
+                class="form-control"
+                min="1"
+                step="1"
+                required
+                placeholder="e.g. 3000"
+              >
+
+              <span
+                style="
+                  color:var(--text-secondary);
+                  font-weight:700;
+                "
+              >
+                kg
+              </span>
+            </div>
+
+            <small
+              class="form-helper"
+              id="quantityHelper"
+            >
+              Enter the quantity you want AgroLink to
+              coordinate.
+            </small>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label
+              class="form-label"
+              for="requestTargetPrice"
+            >
+              Target price per kg
+            </label>
+
+            <input
+              type="number"
+              id="requestTargetPrice"
+              name="targetPrice"
+              class="form-control"
+              min="1"
+              step="1"
+              required
+              placeholder="UGX per kg"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label
+              class="form-label"
+              for="requestDeliveryLocation"
+            >
+              Delivery location
+            </label>
+
+            <input
+              type="text"
+              id="requestDeliveryLocation"
+              name="location"
+              class="form-control"
+              required
+              placeholder="e.g. Kampala"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label
+              class="form-label"
+              for="requestRequiredDate"
+            >
+              Required by
+            </label>
+
+            <input
+              type="date"
+              id="requestRequiredDate"
+              name="requiredDate"
+              class="form-control"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label
+              class="form-label"
+              for="requestNotes"
+            >
+              Additional requirements
+              <span class="text-light">
+                (optional)
+              </span>
+            </label>
+
+            <textarea
+              id="requestNotes"
+              name="notes"
+              class="form-control"
+              rows="3"
+              placeholder="Quality, packaging or procurement notes..."
+            ></textarea>
+
+          </div>
+
+
+          <div class="alert alert-info">
+
+            <div>
+              <strong>
+                Managed through AgroLink
+              </strong>
+
+              <p style="margin-top:4px;">
+                Farmer contact information is not exposed.
+                AgroLink coordinates the request,
+                verification and transaction process.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="cancelRequestButton"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            Submit to AgroLink
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       SHARED JAVASCRIPT
+       ===================================================== -->
+
+  <script src="../js/config.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/app.js"></script>
+
+
+  <!-- =====================================================
+       BUYER MARKET LOGIC
+       ===================================================== -->
+
+  <script>
+    let marketSupply = [];
+    let selectedSupply = null;
+
+
+    document.addEventListener(
+      "agrolink:ready",
+      () => {
+        initializeMarket();
+      }
+    );
+
+
+    /* =====================================================
+       INITIALIZATION
+       ===================================================== */
+
+    function initializeMarket() {
+      marketSupply =
+        AgroLinkStorage
+          .getProduce()
+          .filter(
+            (item) =>
+              item.status === "Available"
+          );
+
+      populateLocationFilter();
+
+      renderMarketPrices();
+
+      renderSupply();
+
+      bindMarketEvents();
+
+      setMinimumRequiredDate();
+    }
+
+
+    /* =====================================================
+       MARKET PRICES
+       ===================================================== */
+
+    function renderMarketPrices() {
+      const container = document.getElementById("priceGrid");
+      if (!container) return;
+
+      const prices = (window.AGROLINK_DATA?.marketPrices || []).slice(0, 6);
+
+      container.innerHTML = prices.map((price) => {
+        const commodity = price.commodity || "Dry Maize";
+        const isBeans = String(commodity).toLowerCase().includes("bean");
+        const image = isBeans
+          ? "../assets/images/crops/beans.jpg"
+          : "../assets/images/crops/dry-maize.jpg";
+        const amount = price.price ?? price.marketPrice ?? price.value ?? 0;
+        const trend = Number(price.trend ?? price.change ?? 0);
+        const trendText = trend > 0 ? `↑ ${trend}%` : trend < 0 ? `↓ ${Math.abs(trend)}%` : "Stable";
+
+        return `
+          <article class="crop-price-card">
+            <img src="${image}" alt="${AgroLinkUtils.escapeHTML(commodity)}">
+            <div class="crop-price-shade"></div>
+            <div class="crop-price-content">
+              <span class="market-price-tag">Market Price</span>
+              <h3>${AgroLinkUtils.escapeHTML(commodity)}</h3>
+              <p>${AgroLinkUtils.escapeHTML(price.location || "Uganda")}</p>
+              <div class="crop-price-value">
+                <strong>${AgroLinkUtils.formatPricePerUnit(amount, price.unit || "kg")}</strong>
+                <span>${trendText}</span>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+
+    /* =====================================================
+       LOCATION FILTER
+       ===================================================== */
+
+    function populateLocationFilter() {
+      const select =
+        document.getElementById(
+          "locationFilter"
+        );
+
+      if (!select) {
+        return;
+      }
+
+      const locations =
+        [
+          ...new Set(
+            marketSupply
+              .map(
+                (item) =>
+                  item.location
+              )
+              .filter(Boolean)
+          )
+        ]
+          .sort();
+
+      locations.forEach(
+        (location) => {
+          const option =
+            document.createElement(
+              "option"
+            );
+
+          option.value =
+            location;
+
+          option.textContent =
+            location;
+
+          select.appendChild(
+            option
+          );
+        }
+      );
+    }
+
+
+    /* =====================================================
+       FILTER / SORT
+       ===================================================== */
+
+    function getFilteredSupply() {
+      const search =
+        document
+          .getElementById(
+            "marketSearch"
+          )
+          .value
+          .trim()
+          .toLowerCase();
+
+      const commodity =
+        document
+          .getElementById(
+            "commodityFilter"
+          )
+          .value;
+
+      const location =
+        document
+          .getElementById(
+            "locationFilter"
+          )
+          .value;
+
+      const sort =
+        document
+          .getElementById(
+            "sortFilter"
+          )
+          .value;
+
+
+      let results =
+        marketSupply.filter(
+          (item) => {
+            const searchable =
+              [
+                item.commodity,
+                item.location,
+                item.quality,
+                item.qualityStatus,
+                item.verificationStatus
+              ]
+                .filter(Boolean)
+                .join(" ")
+                .toLowerCase();
+
+
+            const matchesSearch =
+              !search ||
+              searchable.includes(
+                search
+              );
+
+
+            const matchesCommodity =
+              !commodity ||
+              item.commodity ===
+                commodity;
+
+
+            const matchesLocation =
+              !location ||
+              item.location ===
+                location;
+
+
+            return (
+              matchesSearch &&
+              matchesCommodity &&
+              matchesLocation
+            );
+          }
+        );
+
+
+      switch (sort) {
+        case "price-low":
+          results.sort(
+            (a, b) =>
+              Number(
+                a.expectedPrice
+              ) -
+              Number(
+                b.expectedPrice
+              )
+          );
+          break;
+
+
+        case "quantity-high":
+          results.sort(
+            (a, b) =>
+              Number(
+                b.availableQuantity
+              ) -
+              Number(
+                a.availableQuantity
+              )
+          );
+          break;
+
+
+        case "newest":
+          results.sort(
+            (a, b) =>
+              new Date(
+                b.createdAt
+              ) -
+              new Date(
+                a.createdAt
+              )
+          );
+          break;
+
+
+        default:
+          /*
+            Recommended:
+            verified first, then lower price.
+          */
+
+          results.sort(
+            (a, b) => {
+              const aVerified =
+                a.verificationStatus ===
+                "Verified"
+                  ? 1
+                  : 0;
+
+              const bVerified =
+                b.verificationStatus ===
+                "Verified"
+                  ? 1
+                  : 0;
+
+              if (
+                aVerified !==
+                bVerified
+              ) {
+                return (
+                  bVerified -
+                  aVerified
+                );
+              }
+
+              return (
+                Number(
+                  a.expectedPrice
+                ) -
+                Number(
+                  b.expectedPrice
+                )
+              );
+            }
+          );
+      }
+
+
+      return results;
+    }
+
+
+    /* =====================================================
+       SUPPLY RENDERING
+       ===================================================== */
+
+    function renderSupply() {
+      const grid =
+        document.getElementById(
+          "supplyGrid"
+        );
+
+      const empty =
+        document.getElementById(
+          "marketEmptyState"
+        );
+
+      const count =
+        document.getElementById(
+          "supplyCount"
+        );
+
+
+      const results =
+        getFilteredSupply();
+
+
+      count.textContent =
+        `${results.length} ${
+          results.length === 1
+            ? "listing"
+            : "listings"
+        }`;
+
+
+      renderActiveFilters();
+
+
+      if (!results.length) {
+        grid.innerHTML = "";
+
+        empty.hidden =
+          false;
+
+        return;
+      }
+
+
+      empty.hidden =
+        true;
+
+
+      grid.innerHTML =
+        results
+          .map(renderSupplyCard)
+          .join("");
+    }
+
+
+    function renderSupplyCard(supply) {
+      const availableQuantity = Number(supply.availableQuantity ?? supply.quantity ?? 0);
+      const expectedPrice = Number(supply.expectedPrice ?? supply.price ?? 0);
+      const estimatedValue = availableQuantity * expectedPrice;
+      const commodity = supply.commodity || "Produce";
+      const isBeans = String(commodity).toLowerCase().includes("bean");
+      const image = isBeans
+        ? "../assets/images/crops/beans.jpg"
+        : "../assets/images/crops/dry-maize.jpg";
+      const verified = supply.verificationStatus === "Verified";
+
+      return `
+        <article class="market-card market-photo-card">
+          <div class="market-photo">
+            <img src="${image}" alt="${AgroLinkUtils.escapeHTML(commodity)} available through AgroLink">
+            <div class="market-photo-overlay"></div>
+            <div class="market-photo-label">
+              <div>
+                <h3>${AgroLinkUtils.escapeHTML(commodity)}</h3>
+                <p>${AgroLinkUtils.escapeHTML(supply.location || "Uganda")} • Available through AgroLink</p>
+              </div>
+              ${verified
+                ? AgroLinkComponents.verifiedBadge("Verified")
+                : AgroLinkComponents.statusBadge(supply.verificationStatus || "Pending")}
+            </div>
+          </div>
+
+          <div class="market-photo-body">
+            <div class="market-photo-stats">
+              <div class="market-photo-stat">
+                <span>Available</span>
+                <strong>${AgroLinkUtils.formatQuantity(availableQuantity, supply.unit || "kg")}</strong>
+              </div>
+              <div class="market-photo-stat">
+                <span>Expected price</span>
+                <strong>${AgroLinkUtils.formatPricePerUnit(expectedPrice, supply.unit || "kg")}</strong>
+              </div>
+              <div class="market-photo-stat">
+                <span>Listing value</span>
+                <strong>${AgroLinkUtils.formatCurrency(estimatedValue)}</strong>
+              </div>
+            </div>
+
+            <div style="margin-top:14px;padding:14px;border-radius:12px;background:var(--surface-secondary);">
+              <div class="info-row">
+                <span>Quality</span>
+                <strong>${AgroLinkUtils.escapeHTML(supply.quality || "Pending details")}</strong>
+              </div>
+              <div class="info-row">
+                <span>Inspection</span>
+                <strong>${AgroLinkUtils.escapeHTML(supply.qualityStatus || "Pending")}</strong>
+              </div>
+              <div class="info-row">
+                <span>Available from</span>
+                <strong>${supply.availabilityDate ? AgroLinkUtils.formatDate(supply.availabilityDate) : "Now"}</strong>
+              </div>
+            </div>
+
+            <div class="market-photo-meta">
+              <div>
+                <div style="font-size:12px;color:var(--text-secondary);font-weight:700;">Supplier identity managed by AgroLink</div>
+                <div style="margin-top:3px;font-size:11px;color:var(--text-light);">No direct farmer contact is exposed</div>
+              </div>
+              <button type="button" class="btn btn-primary btn-sm" data-request-supply="${AgroLinkUtils.escapeHTML(supply.id)}">
+                Request Supply
+              </button>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+
+    /* =====================================================
+       ACTIVE FILTER CHIPS
+       ===================================================== */
+
+    function renderActiveFilters() {
+      const container =
+        document.getElementById(
+          "activeFilters"
+        );
+
+
+      const search =
+        document
+          .getElementById(
+            "marketSearch"
+          )
+          .value
+          .trim();
+
+      const commodity =
+        document
+          .getElementById(
+            "commodityFilter"
+          )
+          .value;
+
+      const location =
+        document
+          .getElementById(
+            "locationFilter"
+          )
+          .value;
+
+
+      const filters = [];
+
+
+      if (search) {
+        filters.push({
+          label:
+            `Search: ${search}`,
+          type:
+            "search"
+        });
+      }
+
+
+      if (commodity) {
+        filters.push({
+          label:
+            commodity,
+          type:
+            "commodity"
+        });
+      }
+
+
+      if (location) {
+        filters.push({
+          label:
+            location,
+          type:
+            "location"
+        });
+      }
+
+
+      if (!filters.length) {
+        container.innerHTML = `
+          <span
+            style="
+              font-size:12px;
+              color:var(--text-light);
+            "
+          >
+            Showing all available supply
+          </span>
+        `;
+
+        return;
+      }
+
+
+      container.innerHTML =
+        filters
+          .map(
+            (filter) => `
+              <button
+                type="button"
+                class="chip"
+                data-clear-filter="${filter.type}"
+              >
+                ${AgroLinkUtils.escapeHTML(
+                  filter.label
+                )}
+                <span aria-hidden="true">
+                  ×
+                </span>
+              </button>
+            `
+          )
+          .join("") +
+
+        `
+          <button
+            type="button"
+            class="btn btn-ghost btn-sm"
+            data-clear-filter="all"
+          >
+            Clear all
+          </button>
+        `;
+    }
+
+
+    /* =====================================================
+       REQUEST SUPPLY
+       ===================================================== */
+
+    function openSupplyRequest(
+      supplyId
+    ) {
+      selectedSupply =
+        marketSupply.find(
+          (item) =>
+            item.id ===
+            supplyId
+        );
+
+
+      if (!selectedSupply) {
+        AgroLinkComponents
+          .showToast(
+            "The selected supply listing could not be found.",
+            {
+              title:
+                "Supply unavailable",
+              type:
+                "danger"
+            }
+          );
+
+        return;
+      }
+
+
+      const modal =
+        document.getElementById(
+          "requestSupplyModal"
+        );
+
+
+      const summary =
+        document.getElementById(
+          "selectedSupplySummary"
+        );
+
+
+      const quantity =
+        document.getElementById(
+          "requestQuantity"
+        );
+
+
+      const price =
+        document.getElementById(
+          "requestTargetPrice"
+        );
+
+
+      const location =
+        document.getElementById(
+          "requestDeliveryLocation"
+        );
+
+
+      const supplyIdInput =
+        document.getElementById(
+          "selectedSupplyId"
+        );
+
+
+      const available =
+        Number(
+          selectedSupply
+            .availableQuantity ??
+          selectedSupply.quantity
+        );
+
+
+      summary.innerHTML = `
+        <div class="flex-between gap-2">
+
+          <div>
+            <span
+              style="
+                font-size:12px;
+                color:var(--text-secondary);
+              "
+            >
+              Selected supply
+            </span>
+
+            <h3 style="margin-top:4px;">
+              ${AgroLinkUtils.escapeHTML(
+                selectedSupply.commodity
+              )}
+            </h3>
+          </div>
+
+          ${AgroLinkComponents
+            .verifiedBadge(
+              "Verified"
+            )}
+
+        </div>
+
+
+        <div
+          class="grid grid-2"
+          style="margin-top:16px;"
+        >
+
+          <div>
+            <span class="text-secondary">
+              Available
+            </span>
+
+            <strong
+              style="
+                display:block;
+                margin-top:4px;
+              "
+            >
+              ${AgroLinkUtils.formatQuantity(
+                available,
+                selectedSupply.unit
+              )}
+            </strong>
+          </div>
+
+
+          <div>
+            <span class="text-secondary">
+              Expected price
+            </span>
+
+            <strong
+              style="
+                display:block;
+                margin-top:4px;
+              "
+            >
+              ${AgroLinkUtils.formatPricePerUnit(
+                selectedSupply.expectedPrice,
+                selectedSupply.unit
+              )}
+            </strong>
+          </div>
+
+        </div>
+      `;
+
+
+      supplyIdInput.value =
+        selectedSupply.id;
+
+
+      quantity.value =
+        available;
+
+
+      quantity.max =
+        available;
+
+
+      document.getElementById(
+        "quantityHelper"
+      ).textContent =
+        `Maximum available: ${AgroLinkUtils.formatQuantity(
+          available,
+          selectedSupply.unit
+        )}`;
+
+
+      price.value =
+        selectedSupply
+          .expectedPrice;
+
+
+      const user =
+        AgroLinkStorage
+          .getCurrentUser();
+
+
+      location.value =
+        user?.location ||
+        "Kampala";
+
+
+      modal.hidden =
+        false;
+
+
+      document.body
+        .classList
+        .add(
+          "no-scroll"
+        );
+
+
+      requestAnimationFrame(
+        () => {
+          modal.classList.add(
+            "show"
+          );
+        }
+      );
+
+
+      setTimeout(
+        () => {
+          quantity.focus();
+        },
+        100
+      );
+    }
+
+
+    function closeSupplyRequest() {
+      const modal =
+        document.getElementById(
+          "requestSupplyModal"
+        );
+
+
+      modal.classList.remove(
+        "show"
+      );
+
+
+      document.body
+        .classList
+        .remove(
+          "no-scroll"
+        );
+
+
+      setTimeout(
+        () => {
+          modal.hidden =
+            true;
+
+          selectedSupply =
+            null;
+
+          document
+            .getElementById(
+              "requestSupplyForm"
+            )
+            .reset();
+        },
+        180
+      );
+    }
+
+
+    /* =====================================================
+       SUBMIT SUPPLY REQUEST
+       ===================================================== */
+
+    function submitSupplyRequest(
+      event
+    ) {
+      event.preventDefault();
+
+
+      if (!selectedSupply) {
+        return;
+      }
+
+
+      const form =
+        event.currentTarget;
+
+
+      AgroLinkUtils
+        .clearFormErrors(
+          form
+        );
+
+
+      const quantityField =
+        document.getElementById(
+          "requestQuantity"
+        );
+
+
+      const priceField =
+        document.getElementById(
+          "requestTargetPrice"
+        );
+
+
+      const locationField =
+        document.getElementById(
+          "requestDeliveryLocation"
+        );
+
+
+      const dateField =
+        document.getElementById(
+          "requestRequiredDate"
+        );
+
+
+      const quantity =
+        Number(
+          quantityField.value
+        );
+
+
+      const targetPrice =
+        Number(
+          priceField.value
+        );
+
+
+      const available =
+        Number(
+          selectedSupply
+            .availableQuantity ??
+          selectedSupply.quantity
+        );
+
+
+      let valid =
+        true;
+
+
+      if (
+        !AgroLinkUtils
+          .isPositiveNumber(
+            quantity
+          )
+      ) {
+        AgroLinkUtils
+          .setFieldError(
+            quantityField,
+            "Enter a valid quantity."
+          );
+
+        valid =
+          false;
+      }
+
+
+      if (
+        quantity >
+        available
+      ) {
+        AgroLinkUtils
+          .setFieldError(
+            quantityField,
+            `Only ${AgroLinkUtils.formatQuantity(
+              available,
+              selectedSupply.unit
+            )} is currently available.`
+          );
+
+        valid =
+          false;
+      }
+
+
+      if (
+        !AgroLinkUtils
+          .isPositiveNumber(
+            targetPrice
+          )
+      ) {
+        AgroLinkUtils
+          .setFieldError(
+            priceField,
+            "Enter a valid target price."
+          );
+
+        valid =
+          false;
+      }
+
+
+      if (
+        !locationField
+          .value
+          .trim()
+      ) {
+        AgroLinkUtils
+          .setFieldError(
+            locationField,
+            "Enter the delivery location."
+          );
+
+        valid =
+          false;
+      }
+
+
+      if (
+        !AgroLinkUtils
+          .isFutureOrToday(
+            dateField.value
+          )
+      ) {
+        AgroLinkUtils
+          .setFieldError(
+            dateField,
+            "Choose today or a future date."
+          );
+
+        valid =
+          false;
+      }
+
+
+      if (!valid) {
+        return;
+      }
+
+
+      const user =
+        AgroLinkStorage
+          .getCurrentUser();
+
+
+      const demand =
+        AgroLinkStorage
+          .addDemand({
+            buyerId:
+              user.id,
+
+            buyerDisplayName:
+              user.organization ||
+              user.name,
+
+            commodity:
+              selectedSupply
+                .commodity,
+
+            quantity:
+              quantity,
+
+            fulfilledQuantity:
+              0,
+
+            unit:
+              selectedSupply.unit,
+
+            location:
+              locationField
+                .value
+                .trim(),
+
+            targetPrice:
+              targetPrice,
+
+            quality:
+              selectedSupply
+                .quality ||
+              "Subject to AgroLink verification",
+
+            requiredDate:
+              dateField.value,
+
+            status:
+              "Open",
+
+            verificationStatus:
+              user.verificationStatus ||
+              "Pending",
+
+            notes:
+              document
+                .getElementById(
+                  "requestNotes"
+                )
+                .value
+                .trim(),
+
+            sourceSupplyId:
+              selectedSupply.id,
+
+            demo:
+              true
+          });
+
+
+      /*
+        Ask the shared matching engine to identify
+        compatible available supply.
+      */
+
+      const matches =
+        AgroLinkStorage
+          .createMatchesForDemand(
+            demand.id
+          );
+
+
+      AgroLinkStorage
+        .addNotification(
+          "buyer",
+          {
+            title:
+              matches.length
+                ? "Potential supply match"
+                : "Demand submitted",
+
+            message:
+              matches.length
+                ? `${matches.length} potential supply ${
+                    matches.length === 1
+                      ? "match was"
+                      : "matches were"
+                  } identified for your ${selectedSupply.commodity} request.`
+                : `Your ${selectedSupply.commodity} request has been submitted to AgroLink.`,
+
+            type:
+              matches.length
+                ? "match"
+                : "demand",
+
+            read:
+              false
+          }
+        );
+
+
+      closeSupplyRequest();
+
+
+      AgroLinkComponents
+        .showToast(
+          matches.length
+            ? `Request submitted. AgroLink identified ${matches.length} potential supply ${
+                matches.length === 1
+                  ? "match"
+                  : "matches"
+              }.`
+            : "Your supply request has been submitted to AgroLink.",
+          {
+            title:
+              "Request received",
+            type:
+              "success",
+            duration:
+              5000
+          }
+        );
+
+
+      /*
+        Refresh market data without changing
+        available supply yet. A request does not
+        automatically complete a transaction.
+      */
+
+      marketSupply =
+        AgroLinkStorage
+          .getProduce()
+          .filter(
+            (item) =>
+              item.status ===
+              "Available"
+          );
+
+
+      renderSupply();
+    }
+
+
+    /* =====================================================
+       CLEAR FILTERS
+       ===================================================== */
+
+    function clearFilters() {
+      document
+        .getElementById(
+          "marketSearch"
+        )
+        .value = "";
+
+
+      document
+        .getElementById(
+          "commodityFilter"
+        )
+        .value = "";
+
+
+      document
+        .getElementById(
+          "locationFilter"
+        )
+        .value = "";
+
+
+      document
+        .getElementById(
+          "sortFilter"
+        )
+        .value =
+          "recommended";
+
+
+      renderSupply();
+    }
+
+
+    function clearSingleFilter(
+      type
+    ) {
+      switch (type) {
+        case "search":
+          document
+            .getElementById(
+              "marketSearch"
+            )
+            .value = "";
+          break;
+
+
+        case "commodity":
+          document
+            .getElementById(
+              "commodityFilter"
+            )
+            .value = "";
+          break;
+
+
+        case "location":
+          document
+            .getElementById(
+              "locationFilter"
+            )
+            .value = "";
+          break;
+
+
+        case "all":
+          clearFilters();
+          return;
+      }
+
+
+      renderSupply();
+    }
+
+
+    /* =====================================================
+       MINIMUM DATE
+       ===================================================== */
+
+    function setMinimumRequiredDate() {
+      const field =
+        document.getElementById(
+          "requestRequiredDate"
+        );
+
+
+      const today =
+        new Date();
+
+
+      const localDate =
+        [
+          today.getFullYear(),
+          String(
+            today.getMonth() + 1
+          ).padStart(
+            2,
+            "0"
+          ),
+          String(
+            today.getDate()
+          ).padStart(
+            2,
+            "0"
+          )
+        ].join("-");
+
+
+      field.min =
+        localDate;
+
+
+      field.value =
+        localDate;
+    }
+
+
+    /* =====================================================
+       EVENTS
+       ===================================================== */
+
+    function bindMarketEvents() {
+      const search =
+        document.getElementById(
+          "marketSearch"
+        );
+
+
+      search.addEventListener(
+        "input",
+        AgroLinkUtils.debounce(
+          renderSupply,
+          180
+        )
+      );
+
+
+      document
+        .getElementById(
+          "commodityFilter"
+        )
+        .addEventListener(
+          "change",
+          renderSupply
+        );
+
+
+      document
+        .getElementById(
+          "locationFilter"
+        )
+        .addEventListener(
+          "change",
+          renderSupply
+        );
+
+
+      document
+        .getElementById(
+          "sortFilter"
+        )
+        .addEventListener(
+          "change",
+          renderSupply
+        );
+
+
+      document
+        .getElementById(
+          "clearFiltersButton"
+        )
+        .addEventListener(
+          "click",
+          clearFilters
+        );
+
+
+      document
+        .getElementById(
+          "closeRequestModal"
+        )
+        .addEventListener(
+          "click",
+          closeSupplyRequest
+        );
+
+
+      document
+        .getElementById(
+          "cancelRequestButton"
+        )
+        .addEventListener(
+          "click",
+          closeSupplyRequest
+        );
+
+
+      document
+        .getElementById(
+          "requestSupplyForm"
+        )
+        .addEventListener(
+          "submit",
+          submitSupplyRequest
+        );
+
+
+      document.addEventListener(
+        "click",
+        (event) => {
+
+          const requestButton =
+            event.target.closest(
+              "[data-request-supply]"
+            );
+
+
+          if (requestButton) {
+            openSupplyRequest(
+              requestButton.dataset
+                .requestSupply
+            );
+
+            return;
+          }
+
+
+          const filterButton =
+            event.target.closest(
+              "[data-clear-filter]"
+            );
+
+
+          if (filterButton) {
+            clearSingleFilter(
+              filterButton.dataset
+                .clearFilter
+            );
+          }
+        }
+      );
+
+
+      document
+        .getElementById(
+          "requestSupplyModal"
+        )
+        .addEventListener(
+          "click",
+          (event) => {
+            if (
+              event.target ===
+              event.currentTarget
+            ) {
+              closeSupplyRequest();
+            }
+          }
+        );
+
+
+      document.addEventListener(
+        "keydown",
+        (event) => {
+          if (
+            event.key ===
+              "Escape" &&
+            !document
+              .getElementById(
+                "requestSupplyModal"
+              )
+              .hidden
+          ) {
+            closeSupplyRequest();
+          }
+        }
+      );
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Trades | AgroLink Uganda</title>
+<link rel="stylesheet" href="../css/variables.css"><link rel="stylesheet" href="../css/reset.css"><link rel="stylesheet" href="../css/components.css"><link rel="stylesheet" href="../css/layout.css"><link rel="stylesheet" href="../css/responsive.css">
+<style>
+body{margin:0;background:#f7f9f5;color:#17231c;font-family:Inter,"Segoe UI",Arial,sans-serif}.top{background:#075e3b}.topin,.wrap{width:min(1180px,calc(100% - 40px));margin:auto}.topin{min-height:72px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:900}.mark{width:34px;height:34px;border-radius:10px;background:#fff;color:#078c50;display:grid;place-items:center}.nav{display:flex;gap:5px}.nav a{color:#dcebe3;text-decoration:none;padding:9px 11px;border-radius:9px;font-size:12px;font-weight:700}.nav a.active,.nav a:hover{background:#ffffff1f;color:#fff}.wrap{padding:30px 0 80px}.head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:20px}.eyebrow{font-size:11px;font-weight:800;color:#078c50;text-transform:uppercase;letter-spacing:.08em}.head h1{font-size:30px;margin:5px 0}.head p{margin:0;color:#657269;font-size:12px}.btn{min-height:43px;padding:0 14px;border-radius:10px;background:#078c50;color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:900}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:17px}.stat{background:#fff;border:1px solid #edf2ee;border-radius:14px;padding:15px}.stat span{font-size:9px;color:#657269}.stat strong{display:block;margin-top:5px;font-size:21px}.filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.filter{border:1px solid #dde7e0;background:#fff;color:#657269;padding:8px 12px;border-radius:999px;font-size:9px;font-weight:800;cursor:pointer}.filter.active{background:#eaf7ef;color:#067347;border-color:#bfe2cb}.list{display:grid;gap:12px}.trade{background:#fff;border:1px solid #edf2ee;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.03)}.main{display:grid;grid-template-columns:90px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px}.photo{width:90px;height:90px;border-radius:12px;object-fit:cover}.ref{font-size:8px;color:#8a968e}.main h2{font-size:14px;margin:3px 0 7px}.details{display:flex;gap:16px;flex-wrap:wrap}.detail span{display:block;font-size:8px;color:#657269}.detail strong{display:block;margin-top:2px;font-size:10px}.right{text-align:right}.status{display:inline-block;padding:6px 9px;border-radius:999px;font-size:8px;font-weight:900;background:#fff5df;color:#9a6a10}.status.complete{background:#e7f6ed;color:#14965b}.status.active{background:#eaf3fc;color:#3478c7}.right .value{display:block;margin-top:9px;font-size:12px;font-weight:900}.footer{border-top:1px solid #edf2ee;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;color:#657269;font-size:9px}.view{color:#078c50;font-weight:900;text-decoration:none}.empty{text-align:center;padding:50px 20px;background:#fff;border:1px solid #edf2ee;border-radius:16px;color:#657269}.empty strong{display:block;color:#17231c;margin-bottom:5px}.mobile{display:none}
+@media(max-width:850px){.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:767px){body{padding-bottom:88px;background:#fff}.topin{width:100%;padding:0 15px;min-height:64px}.nav{display:none}.wrap{width:100%;padding:22px 14px 30px}.head{align-items:flex-start;flex-direction:column}.head h1{font-size:24px}.main{grid-template-columns:72px minmax(0,1fr)}.photo{width:72px;height:80px}.right{grid-column:2;text-align:left}.details{gap:10px}.mobile{position:fixed;left:10px;right:10px;bottom:9px;z-index:100;display:grid;grid-template-columns:repeat(5,1fr);align-items:end;padding:7px;background:#f3fbf6;border:1px solid #d7eadf;border-radius:18px;box-shadow:0 -5px 24px rgba(4,61,41,.12)}.mobile a{min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#78867d;text-decoration:none;font-size:8px;font-weight:800;border-radius:12px}.mobile a.active{background:#e1f4e8;color:#075e3b}.mobile .post{transform:translateY(-10px);background:#078c50;color:#fff;width:52px;height:52px;min-height:52px;border-radius:16px;justify-self:center;box-shadow:0 7px 18px rgba(7,140,80,.28)}.mobile svg{width:19px;height:19px}.mobile .post svg{width:22px;height:22px}.mobile .post span{display:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="topin"><a class="brand" href="dashboard.html"><span class="mark"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 4c-7 0-12 3-14 9 5 1 10-1 14-9Z"/><path d="M4 20c2-6 6-10 12-13"/></svg></span>AgroLink Uganda</a><nav class="nav"><a href="dashboard.html">Dashboard</a><a href="prices.html">Market Prices</a><a href="demand.html">Buyer Demand</a><a href="post-produce.html">Post Produce</a><a class="active" href="trades.html">Trades</a><a href="profile.html">Profile</a></nav></div></header>
+<main class="wrap">
+<section class="head"><div><span class="eyebrow">Farmer transactions</span><h1>My Trades</h1><p>Track matching, verification, payment and fulfilment of your AgroLink transactions.</p></div><a class="btn" href="demand.html">Find Buyer Demand</a></section>
+<section class="stats"><article class="stat"><span>Potential Matches</span><strong id="sMatches">0</strong></article><article class="stat"><span>Awaiting Verification</span><strong id="sVerify">0</strong></article><article class="stat"><span>Active Trades</span><strong id="sActive">0</strong></article><article class="stat"><span>Completed</span><strong id="sDone">0</strong></article></section>
+<div class="filters"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="verification">Verification</button><button class="filter" data-filter="active">Active</button><button class="filter" data-filter="completed">Completed</button></div>
+<section class="list" id="list"></section>
+</main>
+<nav class="mobile">
+<a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/></svg><span>Home</span></a>
+<a href="prices.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18 9 12l4 4 8-10"/><path d="M15 6h6v6"/></svg><span>Prices</span></a>
+<a class="post" href="post-produce.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7 12h10"/></svg><span>Post</span></a>
+<a class="active" href="trades.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8"/></svg><span>Trades</span></a>
+<a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Profile</span></a>
+</nav>
+<script src="../js/config.js"></script><script src="../js/data.js"></script><script src="../js/storage.js"></script><script src="../js/utils.js"></script>
+<script>
+(function(){
+ const cfg=window.AGROLINK_CONFIG||{}, keys=cfg.storageKeys||{};
+ const read=(k,f=[])=>{try{return JSON.parse(localStorage.getItem(k))||f}catch(e){return f}};
+ const matches=read(keys.matches||"agrolink_matches",[]), trades=read(keys.trades||"agrolink_trades",[]);
+ const fmt=v=>Number(v||0).toLocaleString("en-US"), esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+ function nTrade(x){let status=x.status||"Awaiting Verification";return{id:x.id||x.reference,reference:x.reference||x.orderReference||x.id,commodity:x.commodity||x.crop||"Dry Maize",quantity:Number(x.quantity||x.matchedQuantity||0),price:Number(x.unitPrice||x.supplierPrice||x.pricePerKg||x.price||0),location:x.farmerLocation||x.location||"Uganda",status,createdAt:x.createdAt||x.date}}
+ const rows=[];
+ trades.forEach(x=>rows.push(nTrade(x)));
+ matches.forEach(x=>{if(!rows.some(t=>t.id===x.id||t.id===x.tradeId))rows.push(nTrade({...x,status:x.status||"Potential Match"}))});
+ if(!rows.length)rows.push(nTrade({id:"MATCH-001",reference:"MATCH-001",commodity:"Dry Maize",quantity:3000,unitPrice:1150,location:"Mukono",status:"Potential Match"}));
+ function category(s){s=String(s).toLowerCase();if(s.includes("complete"))return"completed";if(s.includes("verify")||s.includes("match"))return"verification";return"active"}
+ document.getElementById("sMatches").textContent=rows.filter(x=>/match/i.test(x.status)).length;
+ document.getElementById("sVerify").textContent=rows.filter(x=>/verif/i.test(x.status)).length;
+ document.getElementById("sActive").textContent=rows.filter(x=>category(x.status)==="active").length;
+ document.getElementById("sDone").textContent=rows.filter(x=>category(x.status)==="completed").length;
+ let current="all";
+ function render(){
+  const data=rows.filter(x=>current==="all"||category(x.status)===current), list=document.getElementById("list");
+  if(!data.length){list.innerHTML='<div class="empty"><strong>No trades in this category.</strong>Post produce or respond to buyer demand to create a new opportunity.</div>';return}
+  list.innerHTML=data.map(x=>{const value=x.quantity*x.price,img=/bean/i.test(x.commodity)?"../assets/images/crops/beans.jpg":"../assets/images/crops/dry-maize.jpg";const cat=category(x.status),cls=cat==="completed"?"complete":cat==="active"?"active":"";return `<article class="trade"><div class="main"><img class="photo" src="${img}" alt="${esc(x.commodity)}"><div><span class="ref">${esc(x.reference||x.id)}</span><h2>${esc(x.commodity)}</h2><div class="details"><div class="detail"><span>Quantity</span><strong>${fmt(x.quantity)} kg</strong></div><div class="detail"><span>Price</span><strong>UGX ${fmt(x.price)}/kg</strong></div><div class="detail"><span>Supply location</span><strong>${esc(x.location)}</strong></div></div></div><div class="right"><span class="status ${cls}">${esc(x.status)}</span><span class="value">UGX ${fmt(value)}</span></div></div><div class="footer"><span>AgroLink-managed transaction</span><a class="view" href="trade-details.html?id=${encodeURIComponent(x.id)}">View trade details →</a></div></article>`}).join("")
+ }
+ document.querySelectorAll(".filter").forEach(b=>b.onclick=()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");current=b.dataset.filter;render()});render();
+})();
+</script>
+</body></html>

@@ -1,0 +1,3317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="AgroLink Uganda agricultural market intelligence. Compare demo grain prices across selected Ugandan markets before buying or selling."
+  >
+
+  <title>Market Prices | AgroLink Uganda</title>
+
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+
+  <style>
+    /* =====================================================
+       AGROLINK PUBLIC MARKET
+       ===================================================== */
+
+    :root {
+      --public-header-height: 88px;
+      --public-bottom-nav-height: 76px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #f5f8f5;
+      color: var(--text-primary);
+    }
+
+    body.public-menu-open {
+      overflow: hidden;
+    }
+
+    button,
+    select,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .public-market {
+      min-height: 100vh;
+    }
+
+    .public-container {
+      width: min(1180px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+
+/* =====================================================
+   PUBLIC HEADER + BUILT-IN AGROLINK WORDMARK
+   ===================================================== */
+
+.public-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #0b8548;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, .08);
+}
+
+.public-header-inner {
+  width: min(1180px, calc(100% - 40px));
+  min-height: 88px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.public-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+  color: #fff;
+  text-decoration: none;
+}
+
+.public-brand:hover { color: #fff; }
+
+.brand-leaf {
+  width: 45px;
+  height: 45px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.brand-leaf svg { width: 100%; height: 100%; display: block; }
+
+.brand-wordmark {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  line-height: 1;
+}
+
+.brand-wordmark strong {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -.65px;
+}
+
+.brand-wordmark > span {
+  margin-top: 5px;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255,255,255,.94);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.header-icon-button {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background .18s ease, transform .18s ease;
+}
+
+.header-icon-button:hover { background: rgba(255,255,255,.10); }
+
+.notification-indicator {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #0b8548;
+  border-radius: 50%;
+  background: #ff4d4f;
+}
+
+.buy-sell-button {
+  min-height: 48px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #f5a623;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .01em;
+  text-decoration: none;
+  box-shadow: 0 6px 15px rgba(0,0,0,.12);
+  transition: background .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+
+.buy-sell-button:hover {
+  background: #ee9c17;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0,0,0,.15);
+}
+
+@media (max-width: 767px) {
+  .public-header { position: relative; }
+
+  .public-header-inner {
+    width: calc(100% - 28px);
+    min-height: 82px;
+    gap: 8px;
+  }
+
+  .public-brand { min-width: 0; gap: 7px; }
+  .brand-leaf { width: 37px; height: 37px; }
+  .brand-wordmark strong { font-size: 20px; letter-spacing: -.4px; }
+  .brand-wordmark > span { margin-top: 3px; font-size: 12px; }
+  .header-actions { gap: 4px; }
+  .header-icon-button { width: 35px; height: 35px; }
+  .header-icon-button svg { width: 18px; height: 18px; }
+  .menu-button { display: none; }
+
+  .buy-sell-button {
+    min-height: 43px;
+    padding: 0 14px;
+    border-radius: 10px;
+    gap: 6px;
+    font-size: 11px;
+  }
+
+  .buy-sell-button svg { width: 16px; height: 16px; }
+  .market-main { padding-top: 12px; }
+}
+
+@media (max-width: 360px) {
+  .public-header-inner { width: calc(100% - 20px); }
+  .brand-leaf { width: 33px; height: 33px; }
+  .brand-wordmark strong { font-size: 18px; }
+  .brand-wordmark > span { font-size: 11px; }
+  .header-icon-button { width: 32px; height: 32px; }
+  .buy-sell-button { padding-inline: 10px; font-size: 10px; }
+}
+
+
+    /* =====================================================
+       MAIN
+       ===================================================== */
+
+    .market-main {
+      padding: 24px 0 50px;
+    }
+
+
+    /* =====================================================
+       MARKET UPDATE
+       ===================================================== */
+
+    .market-update {
+      min-height: 72px;
+      padding: 15px 18px;
+      border-left: 5px solid #f4b72f;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background:
+        linear-gradient(
+          90deg,
+          #fff7d1 0%,
+          #fffbed 100%
+        );
+      box-shadow:
+        0 2px 10px
+        rgba(0, 0, 0, .035);
+    }
+
+    .market-update-icon {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(244, 166, 42, .13);
+      color: #d78c0a;
+    }
+
+    .market-update-copy {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .market-update-title {
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .market-update-copy p {
+      margin: 4px 0 0;
+      color: #625d45;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .market-update-arrow {
+      flex: 0 0 auto;
+      color: #80764e;
+    }
+
+
+    /* =====================================================
+       INTRO
+       ===================================================== */
+
+    .market-intro {
+      margin: 34px 0 22px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .market-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 8px;
+      color: var(--green-700);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .market-intro h1 {
+      margin: 0;
+      font-size: clamp(29px, 4vw, 43px);
+      line-height: 1.08;
+      letter-spacing: -1.2px;
+    }
+
+    .market-intro p {
+      max-width: 650px;
+      margin: 10px 0 0;
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .demo-pill {
+      flex: 0 0 auto;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: var(--green-100);
+      color: var(--green-800);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+
+    /* =====================================================
+       FILTERS
+       ===================================================== */
+
+    .market-filters {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .filter-control {
+      position: relative;
+    }
+
+    .filter-control label {
+      position: absolute;
+      z-index: 2;
+      top: 8px;
+      left: 49px;
+      color: var(--text-light);
+      font-size: 10px;
+      pointer-events: none;
+    }
+
+    .filter-control select {
+      width: 100%;
+      min-height: 63px;
+      padding:
+        23px
+        42px
+        7px
+        49px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      outline: none;
+      appearance: none;
+      background: #fff;
+      color: var(--text-primary);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, .025);
+      transition:
+        border-color .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .filter-control select:focus {
+      border-color: var(--green-600);
+      box-shadow:
+        0 0 0 3px
+        rgba(10, 159, 90, .10);
+    }
+
+    .filter-leading-icon {
+      position: absolute;
+      z-index: 2;
+      left: 17px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      color: var(--green-700);
+      pointer-events: none;
+    }
+
+    .filter-arrow {
+      position: absolute;
+      z-index: 2;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-flex;
+      color: var(--text-secondary);
+      pointer-events: none;
+    }
+
+
+    /* =====================================================
+       PRICE GRID
+       ===================================================== */
+
+    .price-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .public-price-card {
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      border-radius: 17px;
+      background: #fff;
+      box-shadow:
+        0 4px 16px
+        rgba(0, 0, 0, .045);
+      cursor: pointer;
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        border-color .2s ease;
+    }
+
+    .public-price-card:hover {
+      transform: translateY(-3px);
+      border-color: #cfe0d4;
+      box-shadow:
+        0 12px 28px
+        rgba(0, 0, 0, .075);
+    }
+
+    .public-price-card.selected {
+      border-color: var(--green-600);
+      box-shadow:
+        0 0 0 2px
+        rgba(10, 159, 90, .09),
+        0 10px 26px
+        rgba(0, 0, 0, .07);
+    }
+
+    .crop-photo {
+      position: relative;
+      height: 125px;
+      overflow: hidden;
+      background: var(--surface-secondary);
+    }
+
+    .crop-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform .35s ease;
+    }
+
+    .public-price-card:hover
+    .crop-photo img {
+      transform: scale(1.035);
+    }
+
+    .crop-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to top,
+          rgba(0, 0, 0, .18),
+          transparent 48%
+        );
+      pointer-events: none;
+    }
+
+    .photo-label {
+      position: absolute;
+      z-index: 2;
+      left: 11px;
+      bottom: 10px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .93);
+      color: var(--green-900);
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .price-card-body {
+      padding: 16px;
+    }
+
+    .commodity-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .commodity-name {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .commodity-symbol {
+      font-size: 16px;
+    }
+
+    .trend {
+      flex: 0 0 auto;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .trend.up {
+      color: var(--success);
+    }
+
+    .trend.down {
+      color: var(--danger);
+    }
+
+    .trend.neutral {
+      color: var(--text-secondary);
+    }
+
+    .market-price {
+      margin-top: 11px;
+      font-size: 25px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -.6px;
+    }
+
+    .market-meta {
+      margin-top: 7px;
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+
+    .mini-chart {
+      height: 42px;
+      margin-top: 14px;
+    }
+
+    .mini-chart svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
+    }
+
+
+    /* =====================================================
+       EMPTY FILTER STATE
+       ===================================================== */
+
+    .price-empty {
+      grid-column: 1 / -1;
+      padding: 46px 20px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: #fff;
+      text-align: center;
+    }
+
+    .price-empty-icon {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 13px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--green-50);
+      color: var(--green-700);
+    }
+
+    .price-empty h3 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .price-empty p {
+      margin: 6px 0 0;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+
+    /* =====================================================
+       MARKET INTELLIGENCE
+       ===================================================== */
+
+    .intelligence-panel {
+      margin-top: 24px;
+      padding: 24px;
+      border: 1px solid var(--border-light);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow:
+        0 4px 18px
+        rgba(0, 0, 0, .04);
+    }
+
+    .panel-header {
+      margin-bottom: 23px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .panel-title-wrap {
+      min-width: 0;
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .panel-title h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .panel-title-icon {
+      color: var(--green-700);
+    }
+
+    .panel-header p {
+      margin: 5px 0 0;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+
+    .range-buttons {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .range-button {
+      min-width: 50px;
+      height: 36px;
+      padding: 0 13px;
+      border: 1px solid var(--border-light);
+      border-radius: 9px;
+      background: var(--surface-secondary);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition:
+        background .18s ease,
+        border-color .18s ease,
+        color .18s ease;
+    }
+
+    .range-button.active {
+      border-color: var(--green-600);
+      background: var(--green-600);
+      color: #fff;
+    }
+
+    .range-note {
+      margin-bottom: 15px;
+      color: var(--text-light);
+      font-size: 10px;
+    }
+
+    .comparison-chart {
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .comparison-row {
+      display: grid;
+      grid-template-columns:
+        120px
+        minmax(0, 1fr)
+        130px;
+      gap: 15px;
+      align-items: center;
+      padding: 14px 0;
+    }
+
+    .comparison-row +
+    .comparison-row {
+      border-top:
+        1px solid var(--border-light);
+    }
+
+    .comparison-location {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .comparison-track {
+      height: 12px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: var(--surface-secondary);
+    }
+
+    .comparison-bar {
+      height: 100%;
+      border-radius: inherit;
+      background:
+        linear-gradient(
+          90deg,
+          var(--green-700),
+          var(--green-500)
+        );
+      transition: width .35s ease;
+    }
+
+    .comparison-price {
+      text-align: right;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .insight-box {
+      margin-top: 20px;
+      padding: 15px 17px;
+      border-radius: 13px;
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      background: var(--green-50);
+      color: var(--green-900);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .insight-icon {
+      flex: 0 0 auto;
+      display: inline-flex;
+      margin-top: 1px;
+      color: var(--green-700);
+    }
+
+
+    /* =====================================================
+       BUY / SELL CTA
+       ===================================================== */
+
+    .trade-cta {
+      position: relative;
+      overflow: hidden;
+      margin-top: 27px;
+      padding: 30px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--green-950),
+          var(--green-700)
+        );
+      color: #fff;
+    }
+
+    .trade-cta::before,
+    .trade-cta::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,.055);
+    }
+
+    .trade-cta::before {
+      width: 180px;
+      height: 180px;
+      top: -110px;
+      right: 150px;
+    }
+
+    .trade-cta::after {
+      width: 240px;
+      height: 240px;
+      right: -100px;
+      bottom: -155px;
+    }
+
+    .trade-cta-copy {
+      position: relative;
+      z-index: 2;
+      max-width: 670px;
+    }
+
+    .trade-cta h2 {
+      margin: 0;
+      font-size: 25px;
+    }
+
+    .trade-cta p {
+      margin: 8px 0 0;
+      color: rgba(255,255,255,.76);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .trade-cta .buy-sell-button {
+      position: relative;
+      z-index: 2;
+      flex: 0 0 auto;
+      min-width: 170px;
+    }
+
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
+    .public-footer {
+      padding: 0 20px 30px;
+      color: var(--text-light);
+      text-align: center;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+
+    /* =====================================================
+       BOTTOM NAVIGATION
+       ===================================================== */
+
+    .public-bottom-nav-wrap {
+      display: none;
+    }
+
+    .public-bottom-nav {
+      display: grid;
+      grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .public-bottom-link {
+      position: relative;
+      min-width: 0;
+      padding: 9px 4px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      color: #6c7770;
+      font-size: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .public-bottom-link:hover {
+      color: var(--green-700);
+    }
+
+    .public-bottom-link.active {
+      color: var(--green-700);
+      font-weight: 800;
+    }
+
+    .public-bottom-link.active::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 28px;
+      height: 3px;
+      border-radius: 0 0 999px 999px;
+      background: var(--green-600);
+    }
+
+    .bottom-nav-icon {
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    /* =====================================================
+       MORE MENU
+       ===================================================== */
+
+    .more-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0,0,0,.38);
+    }
+
+    .more-backdrop.show {
+      display: flex;
+    }
+
+    .more-sheet {
+      width: min(100%, 520px);
+      padding: 22px;
+      border-radius: 22px 22px 16px 16px;
+      background: #fff;
+      box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.22);
+    }
+
+    .more-sheet-handle {
+      width: 42px;
+      height: 4px;
+      margin: -5px auto 18px;
+      border-radius: 999px;
+      background: #d5ddd7;
+    }
+
+    .more-sheet-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .more-sheet-header h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .more-sheet-header p {
+      margin: 5px 0 0;
+      color: var(--text-secondary);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .sheet-close {
+      width: 38px;
+      height: 38px;
+      flex: 0 0 auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .more-actions {
+      margin-top: 20px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .more-action {
+      min-height: 56px;
+      padding: 10px 13px;
+      border: 1px solid var(--border-light);
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      color: var(--text-primary);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .more-action:hover {
+      border-color: #c9ddd0;
+      background: var(--green-50);
+      color: var(--green-900);
+    }
+
+    .more-action-icon {
+      width: 37px;
+      height: 37px;
+      flex: 0 0 auto;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--green-100);
+      color: var(--green-700);
+    }
+
+    .more-action strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .more-action span:last-child {
+      display: block;
+      margin-top: 2px;
+      color: var(--text-secondary);
+      font-size: 10px;
+    }
+
+
+    /* =====================================================
+       TOAST
+       ===================================================== */
+
+    .public-toast {
+      position: fixed;
+      z-index: 120;
+      right: 20px;
+      bottom: 20px;
+      max-width: 340px;
+      padding: 13px 15px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: #fff;
+      box-shadow:
+        0 14px 40px
+        rgba(0,0,0,.14);
+      opacity: 0;
+      transform: translateY(15px);
+      pointer-events: none;
+      transition:
+        opacity .2s ease,
+        transform .2s ease;
+    }
+
+    .public-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .public-toast strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    .public-toast p {
+      margin: 3px 0 0;
+      color: var(--text-secondary);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+
+    /* =====================================================
+       TABLET
+       ===================================================== */
+
+    @media (max-width: 980px) {
+      .price-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+    }
+
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media (max-width: 767px) {
+      :root {
+        --public-header-height: 76px;
+      }
+
+      body {
+        padding-bottom:
+          calc(
+            var(--public-bottom-nav-height)
+            + env(safe-area-inset-bottom)
+          );
+      }
+
+      .public-container {
+        width: min(100% - 26px, 680px);
+      }
+
+      .public-header {
+        position: relative;
+      }
+
+      .public-header-inner {
+        min-height: var(--public-header-height);
+        gap: 12px;
+      }
+
+      .header-actions {
+        gap: 7px;
+      }
+
+      .header-icon-button {
+        width: 39px;
+        height: 39px;
+        background: transparent;
+      }
+
+      .header-actions
+      .menu-button {
+        display: none;
+      }
+
+      .buy-sell-button {
+        min-height: 41px;
+        padding: 0 14px;
+        border-radius: 10px;
+        font-size: 11px;
+      }
+
+      .market-main {
+        padding-top: 14px;
+      }
+
+      .market-update {
+        min-height: 68px;
+        padding: 13px 12px;
+        gap: 10px;
+        border-left-width: 4px;
+      }
+
+      .market-update-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+      }
+
+      .market-update-title {
+        font-size: 12px;
+      }
+
+      .market-update-copy p {
+        font-size: 11px;
+      }
+
+      .market-intro {
+        margin: 26px 0 18px;
+        align-items: flex-start;
+      }
+
+      .market-intro h1 {
+        font-size: 28px;
+      }
+
+      .market-intro p {
+        margin-top: 7px;
+        font-size: 12px;
+      }
+
+      .market-intro
+      .demo-pill {
+        display: none;
+      }
+
+      .market-filters {
+        gap: 9px;
+        margin-bottom: 17px;
+      }
+
+      .filter-control label {
+        top: 8px;
+        left: 39px;
+        font-size: 8px;
+      }
+
+      .filter-control select {
+        min-height: 57px;
+        padding:
+          22px
+          27px
+          6px
+          39px;
+        border-radius: 12px;
+        font-size: 11px;
+      }
+
+      .filter-leading-icon {
+        left: 11px;
+      }
+
+      .filter-arrow {
+        right: 9px;
+      }
+
+      .price-grid {
+        gap: 10px;
+      }
+
+      .public-price-card {
+        border-radius: 14px;
+      }
+
+      .crop-photo {
+        height: 91px;
+      }
+
+      .photo-label {
+        left: 8px;
+        bottom: 7px;
+        padding: 4px 6px;
+        font-size: 8px;
+      }
+
+      .price-card-body {
+        padding: 12px;
+      }
+
+      .commodity-name {
+        gap: 4px;
+        font-size: 12px;
+      }
+
+      .commodity-symbol {
+        font-size: 13px;
+      }
+
+      .trend {
+        font-size: 10px;
+      }
+
+      .market-price {
+        margin-top: 9px;
+        font-size: 19px;
+      }
+
+      .market-meta {
+        margin-top: 5px;
+        font-size: 9px;
+      }
+
+      .mini-chart {
+        height: 34px;
+        margin-top: 11px;
+      }
+
+      .intelligence-panel {
+        margin-top: 18px;
+        padding: 17px 14px;
+        border-radius: 15px;
+      }
+
+      .panel-header {
+        margin-bottom: 16px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+      }
+
+      .panel-title h2 {
+        font-size: 16px;
+      }
+
+      .panel-header p {
+        font-size: 10px;
+      }
+
+      .range-buttons {
+        width: 100%;
+        display: grid;
+        grid-template-columns:
+          repeat(3, minmax(0, 1fr));
+      }
+
+      .range-button {
+        min-width: 0;
+        width: 100%;
+        height: 34px;
+      }
+
+      .range-note {
+        font-size: 9px;
+      }
+
+      .comparison-chart {
+        min-height: 180px;
+      }
+
+      .comparison-row {
+        grid-template-columns:
+          76px
+          minmax(0, 1fr);
+        gap: 9px;
+        padding: 11px 0;
+      }
+
+      .comparison-location {
+        font-size: 10px;
+      }
+
+      .comparison-track {
+        height: 10px;
+      }
+
+      .comparison-price {
+        grid-column: 2;
+        margin-top: -6px;
+        text-align: left;
+        color: var(--text-secondary);
+        font-size: 9px;
+      }
+
+      .insight-box {
+        margin-top: 14px;
+        padding: 12px;
+        font-size: 10px;
+      }
+
+      .trade-cta {
+        margin-top: 18px;
+        padding: 22px 18px;
+        border-radius: 16px;
+        align-items: stretch;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .trade-cta h2 {
+        font-size: 20px;
+      }
+
+      .trade-cta p {
+        font-size: 11px;
+      }
+
+      .trade-cta
+      .buy-sell-button {
+        width: 100%;
+      }
+
+      .public-footer {
+        padding: 20px 20px 22px;
+        font-size: 9px;
+      }
+
+      .public-bottom-nav-wrap {
+        position: fixed;
+        z-index: 70;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: block;
+        min-height:
+          calc(
+            var(--public-bottom-nav-height)
+            + env(safe-area-inset-bottom)
+          );
+        padding-bottom:
+          env(safe-area-inset-bottom);
+        border-top: 1px solid var(--border-light);
+        background:
+          rgba(255,255,255,.97);
+        box-shadow:
+          0 -5px 20px
+          rgba(0,0,0,.06);
+        backdrop-filter: blur(12px);
+      }
+
+      .public-bottom-nav {
+        min-height:
+          var(--public-bottom-nav-height);
+      }
+
+      .public-toast {
+        left: 14px;
+        right: 14px;
+        bottom:
+          calc(
+            var(--public-bottom-nav-height)
+            + 14px
+            + env(safe-area-inset-bottom)
+          );
+        max-width: none;
+      }
+    }
+
+
+    @media (max-width: 390px) {
+      .public-container {
+        width: calc(100% - 20px);
+      }
+
+      .buy-sell-button {
+        padding-inline: 11px;
+      }
+
+      .market-filters {
+        gap: 7px;
+      }
+
+      .filter-control select {
+        font-size: 10px;
+      }
+    }
+
+
+    @media (max-width: 335px) {
+      .price-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .crop-photo {
+        height: 125px;
+      }
+    }
+
+
+    /* =====================================================
+       REDUCED MOTION
+       ===================================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <div class="public-market">
+
+    <!-- ===================================================
+         HEADER
+         =================================================== -->
+
+    <header class="public-header">
+
+      <div class="public-container public-header-inner">
+
+        <a
+          href="index.html"
+          class="public-brand"
+          aria-label="AgroLink Uganda market prices"
+        >
+          <span class="brand-leaf" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M55 8C38 9 23 16 15 29C10 37 9 46 10 53C18 52 27 48 34 42C45 33 51 22 55 8Z" fill="currentColor"></path>
+              <path d="M13 48C22 38 32 30 46 23C35 32 27 41 21 52" fill="none" stroke="#0b8548" stroke-width="4.5" stroke-linecap="round"></path>
+            </svg>
+          </span>
+
+          <span class="brand-wordmark">
+            <strong>AgroLink</strong>
+            <span>Uganda</span>
+          </span>
+        </a>
+
+
+        <div class="header-actions">
+
+          <button
+            type="button"
+            class="header-icon-button"
+            id="notificationButton"
+            aria-label="Market notifications"
+          >
+            <span class="button-icon">
+              <svg
+                width="21"
+                height="21"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                ></path>
+                <path d="M10 21h4"></path>
+              </svg>
+            </span>
+
+            <span
+              class="notification-indicator"
+            ></span>
+          </button>
+
+
+          <button
+            type="button"
+            class="header-icon-button menu-button"
+            id="headerMenuButton"
+            aria-label="Open menu"
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            >
+              <path d="M4 6h16"></path>
+              <path d="M4 12h16"></path>
+              <path d="M4 18h16"></path>
+            </svg>
+          </button>
+
+
+          <a
+            href="auth/welcome.html"
+            class="buy-sell-button"
+          >
+            <span class="button-icon">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M7 7h11"></path>
+                <path d="m15 4 3 3-3 3"></path>
+                <path d="M17 17H6"></path>
+                <path d="m9 14-3 3 3 3"></path>
+              </svg>
+            </span>
+
+            BUY / SELL
+          </a>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- ===================================================
+         MAIN
+         =================================================== -->
+
+    <main class="market-main">
+
+      <div class="public-container">
+
+
+        <!-- ===============================================
+             MARKET UPDATE
+             =============================================== -->
+
+        <section class="market-update">
+
+          <div class="market-update-icon">
+            <svg
+              width="21"
+              height="21"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 18 9 12l4 4 8-10"></path>
+              <path d="M15 6h6v6"></path>
+            </svg>
+          </div>
+
+
+          <div class="market-update-copy">
+
+            <div class="market-update-title">
+              Market Update
+            </div>
+
+            <p id="marketUpdateText">
+              Compare demo grain prices across selected
+              markets before making a buying or selling
+              decision.
+            </p>
+
+          </div>
+
+
+          <span class="market-update-arrow">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m9 18 6-6-6-6"></path>
+            </svg>
+          </span>
+
+        </section>
+
+
+        <!-- ===============================================
+             INTRO
+             =============================================== -->
+
+        <section class="market-intro">
+
+          <div>
+
+            <div class="market-eyebrow">
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 18 9 12l4 4 8-10"></path>
+                <path d="M15 6h6v6"></path>
+              </svg>
+
+              Market intelligence
+            </div>
+
+
+            <h1>
+              Today's Market Prices
+            </h1>
+
+            <p>
+              Compare agricultural prices across selected
+              markets before deciding where to buy or sell.
+              Market intelligence is available without
+              creating an account.
+            </p>
+
+          </div>
+
+
+          <span class="demo-pill">
+            Prototype • Demo prices
+          </span>
+
+        </section>
+
+
+        <!-- ===============================================
+             FILTERS
+             =============================================== -->
+
+        <section
+          class="market-filters"
+          aria-label="Market price filters"
+        >
+
+          <div class="filter-control">
+
+            <span class="filter-leading-icon">
+              <svg
+                width="19"
+                height="19"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"
+                ></path>
+                <circle cx="12" cy="10" r="2.5"></circle>
+              </svg>
+            </span>
+
+
+            <label for="locationFilter">
+              Location
+            </label>
+
+
+            <select id="locationFilter">
+              <option value="">
+                All Regions
+              </option>
+
+              <option value="Kampala">
+                Kampala
+              </option>
+
+              <option value="Mukono">
+                Mukono
+              </option>
+
+              <option value="Jinja">
+                Jinja
+              </option>
+            </select>
+
+
+            <span class="filter-arrow">
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </span>
+
+          </div>
+
+
+          <div class="filter-control">
+
+            <span class="filter-leading-icon">
+              <svg
+                width="19"
+                height="19"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 21V10"></path>
+                <path d="M12 13c-5 0-7-3-7-7 5 0 7 3 7 7Z"></path>
+                <path d="M12 16c5 0 7-3 7-7-5 0-7 3-7 7Z"></path>
+              </svg>
+            </span>
+
+
+            <label for="commodityFilter">
+              Commodity
+            </label>
+
+
+            <select id="commodityFilter">
+              <option value="">
+                All Crops
+              </option>
+
+              <option value="Dry Maize">
+                Dry Maize
+              </option>
+
+              <option value="Beans">
+                Beans
+              </option>
+            </select>
+
+
+            <span class="filter-arrow">
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </span>
+
+          </div>
+
+        </section>
+
+
+        <!-- ===============================================
+             PRICE CARDS
+             =============================================== -->
+
+        <section
+          class="price-grid"
+          id="publicPriceGrid"
+          aria-label="Agricultural market prices"
+        ></section>
+
+
+        <!-- ===============================================
+             MARKET INTELLIGENCE
+             =============================================== -->
+
+        <section
+          class="intelligence-panel"
+          id="marketIntelligence"
+        >
+
+          <div class="panel-header">
+
+            <div class="panel-title-wrap">
+
+              <div class="panel-title">
+
+                <span class="panel-title-icon">
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M3 18 9 12l4 4 8-10"></path>
+                    <path d="M15 6h6v6"></path>
+                  </svg>
+                </span>
+
+                <h2 id="comparisonTitle">
+                  Dry Maize Market Comparison
+                </h2>
+
+              </div>
+
+
+              <p>
+                Compare current demo prices across
+                available locations.
+              </p>
+
+            </div>
+
+
+            <div class="range-buttons">
+
+              <button
+                type="button"
+                class="range-button"
+                data-range="1D"
+              >
+                1D
+              </button>
+
+              <button
+                type="button"
+                class="range-button active"
+                data-range="7D"
+              >
+                7D
+              </button>
+
+              <button
+                type="button"
+                class="range-button"
+                data-range="1M"
+              >
+                1M
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="range-note">
+            Historical datasets are not connected in this
+            prototype. The period selector is included as
+            part of the market-intelligence MVP interface.
+          </div>
+
+
+          <div
+            class="comparison-chart"
+            id="comparisonChart"
+          ></div>
+
+
+          <div
+            class="insight-box"
+            id="marketInsight"
+          ></div>
+
+        </section>
+
+
+        <!-- ===============================================
+             BUY / SELL CTA
+             =============================================== -->
+
+        <section class="trade-cta">
+
+          <div class="trade-cta-copy">
+
+            <h2>
+              Ready to buy or sell?
+            </h2>
+
+            <p>
+              Market prices are public. To post produce,
+              request supply or participate in a transaction,
+              continue to AgroLink and log in or create an
+              account.
+            </p>
+
+          </div>
+
+
+          <a
+            href="auth/welcome.html"
+            class="buy-sell-button"
+          >
+            BUY / SELL
+
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14"></path>
+              <path d="m13 6 6 6-6 6"></path>
+            </svg>
+          </a>
+
+        </section>
+
+      </div>
+
+    </main>
+
+
+    <!-- ===================================================
+         FOOTER
+         =================================================== -->
+
+    <footer class="public-footer">
+      AgroLink Uganda MVP • Market prices shown are
+      prototype demo data and are not live market
+      quotations.
+    </footer>
+
+  </div>
+
+
+  <!-- =====================================================
+       MOBILE BOTTOM NAVIGATION
+       ===================================================== -->
+
+  <div class="public-bottom-nav-wrap">
+
+    <nav
+      class="public-bottom-nav"
+      aria-label="Public navigation"
+    >
+
+      <a
+        href="index.html"
+        class="public-bottom-link active"
+        aria-current="page"
+      >
+        <span class="bottom-nav-icon">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 18 9 12l4 4 8-10"></path>
+            <path d="M15 6h6v6"></path>
+          </svg>
+        </span>
+
+        <span>Prices</span>
+      </a>
+
+
+      <button
+        type="button"
+        class="public-bottom-link"
+        id="marketNavButton"
+      >
+        <span class="bottom-nav-icon">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 10h16"></path>
+            <path d="M5 10v10h14V10"></path>
+            <path d="M3 6h18l-2 4H5L3 6Z"></path>
+            <path d="M9 14h6"></path>
+          </svg>
+        </span>
+
+        <span>Market</span>
+      </button>
+
+
+      <a
+        href="auth/welcome.html"
+        class="public-bottom-link"
+      >
+        <span class="bottom-nav-icon">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M7 7h11"></path>
+            <path d="m15 4 3 3-3 3"></path>
+            <path d="M17 17H6"></path>
+            <path d="m9 14-3 3 3 3"></path>
+          </svg>
+        </span>
+
+        <span>Trade</span>
+      </a>
+
+
+      <button
+        type="button"
+        class="public-bottom-link"
+        id="moreNavButton"
+      >
+        <span class="bottom-nav-icon">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+          </svg>
+        </span>
+
+        <span>More</span>
+      </button>
+
+    </nav>
+
+  </div>
+
+
+  <!-- =====================================================
+       MORE MENU
+       ===================================================== -->
+
+  <div
+    class="more-backdrop"
+    id="moreBackdrop"
+    aria-hidden="true"
+  >
+
+    <div
+      class="more-sheet"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="moreSheetTitle"
+    >
+
+      <div class="more-sheet-handle"></div>
+
+
+      <div class="more-sheet-header">
+
+        <div>
+          <h2 id="moreSheetTitle">
+            AgroLink Uganda
+          </h2>
+
+          <p>
+            Agricultural intelligence and coordinated
+            market access for farmers and buyers.
+          </p>
+        </div>
+
+
+        <button
+          type="button"
+          class="sheet-close"
+          id="closeMoreButton"
+          aria-label="Close menu"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="m6 6 12 12"></path>
+            <path d="m18 6-12 12"></path>
+          </svg>
+        </button>
+
+      </div>
+
+
+      <div class="more-actions">
+
+        <a
+          href="auth/welcome.html"
+          class="more-action"
+        >
+          <span class="more-action-icon">
+            <svg
+              width="19"
+              height="19"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M7 7h11"></path>
+              <path d="m15 4 3 3-3 3"></path>
+              <path d="M17 17H6"></path>
+              <path d="m9 14-3 3 3 3"></path>
+            </svg>
+          </span>
+
+          <span>
+            <strong>Buy or Sell</strong>
+            <span>
+              Login or create an AgroLink account
+            </span>
+          </span>
+        </a>
+
+
+        <button
+          type="button"
+          class="more-action"
+          id="aboutPrototypeButton"
+        >
+          <span class="more-action-icon">
+            <svg
+              width="19"
+              height="19"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 11v5"></path>
+              <path d="M12 8h.01"></path>
+            </svg>
+          </span>
+
+          <span>
+            <strong>About this MVP</strong>
+            <span>
+              Understand what is simulated in the prototype
+            </span>
+          </span>
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       TOAST
+       ===================================================== -->
+
+  <div
+    class="public-toast"
+    id="publicToast"
+    role="status"
+    aria-live="polite"
+  >
+    <strong id="toastTitle">
+      AgroLink
+    </strong>
+
+    <p id="toastMessage"></p>
+  </div>
+
+
+  <!-- =====================================================
+       SHARED DATA
+       ===================================================== -->
+
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/utils.js"></script>
+
+
+  <!-- =====================================================
+       PUBLIC MARKET LOGIC
+       ===================================================== -->
+
+  <script>
+    const publicMarketState = {
+      selectedCommodity: "Dry Maize",
+      selectedRange: "7D"
+    };
+
+
+    const cropAssets = {
+      "Dry Maize":
+        "assets/images/crops/dry-maize.jpg",
+
+      "Beans":
+        "assets/images/crops/beans.jpg"
+    };
+
+
+    const cropSymbols = {
+      "Dry Maize": "🌽",
+      "Beans": "🫘"
+    };
+
+
+    const priceGrid =
+      document.getElementById(
+        "publicPriceGrid"
+      );
+
+
+    const locationFilter =
+      document.getElementById(
+        "locationFilter"
+      );
+
+
+    const commodityFilter =
+      document.getElementById(
+        "commodityFilter"
+      );
+
+
+    const comparisonChart =
+      document.getElementById(
+        "comparisonChart"
+      );
+
+
+    const comparisonTitle =
+      document.getElementById(
+        "comparisonTitle"
+      );
+
+
+    const marketInsight =
+      document.getElementById(
+        "marketInsight"
+      );
+
+
+    /* =====================================================
+       INITIALIZE
+       ===================================================== */
+
+    initializePublicMarket();
+
+
+    function initializePublicMarket() {
+      renderPrices();
+
+      renderComparison(
+        publicMarketState
+          .selectedCommodity
+      );
+
+      updateMarketMessage();
+
+      bindPublicEvents();
+    }
+
+
+    /* =====================================================
+       VISIBLE PRICES
+       ===================================================== */
+
+    function getVisiblePrices() {
+      const location =
+        locationFilter.value;
+
+
+      const commodity =
+        commodityFilter.value;
+
+
+      return window
+        .AGROLINK_DATA
+        .marketPrices
+        .filter(
+          (price) => {
+            const matchesLocation =
+              !location ||
+              price.location ===
+                location;
+
+
+            const matchesCommodity =
+              !commodity ||
+              price.commodity ===
+                commodity;
+
+
+            return (
+              matchesLocation &&
+              matchesCommodity
+            );
+          }
+        );
+    }
+
+
+    /* =====================================================
+       PRICE CARDS
+       ===================================================== */
+
+    function renderPrices() {
+      const prices =
+        getVisiblePrices();
+
+
+      if (!prices.length) {
+        priceGrid.innerHTML = `
+          <div class="price-empty">
+
+            <div class="price-empty-icon">
+              <svg
+                width="23"
+                height="23"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 18 9 12l4 4 8-10"></path>
+              </svg>
+            </div>
+
+            <h3>
+              No demo prices found
+            </h3>
+
+            <p>
+              Try another commodity or location.
+            </p>
+
+          </div>
+        `;
+
+        return;
+      }
+
+
+      priceGrid.innerHTML =
+        prices
+          .map(
+            createPriceCard
+          )
+          .join("");
+    }
+
+
+    function createPriceCard(
+      price
+    ) {
+      const image =
+        cropAssets[
+          price.commodity
+        ];
+
+
+      const symbol =
+        cropSymbols[
+          price.commodity
+        ] || "🌱";
+
+
+      const trend =
+        String(
+          price.trend ||
+          "neutral"
+        ).toLowerCase();
+
+
+      const change =
+        Math.abs(
+          Number(
+            price.change
+          ) || 0
+        );
+
+
+      let trendText =
+        `${change}%`;
+
+
+      if (trend === "up") {
+        trendText =
+          `+${change}%`;
+      }
+
+
+      if (trend === "down") {
+        trendText =
+          `-${change}%`;
+      }
+
+
+      const selected =
+        publicMarketState
+          .selectedCommodity ===
+          price.commodity;
+
+
+      return `
+        <article
+          class="public-price-card ${
+            selected
+              ? "selected"
+              : ""
+          }"
+          tabindex="0"
+          role="button"
+          data-price-card
+          data-commodity="${AgroLinkUtils.escapeHTML(
+            price.commodity
+          )}"
+          aria-label="Compare ${AgroLinkUtils.escapeHTML(
+            price.commodity
+          )} prices"
+        >
+
+          <div class="crop-photo">
+
+            <img
+              src="${image}"
+              alt="${AgroLinkUtils.escapeHTML(
+                price.commodity
+              )}"
+              loading="lazy"
+            >
+
+            <span class="photo-label">
+              ${AgroLinkUtils.escapeHTML(
+                price.location
+              )}
+            </span>
+
+          </div>
+
+
+          <div class="price-card-body">
+
+            <div class="commodity-row">
+
+              <div class="commodity-name">
+
+                <span class="commodity-symbol">
+                  ${symbol}
+                </span>
+
+                <span>
+                  ${AgroLinkUtils.escapeHTML(
+                    price.commodity
+                  )}
+                </span>
+
+              </div>
+
+
+              <span
+                class="trend ${trend}"
+              >
+                ${trendText}
+              </span>
+
+            </div>
+
+
+            <div class="market-price">
+              ${AgroLinkUtils.formatCurrency(
+                price.price
+              )}
+            </div>
+
+
+            <div class="market-meta">
+              per
+              ${AgroLinkUtils.escapeHTML(
+                price.unit
+              )}
+              •
+              ${AgroLinkUtils.escapeHTML(
+                price.location
+              )}
+            </div>
+
+
+            <div class="mini-chart">
+              ${createMiniChart(
+                price
+              )}
+            </div>
+
+          </div>
+
+        </article>
+      `;
+    }
+
+
+    /* =====================================================
+       MINI TREND VISUAL
+       Presentation-only trend indicator based on the
+       direction already present in the demo dataset.
+       ===================================================== */
+
+    function createMiniChart(
+      price
+    ) {
+      const trend =
+        String(
+          price.trend ||
+          "neutral"
+        ).toLowerCase();
+
+
+      let points =
+        "0,24 22,23 43,25 65,22 87,24 110,23 132,25 154,22 180,24 205,23";
+
+
+      let stroke =
+        "#657269";
+
+
+      if (trend === "up") {
+        points =
+          "0,34 22,29 42,30 65,21 86,24 110,16 132,20 154,11 180,15 205,7";
+
+        stroke =
+          "#14965b";
+      }
+
+
+      if (trend === "down") {
+        points =
+          "0,16 22,20 43,14 65,19 87,15 110,25 132,21 154,30 180,24 205,34";
+
+        stroke =
+          "#d94a4a";
+      }
+
+
+      return `
+        <svg
+          viewBox="0 0 205 42"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <polyline
+            points="${points}"
+            fill="none"
+            stroke="${stroke}"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></polyline>
+        </svg>
+      `;
+    }
+
+
+    /* =====================================================
+       MARKET COMPARISON
+       ===================================================== */
+
+    function renderComparison(
+      requestedCommodity
+    ) {
+      let commodity =
+        requestedCommodity ||
+        "Dry Maize";
+
+
+      let prices =
+        window
+          .AGROLINK_DATA
+          .marketPrices
+          .filter(
+            (item) =>
+              item.commodity ===
+                commodity
+          );
+
+
+      if (!prices.length) {
+        commodity =
+          "Dry Maize";
+
+
+        prices =
+          window
+            .AGROLINK_DATA
+            .marketPrices
+            .filter(
+              (item) =>
+                item.commodity ===
+                  commodity
+            );
+      }
+
+
+      publicMarketState
+        .selectedCommodity =
+          commodity;
+
+
+      comparisonTitle.textContent =
+        `${commodity} Market Comparison`;
+
+
+      const maximum =
+        Math.max(
+          ...prices.map(
+            (item) =>
+              Number(
+                item.price
+              )
+          )
+        );
+
+
+      comparisonChart.innerHTML =
+        prices
+          .map(
+            (item) => {
+              const width =
+                maximum
+                  ? (
+                      Number(
+                        item.price
+                      ) /
+                      maximum
+                    ) * 100
+                  : 0;
+
+
+              return `
+                <div class="comparison-row">
+
+                  <div class="comparison-location">
+                    ${AgroLinkUtils.escapeHTML(
+                      item.location
+                    )}
+                  </div>
+
+
+                  <div
+                    class="comparison-track"
+                    title="${AgroLinkUtils.formatCurrency(
+                      item.price
+                    )}/${AgroLinkUtils.escapeHTML(
+                      item.unit
+                    )}"
+                  >
+                    <div
+                      class="comparison-bar"
+                      style="
+                        width:${width}%;
+                      "
+                    ></div>
+                  </div>
+
+
+                  <div class="comparison-price">
+                    ${AgroLinkUtils.formatCurrency(
+                      item.price
+                    )}/${AgroLinkUtils.escapeHTML(
+                      item.unit
+                    )}
+                  </div>
+
+                </div>
+              `;
+            }
+          )
+          .join("");
+
+
+      updateMarketInsight(
+        commodity,
+        prices
+      );
+
+
+      renderPrices();
+    }
+
+
+    /* =====================================================
+       INSIGHT
+       ===================================================== */
+
+    function updateMarketInsight(
+      commodity,
+      prices
+    ) {
+      if (
+        prices.length < 2
+      ) {
+        marketInsight.innerHTML = `
+          <span class="insight-icon">
+            ${trendIcon()}
+          </span>
+
+          <div>
+            More market locations are required
+            to compare this commodity.
+          </div>
+        `;
+
+        return;
+      }
+
+
+      const sorted =
+        [...prices].sort(
+          (a, b) =>
+            Number(a.price) -
+            Number(b.price)
+        );
+
+
+      const lowest =
+        sorted[0];
+
+
+      const highest =
+        sorted[
+          sorted.length - 1
+        ];
+
+
+      const difference =
+        Number(
+          highest.price
+        ) -
+        Number(
+          lowest.price
+        );
+
+
+      marketInsight.innerHTML = `
+        <span class="insight-icon">
+          ${trendIcon()}
+        </span>
+
+        <div>
+
+          <strong>
+            Demo insight:
+          </strong>
+
+          ${AgroLinkUtils.escapeHTML(
+            commodity
+          )}
+          is currently
+
+          <strong>
+            ${AgroLinkUtils.formatCurrency(
+              difference
+            )}/${AgroLinkUtils.escapeHTML(
+              lowest.unit
+            )}
+          </strong>
+
+          higher in
+
+          <strong>
+            ${AgroLinkUtils.escapeHTML(
+              highest.location
+            )}
+          </strong>
+
+          than in
+
+          <strong>
+            ${AgroLinkUtils.escapeHTML(
+              lowest.location
+            )}
+          </strong>
+
+          in the prototype dataset.
+
+        </div>
+      `;
+    }
+
+
+    function trendIcon() {
+      return `
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 18 9 12l4 4 8-10"></path>
+          <path d="M15 6h6v6"></path>
+        </svg>
+      `;
+    }
+
+
+    /* =====================================================
+       MARKET UPDATE
+       ===================================================== */
+
+    function updateMarketMessage() {
+      const maizePrices =
+        window
+          .AGROLINK_DATA
+          .marketPrices
+          .filter(
+            (item) =>
+              item.commodity ===
+                "Dry Maize"
+          )
+          .sort(
+            (a, b) =>
+              Number(b.price) -
+              Number(a.price)
+          );
+
+
+      if (
+        maizePrices.length < 2
+      ) {
+        return;
+      }
+
+
+      const highest =
+        maizePrices[0];
+
+
+      const lowest =
+        maizePrices[
+          maizePrices.length - 1
+        ];
+
+
+      document
+        .getElementById(
+          "marketUpdateText"
+        )
+        .textContent =
+          `Dry maize is currently higher in ${highest.location} than ${lowest.location} in the demo dataset. Compare markets before deciding where to buy or sell.`;
+    }
+
+
+    /* =====================================================
+       MORE MENU
+       ===================================================== */
+
+    function openMoreMenu() {
+      const backdrop =
+        document.getElementById(
+          "moreBackdrop"
+        );
+
+
+      backdrop.classList.add(
+        "show"
+      );
+
+
+      backdrop.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+
+      document.body
+        .classList
+        .add(
+          "public-menu-open"
+        );
+    }
+
+
+    function closeMoreMenu() {
+      const backdrop =
+        document.getElementById(
+          "moreBackdrop"
+        );
+
+
+      backdrop.classList.remove(
+        "show"
+      );
+
+
+      backdrop.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+
+      document.body
+        .classList
+        .remove(
+          "public-menu-open"
+        );
+    }
+
+
+    /* =====================================================
+       TOAST
+       ===================================================== */
+
+    let toastTimeout;
+
+
+    function showPublicToast(
+      title,
+      message
+    ) {
+      const toast =
+        document.getElementById(
+          "publicToast"
+        );
+
+
+      document
+        .getElementById(
+          "toastTitle"
+        )
+        .textContent =
+          title;
+
+
+      document
+        .getElementById(
+          "toastMessage"
+        )
+        .textContent =
+          message;
+
+
+      clearTimeout(
+        toastTimeout
+      );
+
+
+      toast.classList.add(
+        "show"
+      );
+
+
+      toastTimeout =
+        setTimeout(
+          () => {
+            toast.classList.remove(
+              "show"
+            );
+          },
+          3500
+        );
+    }
+
+
+    /* =====================================================
+       EVENTS
+       ===================================================== */
+
+    function bindPublicEvents() {
+
+      locationFilter
+        .addEventListener(
+          "change",
+          renderPrices
+        );
+
+
+      commodityFilter
+        .addEventListener(
+          "change",
+          () => {
+            renderPrices();
+
+
+            if (
+              commodityFilter.value
+            ) {
+              renderComparison(
+                commodityFilter.value
+              );
+            }
+          }
+        );
+
+
+      document
+        .addEventListener(
+          "click",
+          (event) => {
+            const card =
+              event.target.closest(
+                "[data-price-card]"
+              );
+
+
+            if (card) {
+              const commodity =
+                card.dataset
+                  .commodity;
+
+
+              renderComparison(
+                commodity
+              );
+
+
+              document
+                .getElementById(
+                  "marketIntelligence"
+                )
+                .scrollIntoView({
+                  behavior:
+                    "smooth",
+                  block:
+                    "start"
+                });
+            }
+          }
+        );
+
+
+      document
+        .addEventListener(
+          "keydown",
+          (event) => {
+            const card =
+              event.target.closest(
+                "[data-price-card]"
+              );
+
+
+            if (
+              card &&
+              (
+                event.key ===
+                  "Enter" ||
+                event.key ===
+                  " "
+              )
+            ) {
+              event.preventDefault();
+
+
+              renderComparison(
+                card.dataset
+                  .commodity
+              );
+
+
+              document
+                .getElementById(
+                  "marketIntelligence"
+                )
+                .scrollIntoView({
+                  behavior:
+                    "smooth",
+                  block:
+                    "start"
+                });
+            }
+
+
+            if (
+              event.key ===
+              "Escape"
+            ) {
+              closeMoreMenu();
+            }
+          }
+        );
+
+
+      document
+        .querySelectorAll(
+          ".range-button"
+        )
+        .forEach(
+          (button) => {
+            button.addEventListener(
+              "click",
+              () => {
+                document
+                  .querySelectorAll(
+                    ".range-button"
+                  )
+                  .forEach(
+                    (item) => {
+                      item
+                        .classList
+                        .remove(
+                          "active"
+                        );
+                    }
+                  );
+
+
+                button
+                  .classList
+                  .add(
+                    "active"
+                  );
+
+
+                publicMarketState
+                  .selectedRange =
+                    button.dataset
+                      .range;
+
+
+                showPublicToast(
+                  `${button.dataset.range} view`,
+                  "Historical market feeds are not connected in this prototype, so the current demo comparison remains unchanged."
+                );
+              }
+            );
+          }
+        );
+
+
+      document
+        .getElementById(
+          "notificationButton"
+        )
+        .addEventListener(
+          "click",
+          () => {
+            showPublicToast(
+              "Market notifications",
+              "Personal market alerts will be available after signing in."
+            );
+          }
+        );
+
+
+      document
+        .getElementById(
+          "marketNavButton"
+        )
+        .addEventListener(
+          "click",
+          () => {
+            document
+              .getElementById(
+                "marketIntelligence"
+              )
+              .scrollIntoView({
+                behavior:
+                  "smooth",
+                block:
+                  "start"
+              });
+          }
+        );
+
+
+      document
+        .getElementById(
+          "moreNavButton"
+        )
+        .addEventListener(
+          "click",
+          openMoreMenu
+        );
+
+
+      document
+        .getElementById(
+          "headerMenuButton"
+        )
+        .addEventListener(
+          "click",
+          openMoreMenu
+        );
+
+
+      document
+        .getElementById(
+          "closeMoreButton"
+        )
+        .addEventListener(
+          "click",
+          closeMoreMenu
+        );
+
+
+      document
+        .getElementById(
+          "moreBackdrop"
+        )
+        .addEventListener(
+          "click",
+          (event) => {
+            if (
+              event.target ===
+              event.currentTarget
+            ) {
+              closeMoreMenu();
+            }
+          }
+        );
+
+
+      document
+        .getElementById(
+          "aboutPrototypeButton"
+        )
+        .addEventListener(
+          "click",
+          () => {
+            closeMoreMenu();
+
+
+            showPublicToast(
+              "AgroLink MVP",
+              "Market prices, trends, transactions and verification states shown in this prototype are demo data unless explicitly stated otherwise."
+            );
+          }
+        );
+    }
+  </script>
+
+</body>
+</html>

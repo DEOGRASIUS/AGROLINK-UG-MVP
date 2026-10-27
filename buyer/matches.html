@@ -1,0 +1,3030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Review agricultural supply matches on AgroLink Uganda."
+  >
+
+  <title>Supply Matches | AgroLink Uganda</title>
+
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+  <style>
+    body {
+      background: var(--background);
+    }
+
+    .matches-page {
+      min-height: 100vh;
+    }
+
+    .mobile-header {
+      display: none;
+    }
+
+    .page-container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 32px 0 60px;
+    }
+
+    /* ========================================
+       HEADER
+       ======================================== */
+
+    .page-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+
+      margin-bottom: 24px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+    }
+
+    .back-button {
+      width: 42px;
+      height: 42px;
+
+      flex: 0 0 auto;
+
+      border: 1px solid var(--border);
+      border-radius: 11px;
+
+      display: grid;
+      place-items: center;
+
+      background: #fff;
+      color: var(--text-secondary);
+
+      text-decoration: none;
+    }
+
+    .back-button:hover {
+      border-color: #b8d9c4;
+      color: var(--green-700);
+    }
+
+    .page-title h1 {
+      margin: 0;
+
+      font-size: 28px;
+      line-height: 1.15;
+      letter-spacing: -.7px;
+    }
+
+    .page-title p {
+      margin: 6px 0 0;
+
+      color: var(--text-secondary);
+
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .demo-pill {
+      padding: 7px 11px;
+
+      border: 1px solid #d8ecdf;
+      border-radius: 999px;
+
+      background: var(--green-50);
+      color: var(--green-800);
+
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    /* ========================================
+       PROCESS STRIP
+       ======================================== */
+
+    .process-strip {
+      margin-bottom: 22px;
+      padding: 15px 18px;
+
+      border: 1px solid var(--border-light);
+      border-radius: 15px;
+
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+
+      background: #fff;
+
+      box-shadow: var(--shadow-xs);
+    }
+
+    .process-step {
+      position: relative;
+
+      min-width: 0;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      text-align: center;
+    }
+
+    .process-step:not(:last-child)::after {
+      content: "";
+
+      position: absolute;
+
+      top: 15px;
+      left: 58%;
+
+      width: 84%;
+      height: 2px;
+
+      background: var(--border);
+    }
+
+    .process-circle {
+      position: relative;
+      z-index: 2;
+
+      width: 31px;
+      height: 31px;
+
+      border: 2px solid var(--border);
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: #fff;
+      color: var(--text-light);
+
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .process-step.done .process-circle {
+      border-color: var(--green-600);
+
+      background: var(--green-100);
+      color: var(--green-700);
+    }
+
+    .process-step.active .process-circle {
+      border-color: var(--green-700);
+
+      background: var(--green-700);
+      color: #fff;
+    }
+
+    .process-step.done:not(:last-child)::after {
+      background: var(--green-500);
+    }
+
+    .process-step strong {
+      margin-top: 7px;
+
+      color: var(--text-light);
+
+      font-size: 8px;
+    }
+
+    .process-step.active strong {
+      color: var(--green-800);
+    }
+
+    /* ========================================
+       DEMAND SUMMARY
+       ======================================== */
+
+    .demand-card {
+      margin-bottom: 22px;
+      padding: 20px;
+
+      border: 1px solid var(--border-light);
+      border-radius: 17px;
+
+      background: #fff;
+
+      box-shadow: var(--shadow-xs);
+    }
+
+    .demand-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+
+      margin-bottom: 16px;
+    }
+
+    .demand-card-top h2 {
+      margin: 0;
+
+      font-size: 14px;
+    }
+
+    .open-badge {
+      padding: 5px 9px;
+
+      border-radius: 999px;
+
+      background: var(--success-bg);
+      color: var(--success);
+
+      font-size: 8px;
+      font-weight: 800;
+    }
+
+    .demand-details {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .demand-detail {
+      padding: 12px;
+
+      border-radius: 11px;
+
+      background: var(--surface-secondary);
+    }
+
+    .demand-detail span {
+      display: block;
+
+      color: var(--text-light);
+
+      font-size: 8px;
+    }
+
+    .demand-detail strong {
+      display: block;
+
+      margin-top: 4px;
+
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    /* ========================================
+       MATCHES HEADER
+       ======================================== */
+
+    .matches-heading {
+      margin-bottom: 14px;
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .matches-heading h2 {
+      margin: 0;
+
+      font-size: 18px;
+    }
+
+    .matches-heading p {
+      margin: 5px 0 0;
+
+      color: var(--text-secondary);
+
+      font-size: 9px;
+    }
+
+    .matches-count {
+      color: var(--text-secondary);
+
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    /* ========================================
+       MATCH CARD
+       ======================================== */
+
+    .matches-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .match-card {
+      position: relative;
+
+      overflow: hidden;
+
+      padding: 21px;
+
+      border: 1px solid var(--border-light);
+      border-radius: 17px;
+
+      background: #fff;
+
+      box-shadow: var(--shadow-xs);
+
+      transition:
+        transform .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .match-card:hover {
+      transform: translateY(-2px);
+
+      border-color: #cce3d4;
+
+      box-shadow: var(--shadow-sm);
+    }
+
+    .best-match-ribbon {
+      position: absolute;
+
+      top: 0;
+      right: 0;
+
+      padding: 6px 13px;
+
+      border-bottom-left-radius: 12px;
+
+      background: var(--green-700);
+      color: #fff;
+
+      font-size: 8px;
+      font-weight: 800;
+    }
+
+    .match-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .supply-main {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .commodity-photo {
+      width: 70px;
+      height: 70px;
+
+      flex: 0 0 auto;
+
+      overflow: hidden;
+
+      border-radius: 13px;
+
+      background: var(--surface-secondary);
+    }
+
+    .commodity-photo img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    .supply-title h3 {
+      margin: 0;
+
+      font-size: 16px;
+    }
+
+    .supply-title p {
+      margin: 5px 0 0;
+
+      color: var(--text-secondary);
+
+      font-size: 9px;
+    }
+
+    .verification {
+      margin-top: 8px;
+
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .mini-badge {
+      padding: 5px 8px;
+
+      border-radius: 999px;
+
+      font-size: 8px;
+      font-weight: 800;
+    }
+
+    .mini-badge.verified {
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .mini-badge.pending {
+      background: var(--warning-bg);
+      color: #9a6b12;
+    }
+
+    .mini-badge.demo {
+      background: var(--surface-secondary);
+      color: var(--text-secondary);
+    }
+
+    /* ========================================
+       SCORE
+       ======================================== */
+
+    .match-score {
+      min-width: 84px;
+
+      text-align: center;
+    }
+
+    .score-circle {
+      width: 60px;
+      height: 60px;
+
+      margin: 0 auto;
+
+      border: 5px solid var(--green-100);
+      border-top-color: var(--green-600);
+      border-right-color: var(--green-600);
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      color: var(--green-800);
+
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .match-score span {
+      display: block;
+
+      margin-top: 5px;
+
+      color: var(--text-light);
+
+      font-size: 8px;
+    }
+
+    /* ========================================
+       METRICS
+       ======================================== */
+
+    .match-metrics {
+      margin-top: 18px;
+
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 9px;
+    }
+
+    .metric {
+      padding: 11px;
+
+      border-radius: 10px;
+
+      background: var(--surface-secondary);
+    }
+
+    .metric span {
+      display: block;
+
+      color: var(--text-light);
+
+      font-size: 8px;
+    }
+
+    .metric strong {
+      display: block;
+
+      margin-top: 4px;
+
+      font-size: 10px;
+    }
+
+    .price-good {
+      color: var(--success);
+    }
+
+    /* ========================================
+       PROGRESS
+       ======================================== */
+
+    .quantity-progress {
+      margin-top: 15px;
+    }
+
+    .quantity-progress-top {
+      margin-bottom: 7px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+
+      color: var(--text-secondary);
+
+      font-size: 8px;
+    }
+
+    .progress-track {
+      height: 7px;
+
+      overflow: hidden;
+
+      border-radius: 999px;
+
+      background: var(--surface-secondary);
+    }
+
+    .progress-fill {
+      height: 100%;
+
+      border-radius: inherit;
+
+      background: var(--green-600);
+    }
+
+    /* ========================================
+       CARD FOOTER
+       ======================================== */
+
+    .match-footer {
+      margin-top: 18px;
+      padding-top: 15px;
+
+      border-top: 1px solid var(--border-light);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .managed-copy {
+      max-width: 510px;
+
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+
+      color: var(--text-secondary);
+
+      font-size: 8px;
+      line-height: 1.5;
+    }
+
+    .managed-copy svg {
+      flex: 0 0 auto;
+
+      color: var(--green-700);
+    }
+
+    .request-button {
+      min-height: 43px;
+
+      padding: 0 16px;
+
+      border: 1px solid var(--green-700);
+      border-radius: 10px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+
+      background: var(--green-700);
+      color: #fff;
+
+      font-size: 9px;
+      font-weight: 800;
+
+      white-space: nowrap;
+    }
+
+    .request-button:hover {
+      background: var(--green-800);
+    }
+
+    /* ========================================
+       EMPTY
+       ======================================== */
+
+    .empty-state {
+      padding: 55px 20px;
+
+      border: 1px solid var(--border-light);
+      border-radius: 17px;
+
+      background: #fff;
+
+      text-align: center;
+    }
+
+    .empty-icon {
+      width: 64px;
+      height: 64px;
+
+      margin: 0 auto 15px;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--green-50);
+      color: var(--green-700);
+    }
+
+    .empty-state h3 {
+      margin: 0;
+
+      font-size: 17px;
+    }
+
+    .empty-state p {
+      max-width: 430px;
+
+      margin: 7px auto 18px;
+
+      color: var(--text-secondary);
+
+      font-size: 9px;
+      line-height: 1.6;
+    }
+
+    .empty-button {
+      min-height: 43px;
+
+      padding: 0 16px;
+
+      border-radius: 10px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      background: var(--green-700);
+      color: #fff;
+
+      font-size: 9px;
+      font-weight: 800;
+
+      text-decoration: none;
+    }
+
+    /* ========================================
+       REQUEST MODAL
+       ======================================== */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+
+      z-index: 300;
+
+      padding: 20px;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      background: rgba(4,29,19,.57);
+
+      backdrop-filter: blur(3px);
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .request-modal {
+      width: min(100%, 480px);
+
+      overflow: hidden;
+
+      border-radius: 20px;
+
+      background: #fff;
+
+      box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.22);
+    }
+
+    .modal-header {
+      padding: 23px 23px 17px;
+
+      border-bottom: 1px solid var(--border-light);
+
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+
+      font-size: 19px;
+    }
+
+    .modal-header p {
+      margin: 5px 0 0;
+
+      color: var(--text-secondary);
+
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+    .modal-close {
+      width: 34px;
+      height: 34px;
+
+      flex: 0 0 auto;
+
+      border: 0;
+      border-radius: 9px;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--surface-secondary);
+      color: var(--text-secondary);
+    }
+
+    .modal-body {
+      padding: 20px 23px;
+    }
+
+    .request-summary {
+      padding: 14px;
+
+      border-radius: 12px;
+
+      background: var(--surface-secondary);
+    }
+
+    .request-row {
+      padding: 7px 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .request-row:last-child {
+      border-bottom: 0;
+    }
+
+    .request-row span {
+      color: var(--text-secondary);
+
+      font-size: 9px;
+    }
+
+    .request-row strong {
+      text-align: right;
+
+      font-size: 10px;
+    }
+
+    .request-value {
+      margin-top: 14px;
+      padding: 13px;
+
+      border: 1px solid #d8ecdf;
+      border-radius: 11px;
+
+      background: var(--green-50);
+    }
+
+    .request-value span {
+      color: var(--text-secondary);
+
+      font-size: 8px;
+    }
+
+    .request-value strong {
+      display: block;
+
+      margin-top: 3px;
+
+      color: var(--green-900);
+
+      font-size: 20px;
+    }
+
+    .important-notice {
+      margin-top: 14px;
+      padding: 13px;
+
+      border: 1px solid #f3dfb6;
+      border-radius: 11px;
+
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+
+      background: var(--warning-bg);
+    }
+
+    .important-notice svg {
+      flex: 0 0 auto;
+
+      color: #a87516;
+    }
+
+    .important-notice strong {
+      display: block;
+
+      color: #7b5b1b;
+
+      font-size: 9px;
+    }
+
+    .important-notice p {
+      margin: 3px 0 0;
+
+      color: #806a3e;
+
+      font-size: 8px;
+      line-height: 1.55;
+    }
+
+    .modal-actions {
+      padding: 0 23px 23px;
+
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 9px;
+    }
+
+    .modal-button {
+      min-height: 48px;
+
+      border-radius: 10px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .modal-button.cancel {
+      border: 1px solid var(--border);
+
+      background: #fff;
+      color: var(--text-secondary);
+    }
+
+    .modal-button.confirm {
+      border: 1px solid var(--green-700);
+
+      background: var(--green-700);
+      color: #fff;
+    }
+
+    /* ========================================
+       SUCCESS MODAL
+       ======================================== */
+
+    .success-modal {
+      width: min(100%, 430px);
+
+      padding: 29px 25px;
+
+      border-radius: 20px;
+
+      background: #fff;
+
+      text-align: center;
+
+      box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.22);
+    }
+
+    .success-icon {
+      width: 68px;
+      height: 68px;
+
+      margin: 0 auto 16px;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .success-modal h2 {
+      margin: 0;
+
+      font-size: 21px;
+    }
+
+    .success-modal p {
+      margin: 8px 0 0;
+
+      color: var(--text-secondary);
+
+      font-size: 9px;
+      line-height: 1.6;
+    }
+
+    .verification-box {
+      margin-top: 17px;
+      padding: 13px;
+
+      border: 1px solid #f3dfb6;
+      border-radius: 11px;
+
+      background: var(--warning-bg);
+
+      text-align: left;
+    }
+
+    .verification-box strong {
+      display: block;
+
+      color: #795819;
+
+      font-size: 9px;
+    }
+
+    .verification-box span {
+      display: block;
+
+      margin-top: 4px;
+
+      color: #806a3e;
+
+      font-size: 8px;
+      line-height: 1.5;
+    }
+
+    .success-modal a {
+      width: 100%;
+      min-height: 48px;
+
+      margin-top: 18px;
+
+      border-radius: 10px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: var(--green-700);
+      color: #fff;
+
+      font-size: 9px;
+      font-weight: 800;
+
+      text-decoration: none;
+    }
+
+    /* ========================================
+       MOBILE NAV
+       ======================================== */
+
+    .mobile-nav {
+      display: none;
+    }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+
+    @media (max-width: 850px) {
+      .demand-details {
+        grid-template-columns:
+          repeat(3, minmax(0,1fr));
+      }
+
+      .match-metrics {
+        grid-template-columns:
+          repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 767px) {
+      body {
+        padding-bottom: 76px;
+
+        background: #fff;
+      }
+
+      .mobile-header {
+        position: sticky;
+        top: 0;
+
+        z-index: 100;
+
+        min-height: 66px;
+
+        padding: 0 15px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        background: #0b8548;
+        color: #fff;
+      }
+
+      .mobile-header a {
+        width: 36px;
+        height: 36px;
+
+        display: grid;
+        place-items: center;
+
+        color: #fff;
+
+        text-decoration: none;
+      }
+
+      .mobile-header div {
+        text-align: center;
+      }
+
+      .mobile-header strong {
+        display: block;
+
+        font-size: 14px;
+      }
+
+      .mobile-header span {
+        display: block;
+
+        margin-top: 2px;
+
+        color: rgba(255,255,255,.72);
+
+        font-size: 8px;
+      }
+
+      .mobile-spacer {
+        width: 36px;
+      }
+
+      .page-container {
+        width: 100%;
+
+        padding: 22px 14px 30px;
+      }
+
+      .page-header {
+        margin-bottom: 18px;
+      }
+
+      .back-button,
+      .demo-pill {
+        display: none;
+      }
+
+      .page-title h1 {
+        font-size: 23px;
+      }
+
+      .page-title p {
+        font-size: 9px;
+      }
+
+      .process-strip {
+        padding: 12px 6px;
+
+        overflow-x: auto;
+      }
+
+      .process-step strong {
+        font-size: 7px;
+      }
+
+      .process-circle {
+        width: 27px;
+        height: 27px;
+
+        font-size: 8px;
+      }
+
+      .process-step:not(:last-child)::after {
+        top: 13px;
+      }
+
+      .demand-card {
+        padding: 16px;
+      }
+
+      .demand-details {
+        grid-template-columns:
+          repeat(2, minmax(0,1fr));
+      }
+
+      .match-card {
+        padding: 17px 14px;
+      }
+
+      .match-top {
+        gap: 10px;
+      }
+
+      .commodity-photo {
+        width: 58px;
+        height: 58px;
+      }
+
+      .supply-main {
+        gap: 10px;
+      }
+
+      .supply-title h3 {
+        font-size: 14px;
+      }
+
+      .match-score {
+        min-width: 61px;
+      }
+
+      .score-circle {
+        width: 52px;
+        height: 52px;
+
+        font-size: 13px;
+      }
+
+      .match-footer {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .request-button {
+        width: 100%;
+      }
+
+      .mobile-nav {
+        position: fixed;
+
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        z-index: 200;
+
+        min-height: 68px;
+
+        padding:
+          7px
+          max(7px, env(safe-area-inset-right))
+          calc(7px + env(safe-area-inset-bottom))
+          max(7px, env(safe-area-inset-left));
+
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+
+        border-top: 1px solid var(--border);
+
+        background: rgba(255,255,255,.97);
+
+        box-shadow:
+          0 -7px 25px
+          rgba(0,0,0,.06);
+      }
+
+      .mobile-nav a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+
+        color: var(--text-light);
+
+        text-decoration: none;
+
+        font-size: 8px;
+        font-weight: 700;
+      }
+
+      .mobile-nav a.active {
+        color: var(--green-700);
+      }
+
+      .mobile-nav .nav-primary {
+        position: relative;
+
+        top: -15px;
+      }
+
+      .mobile-nav .nav-primary span:first-child {
+        width: 46px;
+        height: 46px;
+
+        border-radius: 50%;
+
+        display: grid;
+        place-items: center;
+
+        background: var(--green-700);
+        color: #fff;
+
+        box-shadow:
+          0 6px 16px
+          rgba(7,140,80,.24);
+      }
+
+      .mobile-nav .nav-primary strong {
+        color: var(--green-700);
+
+        font-size: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .demand-details {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .match-metrics {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .match-top {
+        align-items: flex-start;
+      }
+
+      .commodity-photo {
+        width: 52px;
+        height: 52px;
+      }
+
+      .supply-title p {
+        max-width: 150px;
+      }
+
+      .modal-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="matches-page">
+
+  <!-- MOBILE HEADER -->
+
+  <header class="mobile-header">
+
+    <a
+      href="dashboard.html"
+      aria-label="Back"
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M19 12H5"></path>
+        <path d="m12 19-7-7 7-7"></path>
+      </svg>
+    </a>
+
+    <div>
+      <strong>Supply Matches</strong>
+      <span>AgroLink Uganda</span>
+    </div>
+
+    <span class="mobile-spacer"></span>
+
+  </header>
+
+
+  <main class="page-container">
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+      <div class="header-left">
+
+        <a
+          href="dashboard.html"
+          class="back-button"
+          aria-label="Back to dashboard"
+        >
+          <svg
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M19 12H5"></path>
+            <path d="m12 19-7-7 7-7"></path>
+          </svg>
+        </a>
+
+
+        <div class="page-title">
+          <h1>Potential supply matches</h1>
+
+          <p>
+            AgroLink has compared your demand with
+            available demo supply.
+          </p>
+        </div>
+
+      </div>
+
+
+      <span class="demo-pill">
+        MVP DEMO
+      </span>
+
+    </div>
+
+
+    <!-- PROCESS -->
+
+    <section class="process-strip">
+
+      <div class="process-step done">
+        <span class="process-circle">✓</span>
+        <strong>Demand</strong>
+      </div>
+
+      <div class="process-step active">
+        <span class="process-circle">2</span>
+        <strong>Match</strong>
+      </div>
+
+      <div class="process-step">
+        <span class="process-circle">3</span>
+        <strong>Verification</strong>
+      </div>
+
+      <div class="process-step">
+        <span class="process-circle">4</span>
+        <strong>Payment</strong>
+      </div>
+
+      <div class="process-step">
+        <span class="process-circle">5</span>
+        <strong>Delivery</strong>
+      </div>
+
+      <div class="process-step">
+        <span class="process-circle">6</span>
+        <strong>Complete</strong>
+      </div>
+
+    </section>
+
+
+    <!-- DEMAND -->
+
+    <section
+      class="demand-card"
+      id="demandCard"
+    ></section>
+
+
+    <!-- MATCHES -->
+
+    <div class="matches-heading">
+
+      <div>
+        <h2>Available matches</h2>
+
+        <p>
+          Select a supply option to request
+          AgroLink verification.
+        </p>
+      </div>
+
+      <span
+        class="matches-count"
+        id="matchesCount"
+      ></span>
+
+    </div>
+
+
+    <section
+      class="matches-list"
+      id="matchesList"
+    ></section>
+
+  </main>
+
+
+  <!-- MOBILE NAV -->
+
+  <nav
+    class="mobile-nav"
+    aria-label="Buyer navigation"
+  >
+
+    <a href="dashboard.html">
+
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+      >
+        <path d="M3 11 12 4l9 7"></path>
+        <path d="M5 10v10h14V10"></path>
+      </svg>
+
+      <span>Home</span>
+    </a>
+
+
+    <a href="market.html">
+
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+      >
+        <path d="M3 18 9 12l4 4 8-10"></path>
+        <path d="M15 6h6v6"></path>
+      </svg>
+
+      <span>Market</span>
+    </a>
+
+
+    <a
+      href="post-demand.html"
+      class="nav-primary"
+    >
+      <span>
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M12 5v14"></path>
+          <path d="M5 12h14"></path>
+        </svg>
+      </span>
+
+      <strong>Demand</strong>
+    </a>
+
+
+    <a
+      href="orders.html"
+      class="active"
+    >
+
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+      >
+        <path d="M5 4h14v16H5z"></path>
+        <path d="M8 8h8"></path>
+        <path d="M8 12h8"></path>
+      </svg>
+
+      <span>Orders</span>
+    </a>
+
+
+    <a href="profile.html">
+
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+      >
+        <circle cx="12" cy="8" r="4"></circle>
+        <path d="M4 21a8 8 0 0 1 16 0"></path>
+      </svg>
+
+      <span>Profile</span>
+    </a>
+
+  </nav>
+
+</div>
+
+
+<!-- REQUEST MODAL -->
+
+<div
+  class="modal-overlay"
+  id="requestOverlay"
+>
+
+  <div class="request-modal">
+
+    <div class="modal-header">
+
+      <div>
+        <h2>Request this supply?</h2>
+
+        <p>
+          AgroLink will begin verification before
+          payment is requested.
+        </p>
+      </div>
+
+
+      <button
+        type="button"
+        class="modal-close"
+        id="closeRequestModal"
+        aria-label="Close"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="modal-body">
+
+      <div
+        class="request-summary"
+        id="requestSummary"
+      ></div>
+
+
+      <div class="request-value">
+        <span>Estimated transaction value</span>
+
+        <strong id="requestValue">
+          UGX 0
+        </strong>
+      </div>
+
+
+      <div class="important-notice">
+
+        <svg
+          width="17"
+          height="17"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="9"
+          ></circle>
+
+          <path d="M12 8v5"></path>
+          <path d="M12 16h.01"></path>
+        </svg>
+
+
+        <div>
+          <strong>No payment yet</strong>
+
+          <p>
+            Requesting supply does not charge you.
+            AgroLink first verifies availability,
+            quality and transaction conditions.
+            Payment comes after verification and
+            order confirmation.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="modal-actions">
+
+      <button
+        type="button"
+        class="modal-button cancel"
+        id="cancelRequest"
+      >
+        Not Yet
+      </button>
+
+
+      <button
+        type="button"
+        class="modal-button confirm"
+        id="confirmRequest"
+      >
+        Request Supply
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- SUCCESS MODAL -->
+
+<div
+  class="modal-overlay"
+  id="successOverlay"
+>
+
+  <div class="success-modal">
+
+    <div class="success-icon">
+
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="9"
+        ></circle>
+
+        <path
+          d="m8 12 2.5 2.5L16 9"
+        ></path>
+      </svg>
+
+    </div>
+
+
+    <h2>Supply requested</h2>
+
+    <p>
+      Your request has been recorded.
+      AgroLink will now verify the proposed supply
+      before the order moves to payment.
+    </p>
+
+
+    <div class="verification-box">
+      <strong>
+        Next stage: AgroLink Verification
+      </strong>
+
+      <span>
+        Supplier availability, quantity and quality
+        are marked as pending verification in this MVP.
+      </span>
+    </div>
+
+
+    <a href="orders.html">
+      View Order Status →
+    </a>
+
+  </div>
+
+</div>
+
+
+<script src="../js/config.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/utils.js"></script>
+
+
+<script>
+  let currentDemand = null;
+  let currentMatches = [];
+  let selectedMatch = null;
+
+
+  /* =========================================
+     INITIALIZE
+     ========================================= */
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    initializePage
+  );
+
+
+  function initializePage() {
+
+    currentDemand =
+      getLastDemand();
+
+
+    currentMatches =
+      getRelevantMatches(
+        currentDemand
+      );
+
+
+    renderDemand();
+
+    renderMatches();
+
+  }
+
+
+  /* =========================================
+     DEMAND
+     ========================================= */
+
+  function getLastDemand() {
+
+    try {
+
+      const direct =
+        JSON.parse(
+          localStorage.getItem(
+            "agrolink_last_demand"
+          )
+        );
+
+
+      if (direct) {
+        return direct;
+      }
+
+    } catch (error) {
+      console.warn(error);
+    }
+
+
+    const key =
+      window.AGROLINK_CONFIG
+        ?.storageKeys
+        ?.demands ||
+      "agrolink_demands";
+
+
+    const demands =
+      readArray(key);
+
+
+    if (demands.length) {
+
+      return demands[0];
+
+    }
+
+
+    /*
+      Fallback demo requirement.
+    */
+
+    return {
+      id: "DEM-001",
+      commodity: "Dry Maize",
+      quantity: 5000,
+      targetPrice: 1200,
+      location: "Kampala",
+      requiredDate: "",
+      status: "Open",
+      demo: true
+    };
+
+  }
+
+
+  function renderDemand() {
+
+    const container =
+      document.getElementById(
+        "demandCard"
+      );
+
+
+    if (!currentDemand) {
+      return;
+    }
+
+
+    container.innerHTML = `
+      <div class="demand-card-top">
+
+        <h2>
+          Current Demand
+        </h2>
+
+        <span class="open-badge">
+          ${escapeHTML(
+            currentDemand.status ||
+            "Open"
+          )}
+        </span>
+
+      </div>
+
+
+      <div class="demand-details">
+
+        <div class="demand-detail">
+          <span>Commodity</span>
+          <strong>
+            ${escapeHTML(
+              currentDemand.commodity
+            )}
+          </strong>
+        </div>
+
+
+        <div class="demand-detail">
+          <span>Quantity Required</span>
+          <strong>
+            ${formatNumber(
+              currentDemand.quantity
+            )} kg
+          </strong>
+        </div>
+
+
+        <div class="demand-detail">
+          <span>Target Price</span>
+          <strong>
+            UGX
+            ${formatNumber(
+              currentDemand.targetPrice
+            )}/kg
+          </strong>
+        </div>
+
+
+        <div class="demand-detail">
+          <span>Delivery</span>
+          <strong>
+            ${escapeHTML(
+              currentDemand.location ||
+              "—"
+            )}
+          </strong>
+        </div>
+
+
+        <div class="demand-detail">
+          <span>Required By</span>
+          <strong>
+            ${
+              currentDemand.requiredDate
+                ? formatDate(
+                    currentDemand.requiredDate
+                  )
+                : "Flexible"
+            }
+          </strong>
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  /* =========================================
+     MATCHES
+     ========================================= */
+
+  function getRelevantMatches(
+    demand
+  ) {
+
+    let matches = [];
+
+
+    try {
+
+      matches =
+        JSON.parse(
+          localStorage.getItem(
+            "agrolink_last_matches"
+          )
+        ) || [];
+
+    } catch (error) {
+
+      matches = [];
+
+    }
+
+
+    if (
+      !Array.isArray(matches) ||
+      !matches.length
+    ) {
+
+      const key =
+        window.AGROLINK_CONFIG
+          ?.storageKeys
+          ?.matches ||
+        "agrolink_matches";
+
+
+      matches =
+        readArray(key);
+
+    }
+
+
+    if (
+      demand &&
+      matches.length
+    ) {
+
+      const related =
+        matches.filter(
+          item =>
+            !item.demandId ||
+            item.demandId === demand.id
+        );
+
+
+      if (related.length) {
+        matches = related;
+      }
+
+    }
+
+
+    /*
+      Demo fallback so the screen is still
+      meaningful when opened directly.
+    */
+
+    if (!matches.length) {
+
+      matches = [
+        {
+          id: "MATCH-001",
+          demandId:
+            demand?.id ||
+            "DEM-001",
+
+          supplyId:
+            "SUP-001",
+
+          commodity:
+            demand?.commodity ||
+            "Dry Maize",
+
+          quantity:
+            3000,
+
+          demandQuantity:
+            demand?.quantity ||
+            5000,
+
+          supplyQuantity:
+            3000,
+
+          targetPrice:
+            demand?.targetPrice ||
+            1200,
+
+          supplyPrice:
+            1150,
+
+          buyerLocation:
+            demand?.location ||
+            "Kampala",
+
+          supplierLocation:
+            "Mukono",
+
+          score:
+            94,
+
+          status:
+            "Potential Match",
+
+          verificationStatus:
+            "Supplier Verified",
+
+          demo:
+            true
+        }
+      ];
+
+    }
+
+
+    return matches
+      .sort(
+        (a, b) =>
+          Number(b.score || 0) -
+          Number(a.score || 0)
+      );
+
+  }
+
+
+  function renderMatches() {
+
+    const container =
+      document.getElementById(
+        "matchesList"
+      );
+
+
+    const count =
+      document.getElementById(
+        "matchesCount"
+      );
+
+
+    count.textContent =
+      `${currentMatches.length} potential ${
+        currentMatches.length === 1
+          ? "match"
+          : "matches"
+      }`;
+
+
+    if (!currentMatches.length) {
+
+      container.innerHTML = `
+        <div class="empty-state">
+
+          <div class="empty-icon">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <circle
+                cx="11"
+                cy="11"
+                r="7"
+              ></circle>
+
+              <path d="m20 20-4-4"></path>
+            </svg>
+          </div>
+
+          <h3>
+            No matches yet
+          </h3>
+
+          <p>
+            AgroLink has not found compatible
+            demo supply for this demand yet.
+            You can create another requirement
+            or return later.
+          </p>
+
+          <a
+            href="post-demand.html"
+            class="empty-button"
+          >
+            Post Another Demand
+          </a>
+
+        </div>
+      `;
+
+      return;
+    }
+
+
+    container.innerHTML =
+      currentMatches
+        .map(
+          (match, index) =>
+            createMatchCard(
+              match,
+              index
+            )
+        )
+        .join("");
+
+
+    container
+      .querySelectorAll(
+        "[data-request-match]"
+      )
+      .forEach(
+        button => {
+
+          button.addEventListener(
+            "click",
+            () => {
+
+              const id =
+                button.dataset
+                  .requestMatch;
+
+
+              const match =
+                currentMatches.find(
+                  item =>
+                    String(item.id) ===
+                    String(id)
+                );
+
+
+              if (match) {
+
+                openRequestModal(
+                  match
+                );
+
+              }
+
+            }
+          );
+
+        }
+      );
+
+  }
+
+
+  function createMatchCard(
+    match,
+    index
+  ) {
+
+    const quantity =
+      Number(
+        match.quantity ||
+        0
+      );
+
+
+    const demandQuantity =
+      Number(
+        match.demandQuantity ||
+        currentDemand?.quantity ||
+        quantity
+      );
+
+
+    const supplyPrice =
+      Number(
+        match.supplyPrice ||
+        0
+      );
+
+
+    const targetPrice =
+      Number(
+        match.targetPrice ||
+        currentDemand?.targetPrice ||
+        0
+      );
+
+
+    const progress =
+      demandQuantity
+        ? Math.min(
+            100,
+            Math.round(
+              quantity /
+              demandQuantity *
+              100
+            )
+          )
+        : 0;
+
+
+    const commodity =
+      match.commodity ||
+      currentDemand?.commodity ||
+      "Dry Maize";
+
+
+    const image =
+      commodity
+        .toLowerCase()
+        .includes("bean")
+          ? "../assets/images/crops/beans.jpg"
+          : "../assets/images/crops/dry-maize.jpg";
+
+
+    const verification =
+      match.verificationStatus ||
+      "Awaiting Verification";
+
+
+    const verificationClass =
+      verification
+        .toLowerCase()
+        .includes("verified")
+          ? "verified"
+          : "pending";
+
+
+    const priceDifference =
+      targetPrice -
+      supplyPrice;
+
+
+    const estimatedValue =
+      quantity *
+      supplyPrice;
+
+
+    return `
+      <article class="match-card">
+
+        ${
+          index === 0
+            ? `
+              <div class="best-match-ribbon">
+                BEST MATCH
+              </div>
+            `
+            : ""
+        }
+
+
+        <div class="match-top">
+
+          <div class="supply-main">
+
+            <div class="commodity-photo">
+              <img
+                src="${image}"
+                alt="${escapeHTML(
+                  commodity
+                )}"
+              >
+            </div>
+
+
+            <div class="supply-title">
+
+              <h3>
+                ${escapeHTML(
+                  commodity
+                )} Supply
+              </h3>
+
+              <p>
+                Available from
+                ${escapeHTML(
+                  match.supplierLocation ||
+                  "Uganda"
+                )}
+              </p>
+
+
+              <div class="verification">
+
+                <span
+                  class="mini-badge ${verificationClass}"
+                >
+                  ${escapeHTML(
+                    verification
+                  )}
+                </span>
+
+                <span class="mini-badge demo">
+                  Demo Supply
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="match-score">
+
+            <div class="score-circle">
+              ${Number(
+                match.score ||
+                0
+              )}%
+            </div>
+
+            <span>
+              Match score
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="match-metrics">
+
+          <div class="metric">
+            <span>Available</span>
+
+            <strong>
+              ${formatNumber(
+                quantity
+              )} kg
+            </strong>
+          </div>
+
+
+          <div class="metric">
+            <span>Supply Price</span>
+
+            <strong
+              class="${
+                supplyPrice <= targetPrice
+                  ? "price-good"
+                  : ""
+              }"
+            >
+              UGX
+              ${formatNumber(
+                supplyPrice
+              )}/kg
+            </strong>
+          </div>
+
+
+          <div class="metric">
+            <span>Your Target</span>
+
+            <strong>
+              UGX
+              ${formatNumber(
+                targetPrice
+              )}/kg
+            </strong>
+          </div>
+
+
+          <div class="metric">
+            <span>Est. Value</span>
+
+            <strong>
+              UGX
+              ${formatNumber(
+                estimatedValue
+              )}
+            </strong>
+          </div>
+
+        </div>
+
+
+        <div class="quantity-progress">
+
+          <div class="quantity-progress-top">
+
+            <span>
+              Can potentially fulfil
+              ${formatNumber(
+                quantity
+              )}
+              of
+              ${formatNumber(
+                demandQuantity
+              )}
+              kg
+            </span>
+
+            <strong>
+              ${progress}%
+            </strong>
+
+          </div>
+
+
+          <div class="progress-track">
+
+            <div
+              class="progress-fill"
+              style="width:${progress}%"
+            ></div>
+
+          </div>
+
+        </div>
+
+
+        <div class="match-footer">
+
+          <div class="managed-copy">
+
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path
+                d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z"
+              ></path>
+
+              <path
+                d="m8.5 12 2.2 2.2 4.8-5"
+              ></path>
+            </svg>
+
+
+            <span>
+              AgroLink coordinates the transaction.
+              Supplier contact details are not shared
+              directly. Quantity and quality are verified
+              before payment.
+            </span>
+
+          </div>
+
+
+          <button
+            type="button"
+            class="request-button"
+            data-request-match="${escapeHTML(
+              match.id
+            )}"
+          >
+            Request Supply
+
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M5 12h14"></path>
+              <path d="m13 6 6 6-6 6"></path>
+            </svg>
+          </button>
+
+        </div>
+
+      </article>
+    `;
+
+  }
+
+
+  /* =========================================
+     REQUEST MODAL
+     ========================================= */
+
+  function openRequestModal(
+    match
+  ) {
+
+    selectedMatch =
+      match;
+
+
+    const quantity =
+      Number(
+        match.quantity ||
+        0
+      );
+
+
+    const price =
+      Number(
+        match.supplyPrice ||
+        0
+      );
+
+
+    document
+      .getElementById(
+        "requestSummary"
+      )
+      .innerHTML = `
+
+        <div class="request-row">
+          <span>Commodity</span>
+
+          <strong>
+            ${escapeHTML(
+              match.commodity ||
+              currentDemand.commodity
+            )}
+          </strong>
+        </div>
+
+
+        <div class="request-row">
+          <span>Quantity</span>
+
+          <strong>
+            ${formatNumber(
+              quantity
+            )} kg
+          </strong>
+        </div>
+
+
+        <div class="request-row">
+          <span>Supply Price</span>
+
+          <strong>
+            UGX
+            ${formatNumber(
+              price
+            )}/kg
+          </strong>
+        </div>
+
+
+        <div class="request-row">
+          <span>Supply Location</span>
+
+          <strong>
+            ${escapeHTML(
+              match.supplierLocation ||
+              "—"
+            )}
+          </strong>
+        </div>
+
+
+        <div class="request-row">
+          <span>Current Status</span>
+
+          <strong>
+            Potential Match
+          </strong>
+        </div>
+      `;
+
+
+    document
+      .getElementById(
+        "requestValue"
+      )
+      .textContent =
+        "UGX " +
+        formatNumber(
+          quantity *
+          price
+        );
+
+
+    document
+      .getElementById(
+        "requestOverlay"
+      )
+      .classList
+      .add(
+        "show"
+      );
+
+  }
+
+
+  function closeRequestModal() {
+
+    document
+      .getElementById(
+        "requestOverlay"
+      )
+      .classList
+      .remove(
+        "show"
+      );
+
+  }
+
+
+  document
+    .getElementById(
+      "closeRequestModal"
+    )
+    .addEventListener(
+      "click",
+      closeRequestModal
+    );
+
+
+  document
+    .getElementById(
+      "cancelRequest"
+    )
+    .addEventListener(
+      "click",
+      closeRequestModal
+    );
+
+
+  document
+    .getElementById(
+      "confirmRequest"
+    )
+    .addEventListener(
+      "click",
+      confirmSupplyRequest
+    );
+
+
+  /* =========================================
+     CREATE ORDER
+     ========================================= */
+
+  function confirmSupplyRequest() {
+
+    if (
+      !selectedMatch
+    ) {
+      return;
+    }
+
+
+    const quantity =
+      Number(
+        selectedMatch.quantity ||
+        0
+      );
+
+
+    const unitPrice =
+      Number(
+        selectedMatch.supplyPrice ||
+        0
+      );
+
+
+    const grossValue =
+      quantity *
+      unitPrice;
+
+
+    const commissionRate =
+      Number(
+        window.AGROLINK_CONFIG
+          ?.commissionRate ||
+        0.10
+      );
+
+
+    const commission =
+      grossValue *
+      commissionRate;
+
+
+    const supplierNet =
+      grossValue -
+      commission;
+
+
+    const order = {
+
+      id:
+        "ORD-" +
+        Date.now(),
+
+      reference:
+        "AGL-" +
+        new Date()
+          .getFullYear() +
+        "-" +
+        String(
+          Date.now()
+        )
+          .slice(-6),
+
+      demandId:
+        currentDemand?.id,
+
+      matchId:
+        selectedMatch.id,
+
+      supplyId:
+        selectedMatch.supplyId,
+
+      commodity:
+        selectedMatch.commodity ||
+        currentDemand?.commodity,
+
+      quantity:
+        quantity,
+
+      unitPrice:
+        unitPrice,
+
+      grossValue:
+        grossValue,
+
+      commissionRate:
+        commissionRate,
+
+      commission:
+        commission,
+
+      supplierNet:
+        supplierNet,
+
+      buyerLocation:
+        currentDemand?.location,
+
+      supplierLocation:
+        selectedMatch.supplierLocation,
+
+      requiredDate:
+        currentDemand?.requiredDate,
+
+      status:
+        "Awaiting Verification",
+
+      paymentStatus:
+        "Not Requested",
+
+      verificationStatus:
+        "Pending",
+
+      createdAt:
+        new Date()
+          .toISOString(),
+
+      demo:
+        true
+    };
+
+
+    saveOrder(
+      order
+    );
+
+
+    updateMatchStatus(
+      selectedMatch.id
+    );
+
+
+    closeRequestModal();
+
+
+    document
+      .getElementById(
+        "successOverlay"
+      )
+      .classList
+      .add(
+        "show"
+      );
+
+  }
+
+
+  /* =========================================
+     SAVE ORDER
+     ========================================= */
+
+  function saveOrder(
+    order
+  ) {
+
+    const tradeKey =
+      window.AGROLINK_CONFIG
+        ?.storageKeys
+        ?.trades ||
+      "agrolink_trades";
+
+
+    const orders =
+      readArray(
+        tradeKey
+      );
+
+
+    orders.unshift(
+      order
+    );
+
+
+    localStorage.setItem(
+      tradeKey,
+      JSON.stringify(
+        orders
+      )
+    );
+
+
+    localStorage.setItem(
+      "agrolink_last_order",
+      JSON.stringify(
+        order
+      )
+    );
+
+  }
+
+
+  function updateMatchStatus(
+    matchId
+  ) {
+
+    const key =
+      window.AGROLINK_CONFIG
+        ?.storageKeys
+        ?.matches ||
+      "agrolink_matches";
+
+
+    const matches =
+      readArray(key);
+
+
+    const updated =
+      matches.map(
+        match => {
+
+          if (
+            String(match.id) ===
+            String(matchId)
+          ) {
+
+            return {
+              ...match,
+
+              status:
+                "Supply Requested",
+
+              verificationStatus:
+                "Awaiting Verification"
+            };
+
+          }
+
+
+          return match;
+
+        }
+      );
+
+
+    localStorage.setItem(
+      key,
+      JSON.stringify(
+        updated
+      )
+    );
+
+  }
+
+
+  /* =========================================
+     HELPERS
+     ========================================= */
+
+  function readArray(
+    key
+  ) {
+
+    try {
+
+      const value =
+        JSON.parse(
+          localStorage.getItem(
+            key
+          ) ||
+          "[]"
+        );
+
+
+      return Array.isArray(
+        value
+      )
+        ? value
+        : [];
+
+    } catch (error) {
+
+      return [];
+
+    }
+
+  }
+
+
+  function formatNumber(
+    value
+  ) {
+
+    return new Intl.NumberFormat(
+      "en-UG"
+    ).format(
+      Number(value) ||
+      0
+    );
+
+  }
+
+
+  function formatDate(
+    value
+  ) {
+
+    if (!value) {
+      return "—";
+    }
+
+
+    return new Intl.DateTimeFormat(
+      "en-UG",
+      {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+      }
+    ).format(
+      new Date(
+        value +
+        "T00:00:00"
+      )
+    );
+
+  }
+
+
+  function escapeHTML(
+    value
+  ) {
+
+    return String(
+      value ||
+      ""
+    )
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+  }
+</script>
+
+</body>
+</html>

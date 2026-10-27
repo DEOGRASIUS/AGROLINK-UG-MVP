@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Farmer Profile | AgroLink Uganda</title>
+
+<link rel="stylesheet" href="../css/variables.css"><link rel="stylesheet" href="../css/reset.css"><link rel="stylesheet" href="../css/components.css"><link rel="stylesheet" href="../css/layout.css"><link rel="stylesheet" href="../css/responsive.css">
+
+<style>
+
+body{margin:0;background:#f7f9f5;color:#17231c;font-family:Inter,"Segoe UI",Arial,sans-serif}.top{background:#075e3b}.topin,.wrap{width:min(1100px,calc(100% - 40px));margin:auto}.topin{min-height:72px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:900}.mark{width:34px;height:34px;border-radius:10px;background:#fff;color:#078c50;display:grid;place-items:center}.nav{display:flex;gap:5px}.nav a{color:#dcebe3;text-decoration:none;padding:9px 11px;border-radius:9px;font-size:12px;font-weight:700}.nav a.active,.nav a:hover{background:#ffffff1f;color:#fff}.wrap{padding:30px 0 85px}.head{margin-bottom:20px}.eyebrow{font-size:11px;font-weight:800;color:#078c50;text-transform:uppercase;letter-spacing:.08em}.head h1{font-size:30px;margin:5px 0}.head p{font-size:12px;color:#657269;margin:0}.layout{display:grid;grid-template-columns:300px 1fr;gap:18px;align-items:start}.card{background:#fff;border:1px solid #edf2ee;border-radius:16px;padding:19px;box-shadow:0 2px 8px #00000008}.identity{text-align:center}.avatar{width:82px;height:82px;border-radius:24px;background:#eaf7ef;color:#078c50;display:grid;place-items:center;margin:0 auto 12px;font-size:25px;font-weight:900}.identity h2{font-size:17px;margin:0}.identity p{font-size:9px;color:#657269}.verified{display:inline-flex;align-items:center;gap:5px;background:#e7f6ed;color:#14965b;border-radius:999px;padding:6px 9px;font-size:8px;font-weight:900}.summary{margin-top:16px;border-top:1px solid #edf2ee;padding-top:12px}.summary div{display:flex;justify-content:space-between;padding:6px 0;font-size:9px;color:#657269}.summary strong{color:#17231c}.card h3{font-size:15px;margin:0 0 4px}.sub{font-size:9px;color:#657269;margin:0 0 17px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:9px;font-weight:800;color:#526158}.field input,.field select{width:100%;box-sizing:border-box;border:1px solid #dde7e0;border-radius:10px;padding:11px 12px;background:#fff;font:inherit;font-size:11px;outline:none}.field input:focus,.field select:focus{border-color:#078c50;box-shadow:0 0 0 3px #eaf7ef}.checks{display:flex;gap:8px;flex-wrap:wrap}.check{position:relative}.check input{position:absolute;opacity:0}.check label{display:block;border:1px solid #dde7e0;border-radius:999px;padding:8px 12px;font-size:9px;font-weight:800;cursor:pointer}.check input:checked+label{background:#eaf7ef;border-color:#9dd4b3;color:#067347}.actions{display:flex;justify-content:flex-end;margin-top:18px}.save{border:0;border-radius:10px;background:#078c50;color:#fff;min-height:44px;padding:0 20px;font-size:10px;font-weight:900;cursor:pointer}.notice{display:none;margin-bottom:15px;background:#e7f6ed;color:#176b43;border:1px solid #cbe8d6;border-radius:11px;padding:12px;font-size:9px}.notice.show{display:block}.logout{width:100%;margin-top:15px;min-height:42px;border:1px solid #efcaca;border-radius:10px;background:#fff7f7;color:#b63232;font:inherit;font-size:10px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px}.logout:hover{background:#fdecec;border-color:#e7aaaa}.mobile{display:none}
+
+@media(max-width:800px){.layout{grid-template-columns:1fr}}
+
+@media(max-width:767px){body{padding-bottom:90px;background:#fff}.topin{width:100%;padding:0 15px;min-height:64px}.nav{display:none}.wrap{width:100%;padding:22px 14px 30px}.head h1{font-size:24px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.mobile{position:fixed;left:10px;right:10px;bottom:9px;z-index:100;display:grid;grid-template-columns:repeat(5,1fr);align-items:end;padding:7px;background:#f3fbf6;border:1px solid #d7eadf;border-radius:18px;box-shadow:0 -5px 24px rgba(4,61,41,.12)}.mobile a{min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#78867d;text-decoration:none;font-size:8px;font-weight:800;border-radius:12px}.mobile a.active{background:#e1f4e8;color:#075e3b}.mobile .post{transform:translateY(-10px);background:#078c50;color:#fff;width:52px;height:52px;min-height:52px;border-radius:16px;justify-self:center;box-shadow:0 7px 18px rgba(7,140,80,.28)}.mobile svg{width:19px;height:19px}.mobile .post svg{width:22px;height:22px}.mobile .post span{display:none}}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="top"><div class="topin"><a class="brand" href="dashboard.html"><span class="mark">↗</span>AgroLink Uganda</a><nav class="nav"><a href="dashboard.html">Dashboard</a><a href="prices.html">Market Prices</a><a href="demand.html">Buyer Demand</a><a href="post-produce.html">Post Produce</a><a href="trades.html">Trades</a><a class="active" href="profile.html">Profile</a></nav></div></header>
+
+<main class="wrap">
+
+<section class="head"><span class="eyebrow">Account & farm details</span><h1>Farmer Profile</h1><p>Keep your supplier information accurate for AgroLink verification and settlement.</p></section>
+
+<div id="notice" class="notice">Profile saved successfully.</div>
+
+<div class="layout">
+
+<aside class="card identity"><div id="avatar" class="avatar">RF</div><h2 id="displayName">Robert Farmer</h2><p>Farmer / Supplier</p><span class="verified">✓ Verification details recorded</span><div class="summary"><div><span>Role</span><strong>Farmer</strong></div><div><span>Country</span><strong>Uganda</strong></div><div><span>Account</span><strong>Active</strong></div></div><button id="logoutButton" class="logout" type="button">↪ Logout</button></aside>
+
+<section class="card"><h3>Personal & Farm Information</h3><p class="sub">These details help AgroLink coordinate verification, matching and payment.</p>
+
+<form id="form"><div class="grid">
+
+<div class="field"><label>Full name</label><input id="name" required placeholder="Your full name"></div>
+
+<div class="field"><label>Phone number</label><input id="phone" required placeholder="+256 7XX XXX XXX"></div>
+
+<div class="field"><label>District</label><input id="district" required placeholder="e.g. Mukono"></div>
+
+<div class="field"><label>Farm / produce location</label><input id="farmLocation" required placeholder="Village, sub-county or town"></div>
+
+<div class="field"><label>Farm size (acres)</label><input id="farmSize" type="number" min="0" step=".1" placeholder="e.g. 8"></div>
+
+<div class="field"><label>Preferred payment method</label><select id="paymentMethod"><option>Mobile Money</option><option>Bank Transfer</option></select></div>
+
+<div class="field full"><label>Mobile Money / payment number</label><input id="paymentNumber" placeholder="+256 7XX XXX XXX"></div>
+
+<div class="field full"><label>Main commodities</label><div class="checks"><span class="check"><input id="maize" type="checkbox" value="Dry Maize"><label for="maize">Dry Maize</label></span><span class="check"><input id="beans" type="checkbox" value="Beans"><label for="beans">Beans</label></span></div></div>
+
+</div><div class="actions"><button class="save" type="submit">Save Changes</button></div></form>
+
+</section></div>
+
+</main>
+
+<nav class="mobile">
+
+<a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/></svg><span>Home</span></a>
+
+<a href="prices.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18 9 12l4 4 8-10"/><path d="M15 6h6v6"/></svg><span>Prices</span></a>
+
+<a class="post" href="post-produce.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7 12h10"/></svg><span>Post</span></a>
+
+<a href="trades.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8"/></svg><span>Trades</span></a>
+
+<a class="active" href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Profile</span></a>
+
+</nav>
+
+<script src="../js/config.js"></script><script src="../js/data.js"></script><script src="../js/storage.js"></script><script src="../js/utils.js"></script>
+
+<script>
+
+(function(){
+
+const key=(window.AGROLINK_CONFIG?.storageKeys?.user)||"agrolink_user",$=id=>document.getElementById(id);
+
+let user={};try{user=JSON.parse(localStorage.getItem(key))||{}}catch(e){}
+
+const name=user.name||user.fullName||"Robert Farmer";
+
+$("name").value=name;$("phone").value=user.phone||"";$("district").value=user.district||"";$("farmLocation").value=user.farmLocation||user.location||"";$("farmSize").value=user.farmSize||"";$("paymentMethod").value=user.paymentMethod||"Mobile Money";$("paymentNumber").value=user.paymentNumber||user.mobileMoneyNumber||user.phone||"";
+
+const commodities=user.commodities||user.mainCommodities||["Dry Maize"];$("maize").checked=commodities.includes("Dry Maize");$("beans").checked=commodities.includes("Beans");
+
+function identity(n){$("displayName").textContent=n;$("avatar").textContent=n.split(/\s+/).slice(0,2).map(x=>x[0]).join("").toUpperCase()||"F"}identity(name);
+
+$("form").onsubmit=e=>{e.preventDefault();const cs=[$("maize"),$("beans")].filter(x=>x.checked).map(x=>x.value);const updated={...user,name:$("name").value.trim(),fullName:$("name").value.trim(),phone:$("phone").value.trim(),district:$("district").value.trim(),farmLocation:$("farmLocation").value.trim(),location:$("farmLocation").value.trim(),farmSize:$("farmSize").value,paymentMethod:$("paymentMethod").value,paymentNumber:$("paymentNumber").value.trim(),commodities:cs,mainCommodities:cs,role:"farmer",updatedAt:new Date().toISOString()};localStorage.setItem(key,JSON.stringify(updated));user=updated;identity(updated.name);$("notice").classList.add("show");window.scrollTo({top:0,behavior:"smooth"});setTimeout(()=>$("notice").classList.remove("show"),2500)}
+
+$("logoutButton").onclick=()=>{localStorage.removeItem(key);sessionStorage.clear();window.location.href="../auth/login.html"}
+
+})();
+
+</script>
+
+</body></html>

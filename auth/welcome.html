@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Login or create an AgroLink Uganda account to buy or sell agricultural produce."
+  >
+
+  <title>Welcome | AgroLink Uganda</title>
+
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+
+  <style>
+    body {
+      min-height: 100vh;
+      background: #f6f9f6;
+      color: var(--text-primary);
+    }
+
+    .welcome-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    /* ==========================================
+       HEADER
+       ========================================== */
+
+    .welcome-header {
+      position: relative;
+      overflow: hidden;
+      background: #0b8548;
+      color: #ffffff;
+    }
+
+    .welcome-header::before {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      right: -100px;
+      top: -145px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .06);
+    }
+
+    .welcome-header::after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      right: 70px;
+      bottom: -125px;
+      border-radius: 50%;
+      background: rgba(168, 213, 66, .10);
+    }
+
+    .welcome-header-inner {
+      position: relative;
+      z-index: 2;
+
+      width: min(1120px, calc(100% - 40px));
+      min-height: 92px;
+
+      margin: 0 auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .back-button {
+      width: 42px;
+      height: 42px;
+
+      flex: 0 0 auto;
+
+      border: 0;
+      border-radius: 50%;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      background: rgba(255, 255, 255, .09);
+      color: #ffffff;
+
+      text-decoration: none;
+
+      transition:
+        background .18s ease,
+        transform .18s ease;
+    }
+
+    .back-button:hover {
+      background: rgba(255, 255, 255, .16);
+      color: #ffffff;
+      transform: translateX(-2px);
+    }
+
+
+    /* ==========================================
+       AGROLINK BRAND
+       ========================================== */
+
+    .welcome-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .brand-leaf {
+      width: 43px;
+      height: 43px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      color: #ffffff;
+    }
+
+    .brand-leaf svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .brand-wordmark {
+      display: flex;
+      flex-direction: column;
+
+      line-height: 1;
+    }
+
+    .brand-wordmark strong {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -.6px;
+    }
+
+    .brand-wordmark span {
+      margin-top: 4px;
+
+      color: rgba(255, 255, 255, .92);
+
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .header-spacer {
+      width: 42px;
+    }
+
+
+    /* ==========================================
+       MAIN LAYOUT
+       ========================================== */
+
+    .welcome-main {
+      flex: 1;
+
+      width: min(1120px, calc(100% - 40px));
+
+      margin: 0 auto;
+
+      padding: 54px 0 60px;
+
+      display: grid;
+      grid-template-columns:
+        minmax(0, .92fr)
+        minmax(460px, 1.08fr);
+
+      gap: 65px;
+      align-items: center;
+    }
+
+
+    /* ==========================================
+       LEFT INTRO
+       ========================================== */
+
+    .welcome-intro {
+      max-width: 520px;
+    }
+
+    .welcome-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      margin-bottom: 12px;
+
+      color: var(--green-700);
+
+      font-size: 12px;
+      font-weight: 800;
+
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .welcome-intro h1 {
+      margin: 0;
+
+      font-size: clamp(38px, 5vw, 58px);
+      line-height: 1.04;
+
+      letter-spacing: -1.8px;
+    }
+
+    .welcome-intro > p {
+      max-width: 480px;
+
+      margin: 18px 0 0;
+
+      color: var(--text-secondary);
+
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+
+    /* ==========================================
+       TRUST BOX
+       ========================================== */
+
+    .trust-box {
+      margin-top: 30px;
+      padding: 18px;
+
+      border: 1px solid #d8eee0;
+      border-radius: 16px;
+
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+
+      background: #eaf7ef;
+    }
+
+    .trust-icon {
+      width: 42px;
+      height: 42px;
+
+      flex: 0 0 auto;
+
+      border-radius: 12px;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--green-700);
+      color: #ffffff;
+    }
+
+    .trust-box strong {
+      display: block;
+
+      color: var(--green-950);
+
+      font-size: 14px;
+    }
+
+    .trust-box p {
+      margin: 4px 0 0;
+
+      color: #52685a;
+
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+
+    /* ==========================================
+       MARKET ACCESS POINTS
+       ========================================== */
+
+    .access-points {
+      margin-top: 30px;
+
+      display: grid;
+      gap: 15px;
+    }
+
+    .access-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .access-point-icon {
+      width: 35px;
+      height: 35px;
+
+      flex: 0 0 auto;
+
+      border-radius: 10px;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--green-50);
+      color: var(--green-700);
+    }
+
+    .access-point strong {
+      display: block;
+
+      font-size: 13px;
+    }
+
+    .access-point span {
+      display: block;
+
+      margin-top: 3px;
+
+      color: var(--text-secondary);
+
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+
+    /* ==========================================
+       ACTION CARD
+       ========================================== */
+
+    .welcome-card {
+      padding: 30px;
+
+      border: 1px solid var(--border-light);
+      border-radius: 24px;
+
+      background: #ffffff;
+
+      box-shadow:
+        0 18px 55px
+        rgba(0, 0, 0, .07);
+    }
+
+    .welcome-card-header {
+      margin-bottom: 21px;
+    }
+
+    .welcome-card-header h2 {
+      margin: 0;
+
+      font-size: 24px;
+      letter-spacing: -.5px;
+    }
+
+    .welcome-card-header p {
+      margin: 7px 0 0;
+
+      color: var(--text-secondary);
+
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+
+    /* ==========================================
+       ROLE CARDS
+       ========================================== */
+
+    .role-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 13px;
+
+      margin-bottom: 22px;
+    }
+
+    .role-card {
+      min-height: 184px;
+
+      padding: 20px 16px;
+
+      border: 1px solid var(--border);
+      border-radius: 17px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      background: #ffffff;
+
+      transition:
+        border-color .18s ease,
+        background .18s ease,
+        transform .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .role-card:hover {
+      transform: translateY(-2px);
+
+      border-color: #b9dac5;
+
+      box-shadow:
+        0 10px 25px
+        rgba(0, 0, 0, .05);
+    }
+
+    .role-icon {
+      width: 65px;
+      height: 65px;
+
+      margin-bottom: 13px;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+    }
+
+    .role-card.farmer .role-icon {
+      background: #e5f6ea;
+      color: var(--green-700);
+    }
+
+    .role-card.buyer .role-icon {
+      background: #eaf3fc;
+      color: #3478c7;
+    }
+
+    .role-card strong {
+      font-size: 17px;
+    }
+
+    .role-card p {
+      max-width: 180px;
+
+      margin: 6px 0 0;
+
+      color: var(--text-secondary);
+
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+
+    /* ==========================================
+       ACTIONS
+       ========================================== */
+
+    .welcome-actions {
+      display: grid;
+      gap: 11px;
+    }
+
+    .welcome-action {
+      width: 100%;
+      min-height: 57px;
+
+      padding: 0 18px;
+
+      border-radius: 13px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 13px;
+
+      font-size: 14px;
+      font-weight: 800;
+
+      text-decoration: none;
+
+      transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        background .18s ease;
+    }
+
+    .welcome-action-icon {
+      width: 31px;
+      height: 31px;
+
+      flex: 0 0 auto;
+
+      display: grid;
+      place-items: center;
+    }
+
+    .welcome-action-arrow {
+      margin-left: auto;
+
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .welcome-action.primary {
+      border: 1px solid var(--green-700);
+
+      background: var(--green-700);
+      color: #ffffff;
+
+      box-shadow:
+        0 7px 18px
+        rgba(7, 140, 80, .18);
+    }
+
+    .welcome-action.primary:hover {
+      background: var(--green-800);
+      color: #ffffff;
+
+      transform: translateY(-1px);
+    }
+
+    .welcome-action.secondary {
+      border: 1px solid var(--border);
+
+      background: #ffffff;
+      color: var(--text-primary);
+
+      box-shadow:
+        0 3px 12px
+        rgba(0, 0, 0, .035);
+    }
+
+    .welcome-action.secondary:hover {
+      border-color: #bcd9c5;
+
+      background: var(--green-50);
+
+      color: var(--green-900);
+    }
+
+    .welcome-action.secondary
+    .welcome-action-icon {
+      border-radius: 50%;
+
+      background: var(--green-100);
+      color: var(--green-700);
+    }
+
+
+    /* ==========================================
+       BACK TO PRICES
+       ========================================== */
+
+    .back-to-market {
+      margin-top: 18px;
+
+      min-height: 50px;
+
+      border-radius: 12px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      background: var(--surface-secondary);
+      color: var(--text-secondary);
+
+      font-size: 12px;
+      font-weight: 700;
+
+      text-decoration: none;
+    }
+
+    .back-to-market:hover {
+      background: #e8eeea;
+      color: var(--green-800);
+    }
+
+
+    /* ==========================================
+       DEMO NOTICE
+       ========================================== */
+
+    .demo-notice {
+      margin-top: 18px;
+
+      color: var(--text-light);
+
+      text-align: center;
+
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+
+    /* ==========================================
+       MOBILE
+       ========================================== */
+
+    @media (max-width: 850px) {
+
+      .welcome-header-inner {
+        min-height: 78px;
+      }
+
+      .welcome-main {
+        width: min(620px, calc(100% - 28px));
+
+        padding: 30px 0 42px;
+
+        display: block;
+      }
+
+      .welcome-intro {
+        max-width: none;
+      }
+
+      .welcome-intro h1 {
+        font-size: 34px;
+      }
+
+      .welcome-intro > p {
+        font-size: 13px;
+      }
+
+      .access-points {
+        display: none;
+      }
+
+      .welcome-card {
+        margin-top: 27px;
+      }
+    }
+
+
+    @media (max-width: 600px) {
+
+      body {
+        background: #ffffff;
+      }
+
+      .welcome-header-inner {
+        width: calc(100% - 26px);
+
+        min-height: 74px;
+      }
+
+      .back-button {
+        width: 35px;
+        height: 35px;
+
+        background: transparent;
+      }
+
+      .header-spacer {
+        width: 35px;
+      }
+
+      .brand-leaf {
+        width: 34px;
+        height: 34px;
+      }
+
+      .brand-wordmark strong {
+        font-size: 19px;
+      }
+
+      .brand-wordmark span {
+        margin-top: 3px;
+
+        font-size: 10px;
+      }
+
+      .welcome-main {
+        width: calc(100% - 28px);
+
+        padding: 27px 0 35px;
+      }
+
+      .welcome-eyebrow {
+        display: none;
+      }
+
+      .welcome-intro {
+        text-align: center;
+      }
+
+      .welcome-intro h1 {
+        font-size: 30px;
+        letter-spacing: -.9px;
+      }
+
+      .welcome-intro > p {
+        max-width: 340px;
+
+        margin: 10px auto 0;
+
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      .trust-box {
+        margin-top: 21px;
+
+        padding: 14px;
+
+        text-align: left;
+      }
+
+      .trust-icon {
+        width: 37px;
+        height: 37px;
+      }
+
+      .trust-box strong {
+        font-size: 12px;
+      }
+
+      .trust-box p {
+        font-size: 10px;
+      }
+
+      .welcome-card {
+        margin-top: 20px;
+        padding: 0;
+
+        border: 0;
+        border-radius: 0;
+
+        box-shadow: none;
+      }
+
+      .welcome-card-header {
+        display: none;
+      }
+
+      .role-grid {
+        gap: 10px;
+
+        margin-bottom: 19px;
+      }
+
+      .role-card {
+        min-height: 160px;
+
+        padding: 16px 10px;
+
+        border-radius: 15px;
+      }
+
+      .role-icon {
+        width: 56px;
+        height: 56px;
+
+        margin-bottom: 10px;
+      }
+
+      .role-icon svg {
+        width: 31px;
+        height: 31px;
+      }
+
+      .role-card strong {
+        font-size: 15px;
+      }
+
+      .role-card p {
+        font-size: 10px;
+      }
+
+      .welcome-action {
+        min-height: 55px;
+
+        padding: 0 15px;
+
+        font-size: 13px;
+      }
+
+      .back-to-market {
+        margin-top: 17px;
+      }
+    }
+
+
+    @media (max-width: 350px) {
+
+      .welcome-main {
+        width: calc(100% - 20px);
+      }
+
+      .role-card {
+        min-height: 150px;
+      }
+
+      .role-icon {
+        width: 49px;
+        height: 49px;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <div class="welcome-page">
+
+
+    <!-- ========================================
+         HEADER
+         ======================================== -->
+
+    <header class="welcome-header">
+
+      <div class="welcome-header-inner">
+
+        <a
+          href="../index.html"
+          class="back-button"
+          aria-label="Back to market prices"
+        >
+          <svg
+            width="21"
+            height="21"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M19 12H5"></path>
+            <path d="m12 19-7-7 7-7"></path>
+          </svg>
+        </a>
+
+
+        <a
+          href="../index.html"
+          class="welcome-brand"
+          aria-label="AgroLink Uganda"
+        >
+
+          <span
+            class="brand-leaf"
+            aria-hidden="true"
+          >
+            <svg
+              viewBox="0 0 64 64"
+              fill="none"
+            >
+              <path
+                d="M55 8C38 9 23 16 15 29C10 37 9 46 10 53C18 52 27 48 34 42C45 33 51 22 55 8Z"
+                fill="currentColor"
+              ></path>
+
+              <path
+                d="M13 48C22 38 32 30 46 23C35 32 27 41 21 52"
+                fill="none"
+                stroke="#0b8548"
+                stroke-width="4.5"
+                stroke-linecap="round"
+              ></path>
+            </svg>
+          </span>
+
+
+          <span class="brand-wordmark">
+            <strong>AgroLink</strong>
+            <span>Uganda</span>
+          </span>
+
+        </a>
+
+
+        <span
+          class="header-spacer"
+          aria-hidden="true"
+        ></span>
+
+      </div>
+
+    </header>
+
+
+    <!-- ========================================
+         MAIN
+         ======================================== -->
+
+    <main class="welcome-main">
+
+
+      <!-- ======================================
+           INTRO
+           ====================================== -->
+
+      <section class="welcome-intro">
+
+        <div class="welcome-eyebrow">
+
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M12 21V10"></path>
+            <path d="M12 13c-5 0-7-3-7-7 5 0 7 3 7 7Z"></path>
+            <path d="M12 16c5 0 7-3 7-7-5 0-7 3-7 7Z"></path>
+          </svg>
+
+          Agricultural market access
+        </div>
+
+
+        <h1>
+          Welcome to AgroLink
+        </h1>
+
+
+        <p>
+          Login to continue or create a new account
+          to participate in verified agricultural
+          market opportunities.
+        </p>
+
+
+        <div class="trust-box">
+
+          <div class="trust-icon">
+
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z"
+              ></path>
+
+              <path d="m8.5 12 2.2 2.2 4.8-5"></path>
+            </svg>
+
+          </div>
+
+
+          <div>
+
+            <strong>
+              Join a trusted agricultural market
+            </strong>
+
+            <p>
+              AgroLink helps coordinate verified
+              market access between farmers and
+              buyers without exposing direct contact
+              information.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="access-points">
+
+          <div class="access-point">
+
+            <span class="access-point-icon">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 18 9 12l4 4 8-10"></path>
+                <path d="M15 6h6v6"></path>
+              </svg>
+            </span>
+
+            <div>
+              <strong>
+                Market intelligence
+              </strong>
+
+              <span>
+                Compare market information before
+                making buying or selling decisions.
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="access-point">
+
+            <span class="access-point-icon">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 7 9 18l-5-5"></path>
+              </svg>
+            </span>
+
+            <div>
+              <strong>
+                Coordinated transactions
+              </strong>
+
+              <span>
+                Supply and demand are matched through
+                AgroLink with verification stages.
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ======================================
+           ACTION CARD
+           ====================================== -->
+
+      <section class="welcome-card">
+
+        <div class="welcome-card-header">
+
+          <h2>
+            How will you use AgroLink?
+          </h2>
+
+          <p>
+            Farmers can offer produce while buyers
+            can post demand and request verified
+            supply through AgroLink.
+          </p>
+
+        </div>
+
+
+        <!-- ====================================
+             FARMER / BUYER
+             ==================================== -->
+
+        <div class="role-grid">
+
+          <div class="role-card farmer">
+
+            <div class="role-icon">
+
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 21V10"></path>
+
+                <path
+                  d="M12 13c-5 0-7-3-7-7 5 0 7 3 7 7Z"
+                ></path>
+
+                <path
+                  d="M12 16c5 0 7-3 7-7-5 0-7 3-7 7Z"
+                ></path>
+              </svg>
+
+            </div>
+
+            <strong>
+              Farmer
+            </strong>
+
+            <p>
+              List available produce and access
+              verified market demand.
+            </p>
+
+          </div>
+
+
+          <div class="role-card buyer">
+
+            <div class="role-icon">
+
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle
+                  cx="9"
+                  cy="20"
+                  r="1"
+                ></circle>
+
+                <circle
+                  cx="18"
+                  cy="20"
+                  r="1"
+                ></circle>
+
+                <path
+                  d="M3 4h2l2.4 10.4a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 8H6"
+                ></path>
+              </svg>
+
+            </div>
+
+            <strong>
+              Buyer
+            </strong>
+
+            <p>
+              Post demand and request matched
+              agricultural supply.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- ====================================
+             LOGIN / REGISTER
+             ==================================== -->
+
+        <div class="welcome-actions">
+
+          <a
+            href="login.html"
+            class="welcome-action primary"
+          >
+
+            <span class="welcome-action-icon">
+
+              <svg
+                width="23"
+                height="23"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M20 21a8 8 0 0 0-16 0"
+                ></path>
+
+                <circle
+                  cx="12"
+                  cy="7"
+                  r="4"
+                ></circle>
+              </svg>
+
+            </span>
+
+
+            <span>
+              Login to My Account
+            </span>
+
+
+            <span class="welcome-action-arrow">
+
+              <svg
+                width="19"
+                height="19"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14"></path>
+                <path d="m13 6 6 6-6 6"></path>
+              </svg>
+
+            </span>
+
+          </a>
+
+
+          <a
+            href="register.html"
+            class="welcome-action secondary"
+          >
+
+            <span class="welcome-action-icon">
+
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M12 5v14"></path>
+                <path d="M5 12h14"></path>
+              </svg>
+
+            </span>
+
+
+            <span>
+              Create a New Account
+            </span>
+
+
+            <span class="welcome-action-arrow">
+
+              <svg
+                width="19"
+                height="19"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m9 18 6-6-6-6"></path>
+              </svg>
+
+            </span>
+
+          </a>
+
+        </div>
+
+
+        <a
+          href="../index.html"
+          class="back-to-market"
+        >
+
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M19 12H5"></path>
+            <path d="m12 19-7-7 7-7"></path>
+          </svg>
+
+          Back to Market Prices
+        </a>
+
+
+        <div class="demo-notice">
+          AgroLink Uganda MVP • Account and
+          transaction workflows shown in this
+          prototype are simulated.
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <script src="../js/config.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/utils.js"></script>
+
+</body>
+</html>

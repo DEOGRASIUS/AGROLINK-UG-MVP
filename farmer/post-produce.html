@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Post Produce | AgroLink Uganda</title>
+<link rel="stylesheet" href="../css/variables.css"><link rel="stylesheet" href="../css/reset.css"><link rel="stylesheet" href="../css/components.css"><link rel="stylesheet" href="../css/layout.css"><link rel="stylesheet" href="../css/responsive.css">
+<style>
+body{margin:0;background:#f7f9f5;color:#17231c;font-family:Inter,"Segoe UI",Arial,sans-serif}.top{background:#075e3b}.topin,.wrap{width:min(1180px,calc(100% - 40px));margin:auto}.topin{min-height:72px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:900}.mark{width:34px;height:34px;border-radius:10px;background:#fff;color:#078c50;display:grid;place-items:center}.nav{display:flex;gap:5px}.nav a{color:#dcebe3;text-decoration:none;padding:9px 11px;border-radius:9px;font-size:12px;font-weight:700}.nav a.active,.nav a:hover{background:#ffffff1f;color:#fff}.wrap{padding:30px 0 80px}.head{margin-bottom:22px}.eyebrow{color:#078c50;text-transform:uppercase;letter-spacing:.08em;font-size:11px;font-weight:800}.head h1{font-size:30px;margin:5px 0}.head p{font-size:12px;color:#657269;margin:0}.layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.65fr);gap:18px;align-items:start}.card{background:#fff;border:1px solid #edf2ee;border-radius:16px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.03)}.card h2{font-size:16px;margin:0 0 4px}.sub{font-size:10px;color:#657269;margin:0 0 17px}.crops{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:17px}.crop{position:relative;border:2px solid transparent;border-radius:13px;overflow:hidden;height:115px;cursor:pointer}.crop img{width:100%;height:100%;object-fit:cover}.crop:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(4,61,41,.86))}.crop span{position:absolute;z-index:2;left:12px;bottom:10px;color:#fff;font-size:11px;font-weight:900}.crop.active{border-color:#19ad67;box-shadow:0 0 0 2px #dff3e7}.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:9px;font-weight:800;color:#526158}.field input,.field select,.field textarea{width:100%;border:1px solid #dde7e0;border-radius:10px;padding:11px 12px;background:#fff;color:#17231c;font:inherit;font-size:11px;outline:none;box-sizing:border-box}.field textarea{min-height:80px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:#078c50;box-shadow:0 0 0 3px #eaf7ef}.hint{font-size:8px;color:#8a968e}.summary{background:#f3fbf6;border:1px solid #dcefe3;border-radius:13px;padding:15px;margin-top:16px}.sumrow{display:flex;justify-content:space-between;gap:15px;padding:6px 0;font-size:10px;color:#657269}.sumrow strong{color:#17231c}.sumrow.total{border-top:1px solid #d5e8dc;margin-top:5px;padding-top:11px;font-size:12px}.submit{width:100%;min-height:47px;margin-top:15px;border:0;border-radius:11px;background:#078c50;color:#fff;font-size:11px;font-weight:900;cursor:pointer}.submit:hover{background:#067347}.info{padding:14px;border-radius:12px;background:#fff5df;color:#70521b;font-size:9px;line-height:1.55;margin-bottom:13px}.match{display:none;padding:16px;border:1px solid #bfe2cb;background:#f3fbf6;border-radius:13px;margin-bottom:13px}.match.show{display:block}.matchbadge{display:inline-block;background:#e7f6ed;color:#14965b;padding:5px 8px;border-radius:999px;font-size:8px;font-weight:900}.match h3{font-size:14px;margin:8px 0 4px}.match p{font-size:9px;color:#657269;line-height:1.55}.sidephoto{height:165px;width:100%;object-fit:cover;border-radius:13px;margin-bottom:13px}.steps{display:grid;gap:12px}.step{display:flex;gap:10px}.num{width:26px;height:26px;flex:none;border-radius:8px;background:#eaf7ef;color:#078c50;display:grid;place-items:center;font-size:9px;font-weight:900}.step strong{display:block;font-size:9px}.step span{display:block;margin-top:3px;color:#657269;font-size:8px;line-height:1.45}.toast{position:fixed;right:18px;top:18px;z-index:300;max-width:330px;background:#043d29;color:#fff;padding:13px 15px;border-radius:12px;box-shadow:0 12px 35px rgba(0,0,0,.18);font-size:10px;display:none}.toast.show{display:block}.mobile{display:none}
+@media(max-width:850px){.layout{grid-template-columns:1fr}}
+@media(max-width:767px){body{padding-bottom:88px;background:#fff}.topin{width:100%;padding:0 15px;min-height:64px}.nav{display:none}.wrap{width:100%;padding:22px 14px 30px}.head h1{font-size:24px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.mobile{position:fixed;left:10px;right:10px;bottom:9px;z-index:100;display:grid;grid-template-columns:repeat(5,1fr);align-items:end;padding:7px;background:#f3fbf6;border:1px solid #d7eadf;border-radius:18px;box-shadow:0 -5px 24px rgba(4,61,41,.12)}.mobile a{min-height:48px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#78867d;text-decoration:none;font-size:8px;font-weight:800;border-radius:12px}.mobile .post{transform:translateY(-10px);background:#078c50;color:#fff;width:52px;height:52px;min-height:52px;border-radius:16px;justify-self:center;box-shadow:0 7px 18px rgba(7,140,80,.28)}.mobile svg{width:19px;height:19px}.mobile .post svg{width:22px;height:22px}.mobile .post span{display:none}.toast{left:14px;right:14px;top:14px}}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<header class="top"><div class="topin"><a class="brand" href="dashboard.html"><span class="mark"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 4c-7 0-12 3-14 9 5 1 10-1 14-9Z"/><path d="M4 20c2-6 6-10 12-13"/></svg></span>AgroLink Uganda</a><nav class="nav"><a href="dashboard.html">Dashboard</a><a href="prices.html">Market Prices</a><a href="demand.html">Buyer Demand</a><a class="active" href="post-produce.html">Post Produce</a><a href="trades.html">Trades</a><a href="profile.html">Profile</a></nav></div></header>
+<main class="wrap">
+<section class="head"><span class="eyebrow">Supply submission</span><h1>Post Available Produce</h1><p>Tell AgroLink what you have available so it can be matched with suitable buyer demand.</p></section>
+<div class="layout">
+<section class="card"><h2>Produce Details</h2><p class="sub">Enter the quantity, asking price, location and availability of your produce.</p>
+<div class="crops"><div class="crop active" data-value="Dry Maize"><img src="../assets/images/crops/dry-maize.jpg" alt="Dry maize"><span>Dry Maize</span></div><div class="crop" data-value="Beans"><img src="../assets/images/crops/beans.jpg" alt="Beans"><span>Beans</span></div></div>
+<form id="form">
+<input type="hidden" id="commodity" value="Dry Maize">
+<div class="grid">
+<div class="field"><label>Quantity available (kg)</label><input id="quantity" type="number" min="1" required placeholder="e.g. 3000"></div>
+<div class="field"><label>Asking price per kg (UGX)</label><input id="price" type="number" min="1" required placeholder="e.g. 1150"></div>
+<div class="field"><label>Produce location</label><input id="location" required placeholder="e.g. Mukono"></div>
+<div class="field"><label>Quality / grade</label><select id="quality"><option>Grade A</option><option>Grade B</option><option>Standard</option></select></div>
+<div class="field"><label>Harvest date</label><input id="harvest" type="date"></div>
+<div class="field"><label>Available from</label><input id="available" type="date" required></div>
+<div class="field full"><label>Additional notes</label><textarea id="notes" placeholder="Moisture level, packaging, storage condition or other useful information…"></textarea><span class="hint">Do not add buyer contact details. AgroLink manages the transaction.</span></div>
+</div>
+<div class="summary"><div class="sumrow"><span>Quantity</span><strong id="sumQty">0 kg</strong></div><div class="sumrow"><span>Asking price</span><strong id="sumPrice">UGX 0/kg</strong></div><div class="sumrow total"><span>Estimated produce value</span><strong id="sumTotal">UGX 0</strong></div></div>
+<button class="submit" type="submit">Submit to AgroLink</button>
+</form></section>
+<aside>
+<div class="match" id="matchBox"><span class="matchbadge">POTENTIAL MATCH</span><h3 id="matchTitle">Buyer demand found</h3><p id="matchText"></p></div>
+<section class="card"><img id="sidePhoto" class="sidephoto" src="../assets/images/crops/dry-maize.jpg" alt="Selected produce"><h2>What happens next?</h2><p class="sub">Your supply moves through AgroLink's managed matching process.</p><div class="steps"><div class="step"><span class="num">1</span><div><strong>Supply submitted</strong><span>Your available produce is recorded.</span></div></div><div class="step"><span class="num">2</span><div><strong>Demand matching</strong><span>AgroLink compares commodity, quantity, price and location.</span></div></div><div class="step"><span class="num">3</span><div><strong>Verification</strong><span>Produce and supplier details are checked before payment.</span></div></div><div class="step"><span class="num">4</span><div><strong>Trade fulfilment</strong><span>After buyer payment is secured, supply moves to fulfilment.</span></div></div></div></section>
+</aside>
+</div>
+</main>
+<nav class="mobile">
+<a href="dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/></svg><span>Home</span></a>
+<a href="prices.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18 9 12l4 4 8-10"/><path d="M15 6h6v6"/></svg><span>Prices</span></a>
+<a class="post" href="post-produce.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7 12h10"/></svg><span>Post</span></a>
+<a href="trades.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8"/></svg><span>Trades</span></a>
+<a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Profile</span></a>
+</nav>
+<script src="../js/config.js"></script><script src="../js/data.js"></script><script src="../js/storage.js"></script><script src="../js/utils.js"></script>
+<script>
+(function(){
+ const cfg=window.AGROLINK_CONFIG||{}; const keys=cfg.storageKeys||{};
+ const pKey=keys.produce||"agrolink_produce", dKey=keys.demands||"agrolink_demands", mKey=keys.matches||"agrolink_matches";
+ const $=id=>document.getElementById(id), fmt=v=>Number(v||0).toLocaleString("en-US");
+ const read=(k,f=[])=>{try{return JSON.parse(localStorage.getItem(k))||f}catch(e){return f}}, write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+ const params=new URLSearchParams(location.search), requested=params.get("commodity"), demandId=params.get("demand"), targetPrice=Number(params.get("price")||0);
+ const commodity=$("commodity"), quantity=$("quantity"), price=$("price"), loc=$("location"), matchBox=$("matchBox");
+ function choose(name){commodity.value=name;document.querySelectorAll(".crop").forEach(x=>x.classList.toggle("active",x.dataset.value===name));$("sidePhoto").src=/bean/i.test(name)?"../assets/images/crops/beans.jpg":"../assets/images/crops/dry-maize.jpg";findMatch();calc()}
+ document.querySelectorAll(".crop").forEach(x=>x.onclick=()=>choose(x.dataset.value));
+ if(requested)choose(/bean/i.test(requested)?"Beans":"Dry Maize"); if(targetPrice)price.value=targetPrice;
+ function calc(){$("sumQty").textContent=`${fmt(quantity.value)} kg`;$("sumPrice").textContent=`UGX ${fmt(price.value)}/kg`;$("sumTotal").textContent=`UGX ${fmt(Number(quantity.value||0)*Number(price.value||0))}`;findMatch()}
+ function findMatch(){
+  let demands=read(dKey,[]); if(!demands.length)demands=[{id:"DEM-001",commodity:"Dry Maize",quantity:5000,targetPrice:1200,location:"Kampala",status:"Open"},{id:"DEM-002",commodity:"Beans",quantity:2000,targetPrice:3800,location:"Kampala",status:"Open"}];
+  const c=commodity.value,p=Number(price.value||0),q=Number(quantity.value||0);
+  const d=demands.find(x=>(x.id===demandId)||((x.commodity||x.crop||"").toLowerCase()===c.toLowerCase()&&!/closed|cancel/i.test(x.status||"")));
+  if(!d){matchBox.classList.remove("show");return}
+  const dq=Number(d.quantity||d.requiredQuantity||0),dp=Number(d.targetPrice||d.unitPrice||d.price||0), matched=q?Math.min(q,dq):dq;
+  matchBox.classList.add("show");$("matchTitle").textContent=`${c} buyer demand found`;
+  $("matchText").innerHTML=`Buyer requires <strong>${fmt(dq)} kg</strong> around <strong>UGX ${fmt(dp)}/kg</strong>. ${q?`Your current supply could cover <strong>${fmt(matched)} kg</strong>.`:"Enter your quantity and price to compare the opportunity."}`;
+ }
+ [quantity,price].forEach(x=>x.addEventListener("input",calc));calc();
+ $("form").addEventListener("submit",e=>{
+  e.preventDefault(); const q=Number(quantity.value),p=Number(price.value); if(!q||!p||!loc.value.trim()||!$("available").value)return;
+  const produce=read(pKey,[]), demands=read(dKey,[]);
+  const supply={id:"SUP-"+Date.now(),commodity:commodity.value,quantity:q,availableQuantity:q,unitPrice:p,pricePerKg:p,price:p,location:loc.value.trim(),quality:$("quality").value,harvestDate:$("harvest").value,availableFrom:$("available").value,notes:$("notes").value.trim(),status:"Available",createdAt:new Date().toISOString()};
+  produce.unshift(supply);write(pKey,produce);
+  const demand=demands.find(x=>(x.id===demandId)||((x.commodity||x.crop||"").toLowerCase()===commodity.value.toLowerCase()&&!/closed|cancel/i.test(x.status||"")));
+  if(demand){
+   const dq=Number(demand.quantity||demand.requiredQuantity||0),dp=Number(demand.targetPrice||demand.unitPrice||demand.price||0),matched=Math.min(q,dq);
+   const matches=read(mKey,[]);
+   matches.unshift({id:"MATCH-"+Date.now(),demandId:demand.id,supplyId:supply.id,commodity:commodity.value,quantity:matched,matchedQuantity:matched,unitPrice:p,supplierPrice:p,targetPrice:dp,farmerLocation:supply.location,buyerLocation:demand.deliveryLocation||demand.location||"Kampala",score:(p<=dp?94:82),status:"Potential Match",createdAt:new Date().toISOString()});
+   write(mKey,matches);
+  }
+  $("toast").textContent=demand?"Produce submitted. A potential buyer match has been identified.":"Produce submitted to AgroLink successfully.";$("toast").classList.add("show");
+  setTimeout(()=>location.href="trades.html",1200);
+ });
+})();
+</script>
+</body></html>

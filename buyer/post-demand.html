@@ -1,0 +1,2852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Post agricultural demand on AgroLink Uganda."
+  >
+
+  <title>Post Demand | AgroLink Uganda</title>
+
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+
+  <style>
+    body {
+      background: var(--background);
+    }
+
+    .buyer-page {
+      min-height: 100vh;
+    }
+
+    /* =========================================
+       MOBILE HEADER
+       ========================================= */
+
+    .mobile-page-header {
+      display: none;
+    }
+
+    /* =========================================
+       CONTENT
+       ========================================= */
+
+    .demand-content {
+      width: min(100%, 1080px);
+      margin: 0 auto;
+      padding: 30px;
+    }
+
+    .page-heading {
+      margin-bottom: 25px;
+
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .page-heading-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+    }
+
+    .page-back {
+      width: 42px;
+      height: 42px;
+
+      flex: 0 0 auto;
+
+      border: 1px solid var(--border);
+      border-radius: 11px;
+
+      display: grid;
+      place-items: center;
+
+      background: #fff;
+      color: var(--text-secondary);
+
+      text-decoration: none;
+    }
+
+    .page-back:hover {
+      border-color: #bad9c5;
+      color: var(--green-700);
+    }
+
+    .page-heading h1 {
+      margin: 0;
+
+      font-size: 28px;
+      line-height: 1.15;
+
+      letter-spacing: -.7px;
+    }
+
+    .page-heading p {
+      margin: 6px 0 0;
+
+      color: var(--text-secondary);
+
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .demo-pill {
+      padding: 7px 11px;
+
+      border: 1px solid #d9eee1;
+      border-radius: 999px;
+
+      background: var(--green-50);
+      color: var(--green-800);
+
+      font-size: 9px;
+      font-weight: 800;
+
+      white-space: nowrap;
+    }
+
+    /* =========================================
+       GRID
+       ========================================= */
+
+    .demand-layout {
+      display: grid;
+      grid-template-columns:
+        minmax(0, 1.45fr)
+        minmax(280px, .55fr);
+
+      gap: 22px;
+      align-items: start;
+    }
+
+    /* =========================================
+       FORM CARD
+       ========================================= */
+
+    .demand-form-card {
+      padding: 27px;
+
+      border: 1px solid var(--border-light);
+      border-radius: 18px;
+
+      background: #fff;
+
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-section + .form-section {
+      margin-top: 28px;
+      padding-top: 26px;
+
+      border-top: 1px solid var(--border-light);
+    }
+
+    .form-section-heading {
+      margin-bottom: 18px;
+    }
+
+    .form-section-heading h2 {
+      margin: 0;
+
+      font-size: 16px;
+      letter-spacing: -.2px;
+    }
+
+    .form-section-heading p {
+      margin: 5px 0 0;
+
+      color: var(--text-secondary);
+
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    .form-grid-local {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 17px;
+    }
+
+    .form-group-local {
+      min-width: 0;
+    }
+
+    .form-group-local.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group-local label {
+      display: block;
+
+      margin-bottom: 7px;
+
+      color: var(--text-primary);
+
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .required {
+      color: var(--danger);
+    }
+
+    .optional {
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .input-shell {
+      position: relative;
+    }
+
+    .field-icon {
+      position: absolute;
+
+      left: 14px;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      display: inline-flex;
+
+      color: var(--text-light);
+
+      pointer-events: none;
+    }
+
+    .field-control {
+      width: 100%;
+      min-height: 52px;
+
+      padding: 0 14px;
+
+      border: 1px solid var(--border);
+      border-radius: 11px;
+
+      outline: none;
+
+      background: #fff;
+      color: var(--text-primary);
+
+      font: inherit;
+      font-size: 12px;
+
+      transition:
+        border-color .18s ease,
+        box-shadow .18s ease;
+    }
+
+    .field-control.with-icon {
+      padding-left: 42px;
+    }
+
+    .field-control:focus {
+      border-color: var(--green-600);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(10,159,90,.08);
+    }
+
+    .field-control.error {
+      border-color: var(--danger);
+    }
+
+    textarea.field-control {
+      min-height: 96px;
+
+      padding-top: 13px;
+
+      resize: vertical;
+    }
+
+    select.field-control {
+      cursor: pointer;
+    }
+
+    .field-help {
+      margin-top: 6px;
+
+      color: var(--text-light);
+
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+    .field-error {
+      margin-top: 5px;
+
+      color: var(--danger);
+
+      font-size: 9px;
+    }
+
+    /* =========================================
+       COMMODITIES
+       ========================================= */
+
+    .commodity-options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 11px;
+    }
+
+    .commodity-option {
+      position: relative;
+
+      min-height: 82px;
+
+      padding: 13px;
+
+      border: 1px solid var(--border);
+      border-radius: 13px;
+
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      background: #fff;
+
+      text-align: left;
+
+      transition:
+        border-color .18s ease,
+        background .18s ease,
+        transform .18s ease;
+    }
+
+    .commodity-option:hover {
+      transform: translateY(-1px);
+      border-color: #bad8c4;
+    }
+
+    .commodity-option.selected {
+      border-color: var(--green-600);
+      background: var(--green-50);
+    }
+
+    .commodity-image {
+      width: 54px;
+      height: 54px;
+
+      flex: 0 0 auto;
+
+      overflow: hidden;
+
+      border-radius: 11px;
+
+      background: var(--surface-secondary);
+    }
+
+    .commodity-image img {
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+    }
+
+    .commodity-option strong {
+      display: block;
+
+      font-size: 12px;
+    }
+
+    .commodity-option span {
+      display: block;
+
+      margin-top: 4px;
+
+      color: var(--text-secondary);
+
+      font-size: 9px;
+    }
+
+    .commodity-check {
+      position: absolute;
+
+      right: 9px;
+      top: 9px;
+
+      width: 19px;
+      height: 19px;
+
+      border: 1px solid var(--border);
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: #fff;
+      color: transparent;
+
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .commodity-option.selected
+    .commodity-check {
+      border-color: var(--green-600);
+
+      background: var(--green-600);
+      color: #fff;
+    }
+
+    /* =========================================
+       SUMMARY
+       ========================================= */
+
+    .summary-panel {
+      position: sticky;
+      top: 95px;
+
+      padding: 21px;
+
+      border: 1px solid var(--border-light);
+      border-radius: 17px;
+
+      background: #fff;
+
+      box-shadow: var(--shadow-sm);
+    }
+
+    .summary-panel h2 {
+      margin: 0;
+
+      font-size: 15px;
+    }
+
+    .summary-panel > p {
+      margin: 5px 0 18px;
+
+      color: var(--text-secondary);
+
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+    .summary-placeholder {
+      padding: 22px 10px;
+
+      text-align: center;
+    }
+
+    .summary-placeholder-icon {
+      width: 48px;
+      height: 48px;
+
+      margin: 0 auto 10px;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--green-50);
+      color: var(--green-700);
+    }
+
+    .summary-placeholder strong {
+      display: block;
+
+      font-size: 11px;
+    }
+
+    .summary-placeholder span {
+      display: block;
+
+      margin-top: 5px;
+
+      color: var(--text-secondary);
+
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+    .summary-details {
+      display: none;
+    }
+
+    .summary-details.visible {
+      display: block;
+    }
+
+    .summary-row {
+      padding: 10px 0;
+
+      border-bottom: 1px solid var(--border-light);
+
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .summary-row:last-child {
+      border-bottom: 0;
+    }
+
+    .summary-row span {
+      color: var(--text-secondary);
+
+      font-size: 9px;
+    }
+
+    .summary-row strong {
+      max-width: 58%;
+
+      text-align: right;
+
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    .estimated-value {
+      margin-top: 15px;
+      padding: 13px;
+
+      border-radius: 11px;
+
+      background: var(--green-50);
+    }
+
+    .estimated-value span {
+      display: block;
+
+      color: var(--text-secondary);
+
+      font-size: 9px;
+    }
+
+    .estimated-value strong {
+      display: block;
+
+      margin-top: 3px;
+
+      color: var(--green-900);
+
+      font-size: 19px;
+      letter-spacing: -.4px;
+    }
+
+    /* =========================================
+       MANAGED MODEL NOTICE
+       ========================================= */
+
+    .managed-notice {
+      margin-top: 15px;
+      padding: 13px;
+
+      border: 1px solid #d8e9f7;
+      border-radius: 11px;
+
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+
+      background: var(--info-bg);
+    }
+
+    .managed-notice svg {
+      flex: 0 0 auto;
+
+      color: var(--info);
+    }
+
+    .managed-notice strong {
+      display: block;
+
+      color: #285d97;
+
+      font-size: 9px;
+    }
+
+    .managed-notice p {
+      margin: 3px 0 0;
+
+      color: #536b80;
+
+      font-size: 8px;
+      line-height: 1.55;
+    }
+
+    /* =========================================
+       BUTTONS
+       ========================================= */
+
+    .form-actions-local {
+      margin-top: 27px;
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .action-button {
+      min-height: 50px;
+
+      padding: 0 19px;
+
+      border-radius: 11px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      font-size: 10px;
+      font-weight: 800;
+
+      text-decoration: none;
+    }
+
+    .action-button.secondary {
+      border: 1px solid var(--border);
+
+      background: #fff;
+      color: var(--text-secondary);
+    }
+
+    .action-button.primary {
+      border: 1px solid var(--green-700);
+
+      background: var(--green-700);
+      color: #fff;
+
+      box-shadow:
+        0 6px 16px
+        rgba(7,140,80,.16);
+    }
+
+    .action-button.primary:hover {
+      background: var(--green-800);
+    }
+
+    /* =========================================
+       SUCCESS MODAL
+       ========================================= */
+
+    .success-overlay {
+      position: fixed;
+      inset: 0;
+
+      z-index: 200;
+
+      padding: 20px;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      background: rgba(4,29,19,.56);
+
+      backdrop-filter: blur(3px);
+    }
+
+    .success-overlay.show {
+      display: flex;
+    }
+
+    .success-modal {
+      width: min(100%, 440px);
+
+      padding: 30px;
+
+      border-radius: 20px;
+
+      background: #fff;
+
+      text-align: center;
+
+      box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.22);
+    }
+
+    .success-icon {
+      width: 68px;
+      height: 68px;
+
+      margin: 0 auto 16px;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--success-bg);
+      color: var(--success);
+    }
+
+    .success-modal h2 {
+      margin: 0;
+
+      font-size: 22px;
+    }
+
+    .success-modal > p {
+      margin: 8px auto 0;
+
+      max-width: 350px;
+
+      color: var(--text-secondary);
+
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .match-result {
+      margin-top: 19px;
+      padding: 14px;
+
+      border: 1px solid #d8eee0;
+      border-radius: 12px;
+
+      background: var(--green-50);
+
+      text-align: left;
+    }
+
+    .match-result strong {
+      display: block;
+
+      color: var(--green-900);
+
+      font-size: 11px;
+    }
+
+    .match-result p {
+      margin: 4px 0 0;
+
+      color: var(--text-secondary);
+
+      font-size: 9px;
+      line-height: 1.5;
+    }
+
+    .success-actions {
+      margin-top: 20px;
+
+      display: grid;
+      gap: 9px;
+    }
+
+    .success-actions .action-button {
+      width: 100%;
+    }
+
+    /* =========================================
+       MOBILE NAV
+       ========================================= */
+
+    .buyer-mobile-nav {
+      display: none;
+    }
+
+    /* =========================================
+       MOBILE
+       ========================================= */
+
+    @media (max-width: 900px) {
+      .demand-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 767px) {
+      body {
+        padding-bottom: 76px;
+        background: #fff;
+      }
+
+      .mobile-page-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+
+        min-height: 66px;
+
+        padding: 0 15px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        border-bottom: 1px solid rgba(255,255,255,.08);
+
+        background: #0b8548;
+        color: #fff;
+      }
+
+      .mobile-header-back {
+        width: 36px;
+        height: 36px;
+
+        border-radius: 10px;
+
+        display: grid;
+        place-items: center;
+
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .mobile-header-title {
+        text-align: center;
+      }
+
+      .mobile-header-title strong {
+        display: block;
+
+        font-size: 14px;
+      }
+
+      .mobile-header-title span {
+        display: block;
+
+        margin-top: 2px;
+
+        color: rgba(255,255,255,.72);
+
+        font-size: 8px;
+      }
+
+      .mobile-header-spacer {
+        width: 36px;
+      }
+
+      .demand-content {
+        width: 100%;
+        padding: 22px 14px 30px;
+      }
+
+      .page-heading {
+        margin-bottom: 20px;
+      }
+
+      .page-heading-left {
+        display: block;
+      }
+
+      .page-back,
+      .demo-pill {
+        display: none;
+      }
+
+      .page-heading h1 {
+        font-size: 24px;
+      }
+
+      .page-heading p {
+        font-size: 10px;
+      }
+
+      .demand-form-card {
+        padding: 0;
+
+        border: 0;
+        border-radius: 0;
+
+        box-shadow: none;
+      }
+
+      .form-section + .form-section {
+        margin-top: 24px;
+        padding-top: 23px;
+      }
+
+      .form-grid-local {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .form-group-local.full {
+        grid-column: auto;
+      }
+
+      .summary-panel {
+        margin-top: 4px;
+
+        padding: 17px;
+
+        background: var(--surface-secondary);
+      }
+
+      .form-actions-local {
+        display: grid;
+        grid-template-columns: .7fr 1.3fr;
+      }
+
+      .action-button {
+        padding: 0 12px;
+      }
+
+      .buyer-mobile-nav {
+        position: fixed;
+
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        z-index: 100;
+
+        min-height: 68px;
+
+        padding:
+          7px
+          max(7px, env(safe-area-inset-right))
+          calc(7px + env(safe-area-inset-bottom))
+          max(7px, env(safe-area-inset-left));
+
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+
+        border-top: 1px solid var(--border);
+
+        background: rgba(255,255,255,.97);
+
+        box-shadow:
+          0 -7px 25px
+          rgba(0,0,0,.06);
+      }
+
+      .buyer-mobile-nav a {
+        min-width: 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+
+        color: var(--text-light);
+
+        text-decoration: none;
+
+        font-size: 8px;
+        font-weight: 700;
+      }
+
+      .buyer-mobile-nav a.active {
+        color: var(--green-700);
+      }
+
+      .buyer-mobile-nav .nav-primary {
+        position: relative;
+        top: -15px;
+      }
+
+      .buyer-mobile-nav .nav-primary span:first-child {
+        width: 46px;
+        height: 46px;
+
+        border-radius: 50%;
+
+        display: grid;
+        place-items: center;
+
+        background: var(--green-700);
+        color: #fff;
+
+        box-shadow:
+          0 6px 16px
+          rgba(7,140,80,.24);
+      }
+
+      .buyer-mobile-nav .nav-primary strong {
+        color: var(--green-700);
+        font-size: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .commodity-options {
+        grid-template-columns: 1fr;
+      }
+
+      .commodity-option {
+        min-height: 76px;
+      }
+
+      .success-modal {
+        padding: 24px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="buyer-page">
+
+  <!-- MOBILE HEADER -->
+
+  <header class="mobile-page-header">
+
+    <a
+      href="dashboard.html"
+      class="mobile-header-back"
+      aria-label="Back to dashboard"
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M19 12H5"></path>
+        <path d="m12 19-7-7 7-7"></path>
+      </svg>
+    </a>
+
+    <div class="mobile-header-title">
+      <strong>Post Demand</strong>
+      <span>AgroLink Uganda</span>
+    </div>
+
+    <span class="mobile-header-spacer"></span>
+
+  </header>
+
+
+  <main class="demand-content">
+
+    <!-- PAGE HEADING -->
+
+    <div class="page-heading">
+
+      <div class="page-heading-left">
+
+        <a
+          href="dashboard.html"
+          class="page-back"
+          aria-label="Back"
+        >
+          <svg
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M19 12H5"></path>
+            <path d="m12 19-7-7 7-7"></path>
+          </svg>
+        </a>
+
+        <div>
+          <h1>Post your demand</h1>
+
+          <p>
+            Tell AgroLink what you need and we'll
+            identify potential matching supply.
+          </p>
+        </div>
+
+      </div>
+
+      <span class="demo-pill">
+        MVP DEMO
+      </span>
+
+    </div>
+
+
+    <div class="demand-layout">
+
+      <!-- FORM -->
+
+      <section class="demand-form-card">
+
+        <form
+          id="demandForm"
+          novalidate
+        >
+
+          <!-- COMMODITY -->
+
+          <div class="form-section">
+
+            <div class="form-section-heading">
+              <h2>What do you need?</h2>
+
+              <p>
+                Select the agricultural commodity
+                you want AgroLink to source.
+              </p>
+            </div>
+
+
+            <div class="commodity-options">
+
+              <button
+                type="button"
+                class="commodity-option"
+                data-commodity="Dry Maize"
+              >
+
+                <span class="commodity-image">
+                  <img
+                    src="../assets/images/crops/dry-maize.jpg"
+                    alt="Dry maize"
+                  >
+                </span>
+
+                <span>
+                  <strong>Dry Maize</strong>
+                  <span>Grain commodity</span>
+                </span>
+
+                <span class="commodity-check">
+                  ✓
+                </span>
+
+              </button>
+
+
+              <button
+                type="button"
+                class="commodity-option"
+                data-commodity="Beans"
+              >
+
+                <span class="commodity-image">
+                  <img
+                    src="../assets/images/crops/beans.jpg"
+                    alt="Beans"
+                  >
+                </span>
+
+                <span>
+                  <strong>Beans</strong>
+                  <span>Grain commodity</span>
+                </span>
+
+                <span class="commodity-check">
+                  ✓
+                </span>
+
+              </button>
+
+            </div>
+
+            <div
+              id="commodityError"
+              class="field-error"
+              hidden
+            >
+              Select a commodity.
+            </div>
+
+          </div>
+
+
+          <!-- QUANTITY / PRICE -->
+
+          <div class="form-section">
+
+            <div class="form-section-heading">
+              <h2>Quantity & target price</h2>
+
+              <p>
+                Specify how much you require and
+                the price you are targeting.
+              </p>
+            </div>
+
+
+            <div class="form-grid-local">
+
+              <div class="form-group-local">
+
+                <label for="quantity">
+                  Quantity Required
+                  <span class="required">*</span>
+                </label>
+
+                <div class="input-shell">
+
+                  <span class="field-icon">
+                    <svg
+                      width="17"
+                      height="17"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    >
+                      <path d="M4 7h16"></path>
+                      <path d="M6 7 8 20h8l2-13"></path>
+                      <path d="M9 7V4h6v3"></path>
+                    </svg>
+                  </span>
+
+                  <input
+                    type="number"
+                    id="quantity"
+                    class="field-control with-icon"
+                    placeholder="e.g. 5000"
+                    min="1"
+                  >
+
+                </div>
+
+                <div class="field-help">
+                  Enter quantity in kilograms (kg).
+                </div>
+
+              </div>
+
+
+              <div class="form-group-local">
+
+                <label for="targetPrice">
+                  Target Price / kg
+                  <span class="required">*</span>
+                </label>
+
+                <div class="input-shell">
+
+                  <span class="field-icon">
+                    <svg
+                      width="17"
+                      height="17"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="9"
+                      ></circle>
+
+                      <path d="M8 12h8"></path>
+                    </svg>
+                  </span>
+
+                  <input
+                    type="number"
+                    id="targetPrice"
+                    class="field-control with-icon"
+                    placeholder="e.g. 1200"
+                    min="1"
+                  >
+
+                </div>
+
+                <div class="field-help">
+                  Target price in Uganda Shillings.
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- LOCATION -->
+
+          <div class="form-section">
+
+            <div class="form-section-heading">
+              <h2>Delivery requirement</h2>
+
+              <p>
+                Tell us where and when the produce
+                is required.
+              </p>
+            </div>
+
+
+            <div class="form-grid-local">
+
+              <div class="form-group-local">
+
+                <label for="location">
+                  Delivery Location
+                  <span class="required">*</span>
+                </label>
+
+                <select
+                  id="location"
+                  class="field-control"
+                >
+                  <option value="">
+                    Select location
+                  </option>
+
+                  <option value="Kampala">
+                    Kampala
+                  </option>
+
+                  <option value="Mukono">
+                    Mukono
+                  </option>
+
+                  <option value="Wakiso">
+                    Wakiso
+                  </option>
+
+                  <option value="Jinja">
+                    Jinja
+                  </option>
+
+                  <option value="Gulu">
+                    Gulu
+                  </option>
+
+                  <option value="Mbale">
+                    Mbale
+                  </option>
+
+                  <option value="Masaka">
+                    Masaka
+                  </option>
+
+                  <option value="Mbarara">
+                    Mbarara
+                  </option>
+                </select>
+
+              </div>
+
+
+              <div class="form-group-local">
+
+                <label for="requiredDate">
+                  Required By
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  type="date"
+                  id="requiredDate"
+                  class="field-control"
+                >
+
+              </div>
+
+
+              <div class="form-group-local full">
+
+                <label for="deliveryArea">
+                  Delivery Area / Details
+                  <span class="optional">
+                    (optional)
+                  </span>
+                </label>
+
+                <input
+                  type="text"
+                  id="deliveryArea"
+                  class="field-control"
+                  placeholder="e.g. Nakawa, Kampala"
+                >
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- QUALITY -->
+
+          <div class="form-section">
+
+            <div class="form-section-heading">
+              <h2>Quality requirements</h2>
+
+              <p>
+                Add any important specifications
+                AgroLink should consider when matching supply.
+              </p>
+            </div>
+
+
+            <div class="form-grid-local">
+
+              <div class="form-group-local">
+
+                <label for="qualityGrade">
+                  Preferred Quality
+                </label>
+
+                <select
+                  id="qualityGrade"
+                  class="field-control"
+                >
+                  <option value="Standard">
+                    Standard quality
+                  </option>
+
+                  <option value="Premium">
+                    Premium quality
+                  </option>
+
+                  <option value="Any acceptable grade">
+                    Any acceptable grade
+                  </option>
+                </select>
+
+              </div>
+
+
+              <div class="form-group-local">
+
+                <label for="packaging">
+                  Packaging
+                  <span class="optional">
+                    (optional)
+                  </span>
+                </label>
+
+                <select
+                  id="packaging"
+                  class="field-control"
+                >
+                  <option value="">
+                    No preference
+                  </option>
+
+                  <option value="50 kg bags">
+                    50 kg bags
+                  </option>
+
+                  <option value="100 kg bags">
+                    100 kg bags
+                  </option>
+
+                  <option value="Bulk">
+                    Bulk
+                  </option>
+                </select>
+
+              </div>
+
+
+              <div class="form-group-local full">
+
+                <label for="notes">
+                  Additional Requirements
+                  <span class="optional">
+                    (optional)
+                  </span>
+                </label>
+
+                <textarea
+                  id="notes"
+                  class="field-control"
+                  placeholder="Add moisture level, grain condition, delivery or other requirements..."
+                ></textarea>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- ACTIONS -->
+
+          <div class="form-actions-local">
+
+            <a
+              href="dashboard.html"
+              class="action-button secondary"
+            >
+              Cancel
+            </a>
+
+
+            <button
+              type="submit"
+              class="action-button primary"
+              id="submitDemandButton"
+            >
+              Submit Demand
+
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14"></path>
+                <path d="m13 6 6 6-6 6"></path>
+              </svg>
+            </button>
+
+          </div>
+
+        </form>
+
+      </section>
+
+
+      <!-- SUMMARY -->
+
+      <aside class="summary-panel">
+
+        <h2>Demand Summary</h2>
+
+        <p>
+          Review your requirement before submitting
+          it to AgroLink.
+        </p>
+
+
+        <div
+          class="summary-placeholder"
+          id="summaryPlaceholder"
+        >
+
+          <div class="summary-placeholder-icon">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path d="M4 5h16v14H4z"></path>
+              <path d="M8 9h8"></path>
+              <path d="M8 13h5"></path>
+            </svg>
+          </div>
+
+          <strong>
+            Start your requirement
+          </strong>
+
+          <span>
+            Your demand summary will appear
+            here as you complete the form.
+          </span>
+
+        </div>
+
+
+        <div
+          class="summary-details"
+          id="summaryDetails"
+        >
+
+          <div class="summary-row">
+            <span>Commodity</span>
+            <strong id="summaryCommodity">—</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Quantity</span>
+            <strong id="summaryQuantity">—</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Target Price</span>
+            <strong id="summaryPrice">—</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Delivery</span>
+            <strong id="summaryLocation">—</strong>
+          </div>
+
+          <div class="summary-row">
+            <span>Required By</span>
+            <strong id="summaryDate">—</strong>
+          </div>
+
+
+          <div class="estimated-value">
+            <span>
+              Estimated demand value
+            </span>
+
+            <strong id="summaryValue">
+              UGX 0
+            </strong>
+          </div>
+
+        </div>
+
+
+        <div class="managed-notice">
+
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z"
+            ></path>
+
+            <path d="m8.5 12 2.2 2.2 4.8-5"></path>
+          </svg>
+
+          <div>
+            <strong>
+              AgroLink Managed Matching
+            </strong>
+
+            <p>
+              Your requirement is submitted to AgroLink.
+              Potential suppliers are matched and verified
+              before a transaction progresses.
+            </p>
+          </div>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+
+  <!-- MOBILE NAV -->
+
+  <nav
+    class="buyer-mobile-nav"
+    aria-label="Buyer navigation"
+  >
+
+    <a href="dashboard.html">
+
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+      >
+        <path d="M3 11 12 4l9 7"></path>
+        <path d="M5 10v10h14V10"></path>
+      </svg>
+
+      <span>Home</span>
+
+    </a>
+
+
+    <a href="market.html">
+
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+      >
+        <path d="M3 18 9 12l4 4 8-10"></path>
+        <path d="M15 6h6v6"></path>
+      </svg>
+
+      <span>Market</span>
+
+    </a>
+
+
+    <a
+      href="post-demand.html"
+      class="nav-primary active"
+    >
+      <span>
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M12 5v14"></path>
+          <path d="M5 12h14"></path>
+        </svg>
+      </span>
+
+      <strong>Demand</strong>
+    </a>
+
+
+    <a href="orders.html">
+
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+      >
+        <path d="M5 4h14v16H5z"></path>
+        <path d="M8 8h8"></path>
+        <path d="M8 12h8"></path>
+      </svg>
+
+      <span>Orders</span>
+
+    </a>
+
+
+    <a href="profile.html">
+
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+      >
+        <circle cx="12" cy="8" r="4"></circle>
+        <path d="M4 21a8 8 0 0 1 16 0"></path>
+      </svg>
+
+      <span>Profile</span>
+
+    </a>
+
+  </nav>
+
+</div>
+
+
+<!-- SUCCESS -->
+
+<div
+  class="success-overlay"
+  id="successOverlay"
+>
+
+  <div class="success-modal">
+
+    <div class="success-icon">
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="m8 12 2.5 2.5L16 9"></path>
+      </svg>
+    </div>
+
+
+    <h2>Demand submitted</h2>
+
+
+    <p>
+      Your requirement has been submitted to
+      AgroLink for supply matching.
+    </p>
+
+
+    <div
+      class="match-result"
+      id="matchResult"
+    >
+      <strong id="matchResultTitle">
+        Searching available supply...
+      </strong>
+
+      <p id="matchResultText">
+        AgroLink is checking available demo supply
+        against your requirement.
+      </p>
+    </div>
+
+
+    <div class="success-actions">
+
+      <a
+        href="matches.html"
+        class="action-button primary"
+      >
+        View Potential Matches →
+      </a>
+
+
+      <a
+        href="dashboard.html"
+        class="action-button secondary"
+      >
+        Return to Dashboard
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script src="../js/config.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/storage.js"></script>
+<script src="../js/utils.js"></script>
+
+<script>
+  let selectedCommodity = null;
+
+
+  const form =
+    document.getElementById(
+      "demandForm"
+    );
+
+
+  const quantityInput =
+    document.getElementById(
+      "quantity"
+    );
+
+
+  const priceInput =
+    document.getElementById(
+      "targetPrice"
+    );
+
+
+  const locationInput =
+    document.getElementById(
+      "location"
+    );
+
+
+  const dateInput =
+    document.getElementById(
+      "requiredDate"
+    );
+
+
+  const commodityOptions =
+    Array.from(
+      document.querySelectorAll(
+        ".commodity-option"
+      )
+    );
+
+
+  /* =========================================
+     DEFAULT DATE
+     ========================================= */
+
+  const today =
+    new Date();
+
+
+  const minimumDate =
+    today.toISOString()
+      .split("T")[0];
+
+
+  dateInput.min =
+    minimumDate;
+
+
+  /* =========================================
+     COMMODITY
+     ========================================= */
+
+  commodityOptions.forEach(
+    (button) => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          selectedCommodity =
+            button.dataset.commodity;
+
+
+          commodityOptions.forEach(
+            (item) =>
+              item.classList.remove(
+                "selected"
+              )
+          );
+
+
+          button.classList.add(
+            "selected"
+          );
+
+
+          document
+            .getElementById(
+              "commodityError"
+            )
+            .hidden =
+              true;
+
+
+          updateSummary();
+
+        }
+      );
+
+    }
+  );
+
+
+  /* =========================================
+     SUMMARY LISTENERS
+     ========================================= */
+
+  [
+    quantityInput,
+    priceInput,
+    locationInput,
+    dateInput
+  ].forEach(
+    (field) => {
+
+      field.addEventListener(
+        "input",
+        updateSummary
+      );
+
+
+      field.addEventListener(
+        "change",
+        updateSummary
+      );
+
+    }
+  );
+
+
+  function updateSummary() {
+
+    const quantity =
+      Number(
+        quantityInput.value
+      ) || 0;
+
+
+    const price =
+      Number(
+        priceInput.value
+      ) || 0;
+
+
+    const location =
+      locationInput.value;
+
+
+    const requiredDate =
+      dateInput.value;
+
+
+    const hasData =
+      selectedCommodity ||
+      quantity ||
+      price ||
+      location ||
+      requiredDate;
+
+
+    document
+      .getElementById(
+        "summaryPlaceholder"
+      )
+      .style
+      .display =
+        hasData
+          ? "none"
+          : "block";
+
+
+    document
+      .getElementById(
+        "summaryDetails"
+      )
+      .classList
+      .toggle(
+        "visible",
+        Boolean(hasData)
+      );
+
+
+    document
+      .getElementById(
+        "summaryCommodity"
+      )
+      .textContent =
+        selectedCommodity ||
+        "—";
+
+
+    document
+      .getElementById(
+        "summaryQuantity"
+      )
+      .textContent =
+        quantity
+          ? formatNumber(quantity) +
+            " kg"
+          : "—";
+
+
+    document
+      .getElementById(
+        "summaryPrice"
+      )
+      .textContent =
+        price
+          ? "UGX " +
+            formatNumber(price) +
+            "/kg"
+          : "—";
+
+
+    document
+      .getElementById(
+        "summaryLocation"
+      )
+      .textContent =
+        location ||
+        "—";
+
+
+    document
+      .getElementById(
+        "summaryDate"
+      )
+      .textContent =
+        requiredDate
+          ? formatDate(requiredDate)
+          : "—";
+
+
+    document
+      .getElementById(
+        "summaryValue"
+      )
+      .textContent =
+        "UGX " +
+        formatNumber(
+          quantity * price
+        );
+
+  }
+
+
+  /* =========================================
+     SUBMIT
+     ========================================= */
+
+  form.addEventListener(
+    "submit",
+    (event) => {
+
+      event.preventDefault();
+
+      clearErrors();
+
+
+      const quantity =
+        Number(
+          quantityInput.value
+        );
+
+
+      const targetPrice =
+        Number(
+          priceInput.value
+        );
+
+
+      const location =
+        locationInput.value;
+
+
+      const requiredDate =
+        dateInput.value;
+
+
+      let valid = true;
+
+
+      if (!selectedCommodity) {
+
+        document
+          .getElementById(
+            "commodityError"
+          )
+          .hidden =
+            false;
+
+        valid = false;
+      }
+
+
+      if (
+        !quantity ||
+        quantity <= 0
+      ) {
+
+        setError(
+          quantityInput,
+          "Enter a valid quantity."
+        );
+
+        valid = false;
+      }
+
+
+      if (
+        !targetPrice ||
+        targetPrice <= 0
+      ) {
+
+        setError(
+          priceInput,
+          "Enter a valid target price."
+        );
+
+        valid = false;
+      }
+
+
+      if (!location) {
+
+        setError(
+          locationInput,
+          "Select a delivery location."
+        );
+
+        valid = false;
+      }
+
+
+      if (!requiredDate) {
+
+        setError(
+          dateInput,
+          "Select when the produce is required."
+        );
+
+        valid = false;
+      }
+
+
+      if (!valid) {
+        return;
+      }
+
+
+      const demand = {
+        id:
+          "DEM-" +
+          Date.now(),
+
+        commodity:
+          selectedCommodity,
+
+        quantity:
+          quantity,
+
+        targetPrice:
+          targetPrice,
+
+        location:
+          location,
+
+        deliveryArea:
+          document
+            .getElementById(
+              "deliveryArea"
+            )
+            .value
+            .trim(),
+
+        requiredDate:
+          requiredDate,
+
+        quality:
+          document
+            .getElementById(
+              "qualityGrade"
+            )
+            .value,
+
+        packaging:
+          document
+            .getElementById(
+              "packaging"
+            )
+            .value,
+
+        notes:
+          document
+            .getElementById(
+              "notes"
+            )
+            .value
+            .trim(),
+
+        status:
+          "Open",
+
+        createdAt:
+          new Date()
+            .toISOString(),
+
+        demo:
+          true
+      };
+
+
+      saveDemand(
+        demand
+      );
+
+
+      const matches =
+        findPotentialMatches(
+          demand
+        );
+
+
+      saveMatches(
+        demand,
+        matches
+      );
+
+
+      showSuccess(
+        demand,
+        matches
+      );
+
+    }
+  );
+
+
+  /* =========================================
+     SAVE DEMAND
+     ========================================= */
+
+  function saveDemand(
+    demand
+  ) {
+
+    let savedThroughService =
+      false;
+
+
+    try {
+
+      if (
+        window.AgroLinkStorage
+      ) {
+
+        const service =
+          window.AgroLinkStorage;
+
+
+        const possibleMethods = [
+          "createDemand",
+          "addDemand",
+          "saveDemand"
+        ];
+
+
+        for (
+          const method
+          of possibleMethods
+        ) {
+
+          if (
+            typeof service[
+              method
+            ] === "function"
+          ) {
+
+            service[
+              method
+            ](
+              demand
+            );
+
+            savedThroughService =
+              true;
+
+            break;
+          }
+
+        }
+
+      }
+
+    } catch (error) {
+
+      console.warn(
+        "Shared storage demand save failed:",
+        error
+      );
+
+    }
+
+
+    if (
+      !savedThroughService
+    ) {
+
+      const key =
+        window.AGROLINK_CONFIG
+          ?.storageKeys
+          ?.demands ||
+        "agrolink_demands";
+
+
+      const demands =
+        readArray(
+          key
+        );
+
+
+      demands.unshift(
+        demand
+      );
+
+
+      localStorage.setItem(
+        key,
+        JSON.stringify(
+          demands
+        )
+      );
+
+    }
+
+
+    localStorage.setItem(
+      "agrolink_last_demand",
+      JSON.stringify(
+        demand
+      )
+    );
+
+  }
+
+
+  /* =========================================
+     MATCHING
+     ========================================= */
+
+  function findPotentialMatches(
+    demand
+  ) {
+
+    let supply = [];
+
+
+    try {
+
+      const key =
+        window.AGROLINK_CONFIG
+          ?.storageKeys
+          ?.produce ||
+        "agrolink_produce";
+
+
+      supply =
+        readArray(
+          key
+        );
+
+    } catch (error) {
+
+      supply = [];
+    }
+
+
+    /*
+      If localStorage has not been seeded yet,
+      use the shared demo data.
+    */
+
+    if (
+      !supply.length &&
+      window.AGROLINK_DATA
+    ) {
+
+      supply =
+        window.AGROLINK_DATA
+          .produce ||
+        [];
+
+    }
+
+
+    return supply
+      .filter(
+        (item) => {
+
+          return normalize(
+            item.commodity
+          ) ===
+          normalize(
+            demand.commodity
+          );
+
+        }
+      )
+      .map(
+        (item) => {
+
+          const supplyQuantity =
+            Number(
+              item.quantity ||
+              item.availableQuantity ||
+              0
+            );
+
+
+          const supplyPrice =
+            Number(
+              item.price ||
+              item.pricePerKg ||
+              0
+            );
+
+
+          const matchedQuantity =
+            Math.min(
+              supplyQuantity,
+              demand.quantity
+            );
+
+
+          let score = 70;
+
+
+          if (
+            supplyPrice &&
+            supplyPrice <=
+              demand.targetPrice
+          ) {
+            score += 15;
+          }
+
+
+          if (
+            normalize(
+              item.location
+            ) ===
+            normalize(
+              demand.location
+            )
+          ) {
+            score += 10;
+          }
+
+
+          if (
+            supplyQuantity >=
+            demand.quantity
+          ) {
+            score += 5;
+          }
+
+
+          score =
+            Math.min(
+              score,
+              100
+            );
+
+
+          return {
+            id:
+              "MATCH-" +
+              Date.now() +
+              "-" +
+              Math.floor(
+                Math.random() *
+                1000
+              ),
+
+            demandId:
+              demand.id,
+
+            supplyId:
+              item.id,
+
+            commodity:
+              demand.commodity,
+
+            quantity:
+              matchedQuantity,
+
+            demandQuantity:
+              demand.quantity,
+
+            supplyQuantity:
+              supplyQuantity,
+
+            targetPrice:
+              demand.targetPrice,
+
+            supplyPrice:
+              supplyPrice,
+
+            buyerLocation:
+              demand.location,
+
+            supplierLocation:
+              item.location,
+
+            score:
+              score,
+
+            status:
+              "Potential Match",
+
+            verificationStatus:
+              item.verified
+                ? "Supplier Verified"
+                : "Awaiting Verification",
+
+            createdAt:
+              new Date()
+                .toISOString(),
+
+            demo:
+              true
+          };
+
+        }
+      )
+      .sort(
+        (a, b) =>
+          b.score - a.score
+      );
+
+  }
+
+
+  /* =========================================
+     SAVE MATCHES
+     ========================================= */
+
+  function saveMatches(
+    demand,
+    matches
+  ) {
+
+    if (!matches.length) {
+      return;
+    }
+
+
+    const key =
+      window.AGROLINK_CONFIG
+        ?.storageKeys
+        ?.matches ||
+      "agrolink_matches";
+
+
+    const existing =
+      readArray(
+        key
+      );
+
+
+    const updated =
+      [
+        ...matches,
+        ...existing.filter(
+          (item) =>
+            item.demandId !==
+            demand.id
+        )
+      ];
+
+
+    localStorage.setItem(
+      key,
+      JSON.stringify(
+        updated
+      )
+    );
+
+
+    localStorage.setItem(
+      "agrolink_last_matches",
+      JSON.stringify(
+        matches
+      )
+    );
+
+  }
+
+
+  /* =========================================
+     SUCCESS
+     ========================================= */
+
+  function showSuccess(
+    demand,
+    matches
+  ) {
+
+    const title =
+      document.getElementById(
+        "matchResultTitle"
+      );
+
+
+    const text =
+      document.getElementById(
+        "matchResultText"
+      );
+
+
+    if (
+      matches.length
+    ) {
+
+      const best =
+        matches[0];
+
+
+      title.textContent =
+        "Potential Match Found";
+
+
+      text.textContent =
+        `${formatNumber(
+          best.quantity
+        )} of ${formatNumber(
+          demand.quantity
+        )} kg may be available for this requirement. Supplier and quality verification remain part of the AgroLink process.`;
+
+    } else {
+
+      title.textContent =
+        "Demand is now open";
+
+
+      text.textContent =
+        "No immediate demo supply matched this requirement. AgroLink can continue monitoring available supply for this demand.";
+
+    }
+
+
+    document
+      .getElementById(
+        "successOverlay"
+      )
+      .classList
+      .add(
+        "show"
+      );
+
+  }
+
+
+  /* =========================================
+     VALIDATION
+     ========================================= */
+
+  function clearErrors() {
+
+    document
+      .querySelectorAll(
+        ".field-error:not(#commodityError)"
+      )
+      .forEach(
+        (element) =>
+          element.remove()
+      );
+
+
+    document
+      .querySelectorAll(
+        ".field-control.error"
+      )
+      .forEach(
+        (element) =>
+          element.classList.remove(
+            "error"
+          )
+      );
+
+
+    if (
+      selectedCommodity
+    ) {
+
+      document
+        .getElementById(
+          "commodityError"
+        )
+        .hidden =
+          true;
+
+    }
+
+  }
+
+
+  function setError(
+    field,
+    message
+  ) {
+
+    field.classList.add(
+      "error"
+    );
+
+
+    const error =
+      document.createElement(
+        "div"
+      );
+
+
+    error.className =
+      "field-error";
+
+
+    error.textContent =
+      message;
+
+
+    field
+      .closest(
+        ".form-group-local"
+      )
+      .appendChild(
+        error
+      );
+
+  }
+
+
+  /* =========================================
+     HELPERS
+     ========================================= */
+
+  function readArray(
+    key
+  ) {
+
+    try {
+
+      const data =
+        JSON.parse(
+          localStorage.getItem(
+            key
+          ) ||
+          "[]"
+        );
+
+
+      return Array.isArray(
+        data
+      )
+        ? data
+        : [];
+
+    } catch (error) {
+
+      return [];
+
+    }
+
+  }
+
+
+  function normalize(
+    value
+  ) {
+
+    return String(
+      value || ""
+    )
+      .trim()
+      .toLowerCase();
+
+  }
+
+
+  function formatNumber(
+    value
+  ) {
+
+    return new Intl.NumberFormat(
+      "en-UG"
+    ).format(
+      Number(value) || 0
+    );
+
+  }
+
+
+  function formatDate(
+    value
+  ) {
+
+    if (!value) {
+      return "—";
+    }
+
+
+    return new Intl.DateTimeFormat(
+      "en-UG",
+      {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+      }
+    ).format(
+      new Date(
+        value + "T00:00:00"
+      )
+    );
+
+  }
+</script>
+
+</body>
+</html>
