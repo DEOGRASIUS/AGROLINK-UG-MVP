@@ -1,0 +1,66 @@
+:root {
+  /* AgroLink Brand */
+  --green-950: #043d29;
+  --green-900: #075e3b;
+  --green-800: #067347;
+  --green-700: #078c50;
+  --green-600: #0a9f5a;
+  --green-500: #19ad67;
+
+  --green-100: #eaf7ef;
+  --green-50: #f3fbf6;
+
+  --lime: #a8d542;
+  --lime-light: #dff0a5;
+
+  /* Surfaces */
+  --background: #f7f9f5;
+  --surface: #ffffff;
+  --surface-secondary: #f2f6f3;
+
+  /* Typography */
+  --text-primary: #17231c;
+  --text-secondary: #657269;
+  --text-light: #8a968e;
+  --text-on-green: #ffffff;
+
+  /* UI */
+  --border: #dde7e0;
+  --border-light: #edf2ee;
+
+  /* Status */
+  --success: #14965b;
+  --success-bg: #e7f6ed;
+
+  --warning: #f4a62a;
+  --warning-bg: #fff5df;
+
+  --danger: #d94a4a;
+  --danger-bg: #fdecec;
+
+  --info: #3478c7;
+  --info-bg: #eaf3fc;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.10);
+
+  /* Layout */
+  --container-width: 1280px;
+  --sidebar-width: 260px;
+  --header-height: 72px;
+
+  /* Motion */
+  --transition-fast: 150ms ease;
+  --transition: 200ms ease;
+  --transition-slow: 300ms ease;
+}
