@@ -1,0 +1,563 @@
+/* =========================================================
+   AGROLINK UGANDA MVP
+   Shared Layout System
+   ========================================================= */
+
+/* ---------- Main Container ---------- */
+
+.container {
+  width: min(100% - 32px, var(--container-width));
+  margin-inline: auto;
+}
+
+.page {
+  min-height: 100vh;
+}
+
+.page-content {
+  padding: 32px;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+}
+
+/* ---------- Application Shell ---------- */
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--background);
+}
+
+/* ---------- Sidebar ---------- */
+
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+
+  z-index: 100;
+
+  display: flex;
+  flex-direction: column;
+
+  width: var(--sidebar-width);
+  height: 100vh;
+
+  padding: 24px 18px;
+
+  color: var(--text-on-green);
+  background: var(--green-950);
+
+  overflow-y: auto;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-height: 48px;
+  margin-bottom: 32px;
+  padding: 0 10px;
+}
+
+.sidebar-brand img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.sidebar-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-brand-name {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.sidebar-brand-label {
+  margin-top: 3px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* ---------- Sidebar Navigation ---------- */
+
+.sidebar-nav {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-nav-section {
+  margin: 20px 10px 8px;
+
+  color: rgba(255, 255, 255, 0.45);
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-height: 46px;
+
+  padding: 10px 12px;
+
+  color: rgba(255, 255, 255, 0.74);
+
+  border-radius: var(--radius-md);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition:
+    background var(--transition),
+    color var(--transition),
+    transform var(--transition);
+}
+
+.sidebar-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-link.active {
+  color: #ffffff;
+  background: var(--green-700);
+  box-shadow: var(--shadow-sm);
+}
+
+.sidebar-link-icon {
+  display: grid;
+  flex: 0 0 22px;
+  place-items: center;
+
+  width: 22px;
+  height: 22px;
+}
+
+.sidebar-footer {
+  margin-top: 24px;
+  padding-top: 18px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+/* ---------- Main Application Area ---------- */
+
+.app-main {
+  width: calc(100% - var(--sidebar-width));
+  min-height: 100vh;
+
+  margin-left: var(--sidebar-width);
+}
+
+/* ---------- Top Header ---------- */
+
+.app-header {
+  position: sticky;
+  top: 0;
+
+  z-index: 80;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  min-height: var(--header-height);
+
+  padding: 12px 32px;
+
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid var(--border-light);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-left {
+  min-width: 0;
+  gap: 16px;
+}
+
+.header-right {
+  flex-shrink: 0;
+  gap: 12px;
+}
+
+.page-title {
+  overflow: hidden;
+
+  color: var(--text-primary);
+
+  font-size: 22px;
+  font-weight: 800;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.page-subtitle {
+  margin-top: 3px;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+}
+
+/* ---------- Dashboard Content ---------- */
+
+.dashboard-content {
+  padding: 28px 32px 40px;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+
+  margin-bottom: 28px;
+}
+
+.dashboard-header h1 {
+  margin-bottom: 6px;
+
+  font-size: clamp(26px, 3vw, 36px);
+}
+
+.dashboard-header p {
+  max-width: 680px;
+}
+
+/* ---------- Grid System ---------- */
+
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  gap: 24px;
+}
+
+.dashboard-main-column,
+.dashboard-side-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ---------- Section ---------- */
+
+.section {
+  margin-bottom: 32px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  margin-bottom: 16px;
+}
+
+.section-heading {
+  min-width: 0;
+}
+
+.section-title {
+  color: var(--text-primary);
+
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.section-description {
+  margin-top: 4px;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+}
+
+.section-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ---------- Stack Utilities ---------- */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack-xs {
+  gap: 6px;
+}
+
+.stack-sm {
+  gap: 10px;
+}
+
+.stack-md {
+  gap: 16px;
+}
+
+.stack-lg {
+  gap: 24px;
+}
+
+.stack-xl {
+  gap: 32px;
+}
+
+/* ---------- Flex Utilities ---------- */
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.gap-1 {
+  gap: 8px;
+}
+
+.gap-2 {
+  gap: 12px;
+}
+
+.gap-3 {
+  gap: 16px;
+}
+
+.gap-4 {
+  gap: 24px;
+}
+
+/* ---------- Form Layout ---------- */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.form-grid .full-width {
+  grid-column: 1 / -1;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+
+  margin-top: 28px;
+}
+
+/* ---------- Filter Bar ---------- */
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 22px;
+}
+
+.filter-bar-main {
+  flex: 1;
+  min-width: 220px;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ---------- Authentication Layout ---------- */
+
+.auth-page {
+  display: grid;
+  grid-template-columns: minmax(380px, 0.9fr) minmax(480px, 1.1fr);
+
+  min-height: 100vh;
+
+  background: var(--surface);
+}
+
+.auth-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 48px;
+}
+
+.auth-content {
+  width: 100%;
+  max-width: 460px;
+}
+
+.auth-visual {
+  position: relative;
+
+  display: flex;
+  align-items: flex-end;
+
+  min-height: 100vh;
+
+  padding: 56px;
+
+  color: #ffffff;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(4, 61, 41, 0.18),
+      rgba(4, 61, 41, 0.88)
+    ),
+    var(--green-900);
+
+  overflow: hidden;
+}
+
+.auth-visual-content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 620px;
+}
+
+.auth-visual h1 {
+  margin-bottom: 16px;
+
+  color: #ffffff;
+
+  font-size: clamp(36px, 5vw, 64px);
+}
+
+.auth-visual p {
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 18px;
+}
+
+/* ---------- Mobile Header ---------- */
+
+.mobile-header {
+  display: none;
+}
+
+/* ---------- Mobile Bottom Navigation ---------- */
+
+.mobile-bottom-nav {
+  display: none;
+}
+
+/* ---------- Empty / Centered Layout ---------- */
+
+.centered-content {
+  display: grid;
+  place-items: center;
+
+  min-height: 60vh;
+
+  padding: 32px;
+}
+
+/* ---------- Demo Label ---------- */
+
+.demo-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 7px 16px;
+
+  color: var(--green-900);
+  background: var(--green-100);
+
+  border-bottom: 1px solid #d8ecdf;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ---------- Desktop visibility helpers ---------- */
+
+.desktop-only {
+  display: initial;
+}
+
+.mobile-only {
+  display: none;
+}

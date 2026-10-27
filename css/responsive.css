@@ -1,0 +1,710 @@
+/* =========================================================
+   AGROLINK UGANDA MVP
+   Responsive Design System
+   ========================================================= */
+
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1440px) {
+  .dashboard-content {
+    padding: 32px 40px 48px;
+  }
+
+  .app-header {
+    padding-inline: 40px;
+  }
+}
+
+
+/* =========================================================
+   TABLET / SMALL DESKTOP
+   ========================================================= */
+
+@media (max-width: 1199px) {
+  :root {
+    --sidebar-width: 230px;
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-grid {
+    grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr);
+  }
+
+  .quick-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .market-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1023px) {
+  :root {
+    --sidebar-width: 210px;
+  }
+
+  .sidebar {
+    padding-inline: 12px;
+  }
+
+  .sidebar-brand {
+    padding-inline: 8px;
+  }
+
+  .sidebar-link {
+    padding-inline: 10px;
+  }
+
+  .app-header {
+    padding-inline: 24px;
+  }
+
+  .dashboard-content,
+  .page-content {
+    padding: 24px;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .auth-page {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-visual {
+    display: none;
+  }
+
+  .auth-panel {
+    min-height: 100vh;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  body {
+    padding-bottom: 76px;
+  }
+
+  /* ---------- Desktop Sidebar ---------- */
+
+  .sidebar {
+    display: none;
+  }
+
+  .app-main {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  /* ---------- Desktop Header ---------- */
+
+  .app-header {
+    min-height: 64px;
+
+    padding: 10px 16px;
+  }
+
+  .app-header .page-title,
+  .app-header .page-subtitle {
+    display: none;
+  }
+
+  .header-right .user-details {
+    display: none;
+  }
+
+  /* ---------- Mobile Header ---------- */
+
+  .mobile-header {
+    position: sticky;
+    top: 0;
+
+    z-index: 90;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    min-height: 64px;
+
+    padding: 10px 16px;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border-bottom: 1px solid var(--border-light);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .mobile-brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    min-width: 0;
+  }
+
+  .mobile-brand img {
+    width: 34px;
+    height: 34px;
+
+    object-fit: contain;
+  }
+
+  .mobile-brand-name {
+    color: var(--green-900);
+
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  .mobile-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ---------- Content ---------- */
+
+  .dashboard-content,
+  .page-content {
+    padding: 20px 16px 28px;
+  }
+
+  .container {
+    width: min(100% - 32px, var(--container-width));
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    gap: 14px;
+
+    margin-bottom: 22px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 26px;
+  }
+
+  .dashboard-header p {
+    font-size: 13px;
+  }
+
+  /* ---------- Grids ---------- */
+
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid .full-width {
+    grid-column: auto;
+  }
+
+  /* ---------- Sections ---------- */
+
+  .section {
+    margin-bottom: 26px;
+  }
+
+  .section-header {
+    align-items: flex-start;
+  }
+
+  .section-title {
+    font-size: 17px;
+  }
+
+  .section-description {
+    font-size: 12px;
+  }
+
+  /* ---------- Filter Bar ---------- */
+
+  .filter-bar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .filter-bar-main {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .filter-group {
+    width: 100%;
+
+    overflow-x: auto;
+
+    padding-bottom: 2px;
+  }
+
+  /* ---------- Cards ---------- */
+
+  .card-body {
+    padding: 17px;
+  }
+
+  .card-header {
+    padding: 16px 17px;
+  }
+
+  .card-footer {
+    padding: 14px 17px;
+  }
+
+  .stat-card {
+    padding: 17px;
+  }
+
+  .stat-value {
+    font-size: 25px;
+  }
+
+  .market-card {
+    padding: 17px;
+  }
+
+  .market-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+
+    padding: 13px;
+  }
+
+  .market-card-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .market-card-actions .btn {
+    width: 100%;
+  }
+
+  .price-card {
+    padding: 16px;
+  }
+
+  .price-value {
+    font-size: 22px;
+  }
+
+  /* ---------- Quick Actions ---------- */
+
+  .quick-actions {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 8px;
+  }
+
+  .quick-action {
+    min-height: 82px;
+
+    padding: 10px 5px;
+  }
+
+  .quick-action-icon {
+    width: 34px;
+    height: 34px;
+
+    font-size: 16px;
+  }
+
+  .quick-action-label {
+    font-size: 9px;
+  }
+
+  /* ---------- Forms ---------- */
+
+  .form-actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+
+  /* ---------- Tabs ---------- */
+
+  .tabs {
+    width: 100%;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ---------- Tables ---------- */
+
+  .table-container {
+    border-radius: var(--radius-md);
+  }
+
+  /* ---------- Modals ---------- */
+
+  .modal-backdrop {
+    align-items: flex-end;
+
+    padding: 0;
+  }
+
+  .modal {
+    width: 100%;
+    max-height: 90vh;
+
+    border-radius:
+      var(--radius-xl)
+      var(--radius-xl)
+      0
+      0;
+
+    transform: translateY(30px);
+  }
+
+  .modal-header,
+  .modal-body {
+    padding-inline: 18px;
+  }
+
+  .modal-footer {
+    align-items: stretch;
+    flex-direction: column-reverse;
+
+    padding: 14px 18px 20px;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+  }
+
+  /* ---------- Toasts ---------- */
+
+  .toast-container {
+    top: 76px;
+    right: 16px;
+    left: 16px;
+
+    width: auto;
+  }
+
+  /* ---------- Authentication ---------- */
+
+  .auth-page {
+    display: block;
+
+    background: var(--background);
+  }
+
+  .auth-panel {
+    min-height: 100vh;
+
+    padding: 28px 20px;
+  }
+
+  .auth-content {
+    max-width: 480px;
+  }
+
+  /* ---------- Demo Banner ---------- */
+
+  .demo-banner {
+    padding-inline: 12px;
+
+    font-size: 10px;
+    text-align: center;
+  }
+
+  /* ---------- Opportunity ---------- */
+
+  .opportunity-card {
+    padding: 19px;
+  }
+
+  /* ---------- Transaction ---------- */
+
+  .transaction-total {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  /* ---------- Info Rows ---------- */
+
+  .info-row {
+    align-items: flex-start;
+  }
+
+  /* ---------- Mobile Bottom Navigation ---------- */
+
+  .mobile-bottom-nav {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    z-index: 900;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    min-height: 68px;
+
+    padding:
+      7px
+      8px
+      calc(7px + env(safe-area-inset-bottom));
+
+    background: rgba(255, 255, 255, 0.98);
+
+    border-top: 1px solid var(--border);
+
+    box-shadow:
+      0 -6px 24px rgba(0, 0, 0, 0.05);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .mobile-nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+
+    min-width: 0;
+
+    padding: 4px;
+
+    color: var(--text-light);
+
+    border-radius: 10px;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    transition:
+      color var(--transition),
+      background var(--transition);
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link.active {
+    color: var(--green-700);
+  }
+
+  .mobile-nav-link.active {
+    background: var(--green-50);
+  }
+
+  .mobile-nav-icon {
+    display: grid;
+    place-items: center;
+
+    width: 24px;
+    height: 24px;
+
+    font-size: 18px;
+  }
+
+  /* ---------- Visibility ---------- */
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: initial;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 479px) {
+  .dashboard-content,
+  .page-content {
+    padding-inline: 14px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 24px;
+  }
+
+  .market-card-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .quick-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .quick-action {
+    min-height: 90px;
+  }
+
+  .price-card-header {
+    align-items: flex-start;
+  }
+
+  .commodity-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .market-card-top {
+    flex-direction: column;
+  }
+
+  .section-header {
+    flex-direction: column;
+  }
+
+  .section-actions {
+    width: 100%;
+  }
+
+  .section-actions .btn {
+    flex: 1;
+  }
+
+  .user-menu {
+    padding-inline: 4px;
+  }
+
+  .mobile-brand-name {
+    font-size: 15px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 359px) {
+  .dashboard-content,
+  .page-content {
+    padding-inline: 12px;
+  }
+
+  .market-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-bottom-nav {
+    padding-inline: 4px;
+  }
+
+  .mobile-nav-link {
+    font-size: 8px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* =========================================================
+   PRINT
+   Useful for transaction summaries during MVP demonstration
+   ========================================================= */
+
+@media print {
+  .sidebar,
+  .app-header,
+  .mobile-header,
+  .mobile-bottom-nav,
+  .demo-banner,
+  .btn,
+  .icon-btn,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    padding: 0;
+
+    color: #000000;
+    background: #ffffff;
+  }
+
+  .app-main {
+    width: 100%;
+    margin: 0;
+  }
+
+  .dashboard-content,
+  .page-content {
+    padding: 0;
+  }
+
+  .card,
+  .market-card,
+  .transaction-summary {
+    box-shadow: none;
+
+    break-inside: avoid;
+  }
+}

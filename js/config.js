@@ -29,3 +29,4 @@ const AGROLINK_CONFIG = {
     trades: "agrolink_trades"
   }
 };
+window.AGROLINK_CONFIG = AGROLINK_CONFIG;
